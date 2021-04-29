@@ -1,12 +1,17 @@
-const express = require("express");
-//const mongoose = require('mongoose');
+//const jwt = require('jsonwebtoken');
+//const config = require('config');
+//const bcrypt = require('bcrypt');
+//const _ = require('lodash');
 const Patient = require("../model/patient");
+//const {Patient, validate} = require('../model/patient');
+const Joi = require('@hapi/joi');
+const mongoose = require('mongoose');
+const express = require('express');
 const router = express.Router();
-
-//var ObjectId = mongoose.Types.ObjectId;
-
-router.post("/add", (req, res) => { 
-
+router.get("/",(req,res)=>{
+ res.send("HomePage of Helathway");
+});
+router.post("/add", (req, res) => {    
     let patient = new Patient();
     patient.name = req.body.name;
     patient.email = req.body.email;
@@ -16,7 +21,7 @@ router.post("/add", (req, res) => {
     patient.phone = req.body.phone;
     patient.gender = req.body.gender;
     patient.bloodGroup = req.body.bloodGroup;
-    patient.historyId= null ;
+   // patient.historyId=null;
     patient.save(err => {
         if (err) return res.json({ success: false, error: err });
         return res.json({ success: true });
@@ -24,8 +29,52 @@ router.post("/add", (req, res) => {
 
 });
 
+router.post("/login", async(req, res) => {   
+        const { error } = validatePatient(req.body); 
+        if (error) return res.status(400).send(error.details[0].message);
+        let patient = await Patient.findOne({ email: req.body.email });
+        if (patient) return res.status(400).send('Patient already registered.');
+      
+         patient = new Patient({
+             name: req.body.name ,
+             email :req.body.email,
+             password : req.body.password,
+             age:req.body.age,
+             address : req.body.address,
+             phone : req.body.phone,
+             gender : req.body.gender,
+             bloodGroup :req.body.bloodGroup
 
 
+            });
+            patient.save(err => {
+                if (err) return res.json({ success: false, error: err });
+                return res.json({ success: true });
+            });
+    
+
+});
+
+//eta add korsi patient er edit er jonne
+router.put("/:id/edit",async (req,res)=>{
+    
+    const patient = await Patient.findByIdAndUpdate(req.params.id,
+        { 
+            name: req.body.name ,
+            email :req.body.email,
+            password : req.body.password,
+            age:req.body.age,
+            address : req.body.address,
+            phone : req.body.phone,
+            gender : req.body.gender,
+            bloodGroup :req.body.bloodGroup
+        }, { new: true });
+        if (!patient) return res.status(404).send('The patient with the given ID was not found.');
+  
+        res.send(patient);
+}
+);
+//egula amader na
 router.get("/patients/:id/admit", function (req, res) {
     const id = { id: req.params.id };
     const update = {
@@ -37,7 +86,7 @@ router.get("/patients/:id/admit", function (req, res) {
         return res.json(patient);
     });
 });
-
+//egula amader na
 router.get("/patients/:id/discharge", function (req, res) {
     const id = { id: req.params.id };
     const update = {
@@ -51,6 +100,21 @@ router.get("/patients/:id/discharge", function (req, res) {
         return res.json(patient);
     });
 });
+//eta validation er jonne add korsilam
+function validatePatient(patient) {
+    const schema = {
+      name: Joi.string().min(3).required(),
+      email:Joi.string().required(),
+      password:Joi.string().required(),
+      age:Joi.number().required(),
+      address:Joi.string().required(),
+      phone:Joi.number().required(),
+      gender:Joi.string().required(),
+      bloodGroup:Joi.string().required()
 
+    };
+  
+    return Joi.validate(patient, schema);
+  }
 
 module.exports = router;
