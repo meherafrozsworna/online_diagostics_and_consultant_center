@@ -67,7 +67,8 @@ router.put("/:id/edit",async (req,res)=>{
             address : req.body.address,
             phone : req.body.phone,
             gender : req.body.gender,
-            bloodGroup :req.body.bloodGroup
+            bloodGroup :req.body.bloodGroup,
+            historyId:req.body.historyId
         }, { new: true });
         if (!patient) return res.status(404).send('The patient with the given ID was not found.');
   
