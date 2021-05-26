@@ -1,6 +1,6 @@
 //const jwt = require('jsonwebtoken');
 //const config = require('config');
-//const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 //const _ = require('lodash');
 const Patient = require("../model/patient");
 //const {Patient, validate} = require('../model/patient');
@@ -30,27 +30,21 @@ router.post("/add", (req, res) => {
 });
 
 router.post("/login", async(req, res) => {   
-        const { error } = validatePatient(req.body); 
-        if (error) return res.status(400).send(error.details[0].message);
+    //validate will be different
+      //  const { error } = validatePatient(req.body); 
+      //  if (error) return res.status(400).send(error.details[0].message);
         let patient = await Patient.findOne({ email: req.body.email });
-        if (patient) return res.status(400).send('Patient already registered.');
-      
-         patient = new Patient({
-             name: req.body.name ,
-             email :req.body.email,
-             password : req.body.password,
-             age:req.body.age,
-             address : req.body.address,
-             phone : req.body.phone,
-             gender : req.body.gender,
-             bloodGroup :req.body.bloodGroup
-
-
-            });
-            patient.save(err => {
-                if (err) return res.json({ success: false, error: err });
-                return res.json({ success: true });
-            });
+        if (!patient) return res.status(400).send('Invalid Email');
+        console.log(`Password ${patient.password}`);
+        console.log(`Password ${req.body.password}`);
+        if(req.body.password==patient.password){
+            res.send(true);
+        }
+        else{
+            return res.status(400).send('Invalid password.');
+        }
+        
+            
     
 
 });
