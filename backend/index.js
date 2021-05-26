@@ -14,7 +14,7 @@
 
 
 const express = require('express');
-//const cors = require('cors');
+const cors = require('cors');
 const mongoose = require('mongoose');
 
 // require('dotenv').config();
@@ -22,7 +22,7 @@ const mongoose = require('mongoose');
 const app = express();
 const port = process.env.PORT || 5000;
 
-//app.use(cors());
+app.use(cors());
 app.use(express.json());
 
 const uri = "mongodb://localhost:27017/diagnostics";
@@ -34,8 +34,10 @@ connection.once('open', () => {
 })
 
 const patientRouter = require('./controller/patientController');
+const doctorRouter = require('./controller/doctorController');
 
 app.use('/patient', patientRouter);
+app.use('/doctor', doctorRouter) ;
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

@@ -2,10 +2,11 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+var ObjectId = mongoose.Types.ObjectId;
 
 const doctorSchema = new Schema({
     name: { type: String, required: true },
-    password : {type: String , required: true},
+    password: { type: String, required: true },
     gender: { type: String, required: true },
     degree: { type: String, required: true },
     currentInstitution: { type: String, required: false },
@@ -14,14 +15,17 @@ const doctorSchema = new Schema({
         {
             Start: Date,
             End: Date,
-            limitation : Number, 
-        }] ,
-    appointmentList : [{
-        patientId : ObjectId,
-        date : Date,
-    }],
-    phone : { type: [Number], required: true },
-    email: { type: email, required: true },
+            limitation: Number,
+        },
+    ],
+    appointmentList: [
+        {
+            patientId: ObjectId,
+            date: Date,
+        },
+    ],
+    phone: { type: [Number], required: true },
+    email: { type: String, required: true },
 });
 
 const Doctor = mongoose.model('Doctor', doctorSchema);

@@ -1,10 +1,10 @@
 //const jwt = require('jsonwebtoken');
 //const config = require('config');
-const bcrypt = require('bcrypt');
+//const bcrypt = require('bcrypt');
 //const _ = require('lodash');
 const Patient = require("../model/patient");
 //const {Patient, validate} = require('../model/patient');
-const Joi = require('@hapi/joi');
+//const Joi = require('@hapi/joi');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
@@ -38,15 +38,11 @@ router.post("/login", async(req, res) => {
         console.log(`Password ${patient.password}`);
         console.log(`Password ${req.body.password}`);
         if(req.body.password==patient.password){
-            res.send(true);
+            res.send(patient);
         }
         else{
             return res.status(400).send('Invalid password.');
         }
-        
-            
-    
-
 });
 
 //eta add korsi patient er edit er jonne
