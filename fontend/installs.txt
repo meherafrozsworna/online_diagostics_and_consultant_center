@@ -1,0 +1,16 @@
+in root directory (HealthWayApp)
+
+npm init (press enter for all default answers)
+Add this line in package.json after "name:healthwayapp" :
+ "type": "module",
+
+
+cd frontend
+npm install redux react-redux
+npm install react-router-dom
+
+cd frontend
+npm init
+npm start
+
+
