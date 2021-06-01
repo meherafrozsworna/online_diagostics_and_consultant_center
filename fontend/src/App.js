@@ -8,23 +8,28 @@ import RegisterScreen from './screens/RegisterScreen';
 import TestFormScreen from './screens/TestFormScreen';
 import PatientHomeScreen from './screens/PatientHomeScreen';
 
-
 function App() {
-
-  return (
-    <BrowserRouter>
-
-  <Route path="/about" component={AboutScreen}></Route>
-  <Route path="/signin" component={SigninScreen}></Route>
-  <Route path="/register" component={RegisterScreen}></Route>
-  <Route path="/patienthome" component={PatientHomeScreen}></Route>
-  <Route path="/testform" component={TestFormScreen}></Route>
-  <Route path="/" component={HomeScreen} exact></Route>
-
-    
-    
-    </BrowserRouter>
-  );
+  console.log(localStorage.getItem('name'));
+    return (
+        <BrowserRouter>
+            <Route path="/about" component={AboutScreen}></Route>
+            <Route path="/signin" component={SigninScreen}></Route>
+            <Route path="/register" component={RegisterScreen}></Route>
+            <Route
+                path="/patienthome/:id"
+                
+                  //component={PatientHomeScreen}}
+                render={props => 
+                  <PatientHomeScreen 
+                    {...props} 
+                    user={"Adiba"}/>
+                  /*using render to send custom props*/
+                } >
+            </Route>
+            <Route path="/testform" component={TestFormScreen}></Route>
+            <Route path="/" component={HomeScreen} exact></Route>
+        </BrowserRouter>
+    );
 }
 
 export default App;

@@ -76,7 +76,7 @@ router.put('/:id/edit', async (req, res) => {
     */
 });
 
-router.post('/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     const doctor = await Doctor.findById(req.params.id);
     if (!doctor)
         return res
