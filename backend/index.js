@@ -26,9 +26,9 @@ const sampleCollectorRouter=require('.//controller/sampleCollectorController');
 
 app.use('/patient', patientRouter);
 app.use('/doctor', doctorRouter) ;
-app.use('./history',historyRouter);
-app.use('./report',reportRouter);
-app.use('./sampleCollector',sampleCollectorRouter);
+app.use('/history',historyRouter);
+app.use('/report',reportRouter);
+app.use('/sampleCollector',sampleCollectorRouter);
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
 });
