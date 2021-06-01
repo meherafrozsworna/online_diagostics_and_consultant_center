@@ -1,20 +1,5 @@
-// const express = require('express');
-// const mongoose = require('mongoose');
-
-// const app = express();
-
-// app.use(express.json());
-// mongoose.connect("mongodb://localhost:27017/diagnostics",{ useNewUrlParser : true},(error)=>{
-//     if(!error){
-//         console.log("success");
-//     }else{
-//         console.log("error connecting to db");
-//     }
-// });
-
-
 const express = require('express');
-const cors = require('cors');
+//const cors = require('cors');
 const mongoose = require('mongoose');
 
 // require('dotenv').config();
@@ -22,7 +7,7 @@ const mongoose = require('mongoose');
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(cors());
+//app.use(cors());
 app.use(express.json());
 
 const uri = "mongodb://localhost:27017/diagnostics";
@@ -35,10 +20,15 @@ connection.once('open', () => {
 
 const patientRouter = require('./controller/patientController');
 const doctorRouter = require('./controller/doctorController');
+const historyRouter=require('./controller/historyController');
+const reportRouter=require('./controller/reportController');
+const sampleCollectorRouter=require('.//controller/sampleCollectorController');
 
 app.use('/patient', patientRouter);
 app.use('/doctor', doctorRouter) ;
-
+app.use('./history',historyRouter);
+app.use('./report',reportRouter);
+app.use('./sampleCollector',sampleCollectorRouter);
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
 });
