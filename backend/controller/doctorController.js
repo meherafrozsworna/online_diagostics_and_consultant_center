@@ -51,29 +51,7 @@ router.put('/:id/edit', async (req, res) => {
             .send('The doctor with the given ID was not found.');
 
     res.send(doctor);
-    /*test req body
-{
-    "phone": [
-        1521259996 
-    ],
-    "schedule": [{
-        "start" : "2014-01-01T23:28:56.782Z",
-        "end" : "2014-01-01T24:28:56.782Z",
-        "limitation" : 10
-    } ],
-    "appointmentList": [{
-        "patientId" : "608140cfe0666a3a046bbbbc",
-        "date" : "2014-01-01T23:28:56.782Z"
-    }],
-    "name": "Miraz",
-    "password": "123",
-    "gender": "male",
-    "degree": "P.H.D. , MBBS",
-    "email": "Miraz@gmail.com",
-    "currentInstitution": "bangladesh medical",
-    "specialization" : "medicine"
-}
-    */
+    
 });
 
 router.post('/:id', async (req, res) => {

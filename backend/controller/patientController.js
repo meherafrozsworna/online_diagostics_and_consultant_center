@@ -1,6 +1,6 @@
 //const jwt = require('jsonwebtoken');
 //const config = require('config');
-//const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 //const _ = require('lodash');
 const Patient = require("../model/patient");
 //const {Patient, validate} = require('../model/patient');
@@ -9,13 +9,18 @@ const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 router.get("/",(req,res)=>{
+    console.log("ashche");
  res.send("HomePage of Helathway");
 });
-router.post("/add", (req, res) => {    
+router.post("/add", async(req, res) => {   
+    console.log("working 1") 
     let patient = new Patient();
     patient.name = req.body.name;
     patient.email = req.body.email;
-    patient.password = req.body.password;
+    const salt = await bcrypt.genSalt(10);
+    patient.password = await bcrypt.hash(req.body.password, salt);
+    //patient.password = req.body.password;
+    console.log("working 2") 
     patient.age=req.body.age;
     patient.address = req.body.address;
     patient.phone = req.body.phone;
@@ -35,14 +40,24 @@ router.post("/login", async(req, res) => {
       //  if (error) return res.status(400).send(error.details[0].message);
         let patient = await Patient.findOne({ email: req.body.email });
         if (!patient) return res.status(400).send('Invalid Email');
-        console.log(`Password ${patient.password}`);
         console.log(`Password ${req.body.password}`);
-        if(req.body.password==patient.password){
+        console.log(`Password ${patient.password}`);
+        const validPassword = await bcrypt.compare(req.body.password, patient.password);
+        if (validPassword) {
             res.send(patient);
-        }
-        else{
+          } else {
             return res.status(400).send('Invalid password.');
-        }
+          }
+        
+         //   console.log(`Password ${patient.password}`);
+        //console.log(`Password ${req.body.password}`);
+        //if(req.body.password==patient.password){
+        //    res.send(patient);
+        //}
+        //else{
+        //    return res.status(400).send('Invalid password.');
+        //}
+    
 });
 
 //eta add korsi patient er edit er jonne
@@ -65,6 +80,7 @@ router.put("/:id/edit",async (req,res)=>{
         res.send(patient);
 }
 );
+
 //egula amader na
 router.get("/patients/:id/admit", function (req, res) {
     const id = { id: req.params.id };
