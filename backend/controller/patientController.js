@@ -93,6 +93,15 @@ router.get("/patients/:id/admit", function (req, res) {
         return res.json(patient);
     });
 });
+router.get('/:id', async (req, res) => {
+    const patient = await Doctor.findById(req.params.id);
+    if (!patient)
+        return res
+            .status(404)
+            .send('The doctor with the given ID was not found.');
+
+    res.send(patient);
+});
 //egula amader na
 router.get("/patients/:id/discharge", function (req, res) {
     const id = { id: req.params.id };
