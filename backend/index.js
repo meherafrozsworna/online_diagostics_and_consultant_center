@@ -1,5 +1,5 @@
 const express = require('express');
-//const cors = require('cors');
+const cors = require('cors');
 const mongoose = require('mongoose');
 
 // require('dotenv').config();
@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const app = express();
 const port = process.env.PORT || 5000;
 
-//app.use(cors());
+app.use(cors());
 app.use(express.json());
 
 const uri = "mongodb://localhost:27017/diagnostics";
@@ -22,7 +22,7 @@ const patientRouter = require('./controller/patientController');
 const doctorRouter = require('./controller/doctorController');
 const historyRouter=require('./controller/historyController');
 const reportRouter=require('./controller/reportController');
-const sampleCollectorRouter=require('.//controller/sampleCollectorController');
+const sampleCollectorRouter=require('./controller/sampleCollectorController');
 
 app.use('/patient', patientRouter);
 app.use('/doctor', doctorRouter) ;
@@ -32,5 +32,3 @@ app.use('/sampleCollector',sampleCollectorRouter);
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
 });
-  
- 

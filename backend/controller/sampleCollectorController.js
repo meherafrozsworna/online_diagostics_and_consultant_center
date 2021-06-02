@@ -1,4 +1,4 @@
-const sampleCollector = require("../model/patient");
+const sampleCollector = require("../model/sampleCollector");
 //const {Patient, validate} = require('../model/patient');
 //const Joi = require('@hapi/joi');
 const mongoose = require('mongoose');
@@ -7,15 +7,17 @@ const router = express.Router();
 router.get("/",(req,res)=>{
  res.send("HomePage of Helathway");
 });
-router.post("/add", (req, res) => {    
+router.post("/add", (req, res) => { 
+     
     let scollector = new sampleCollector({
     name: req.body.name,
+    email: req.body.email,
     password :req.body.password,
     phone : req.body.phone,
     age: req.body.age,
-    email: req.body.email,
     gender:req.body.password,
     });
+    console.log("wroking 2")   
     scollector.save(err => {
         if (err) return res.json({ success: false, error: err });
         return res.json({ success: true });
@@ -47,7 +49,7 @@ router.put('/:id/edit', async (req, res) => {
     if (!scollector)
         return res
             .status(404)
-            .send('The doctor with the given ID was not found.');
+            .send('The samplecollector with the given ID was not found.');
 
     res.send(scollector);
     
