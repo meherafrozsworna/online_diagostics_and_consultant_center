@@ -12,6 +12,8 @@ body {
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-image: url('image/01.jpg');
 }
 #root{
   height: 100%;
@@ -28,7 +30,7 @@ body {
   grid-template-rows: 5rem 1fr 5rem;
 
   background-image: url('image/01.jpg');
-  background-repeat: repeat-y;
+  background-repeat: repeat;
   background-size: cover;
   height: 100%;
 }
@@ -51,8 +53,35 @@ h1 {
   padding: 1rem 0;
 }
 h2 {
-  font-size: 1.6rem;
-  padding: 1rem 0;
+  font-size: 2.5rem;
+  width:60%;
+  
+  opacity: 0.9;
+  line-height: 20px;
+  text-decoration: none; /* remove underline from anchors */
+  text-align: center;
+  padding: 10px 32px;
+  margin: 2px 2px;
+  position: relative;
+  border-radius: 12px;
+
+  display: inline-block;
+  background-color: #e3cdff;
+  color: #2b0741;
+  cursor: pointer;
+  font-size: 100%;
+  font-weight: bolder;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+h3 {
+  font-size: 1.8rem;
+  color: #4b2879;
+}
+
+h4 {
+  font-size: 1.8rem;
+  color: red;
 }
 
 button {
@@ -129,11 +158,63 @@ a.brand2 {
 .row.center {
   justify-content: center;
 }
-.col-1{
-  flex: 1 1 25rem;
+
+.row2 {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  
 }
-.col-1{
+.column {
+  float:left;
+  border: 20;
+  padding: 20px;
+
+}
+.column2 {
+  float:right;
+  padding: 20px;
+
+}
+
+.left {
+  width: 25%;
+}
+
+.right {
+  width: 75%;
+}
+
+.col1{
+  flex: 5 1 10 rem;
+}
+.col2{
   flex: 2 1 50rem;
+}
+
+/*SCROLL BOX*/
+.scrollbox {
+  background-color: white;
+  width: 300px;
+  height: 450px;
+  overflow: scroll;
+  border: 4px #574296 solid;
+  float: left;
+  padding: 2px 2px;
+  margin: 20px 180px;
+  border-radius: 15px;
+}
+
+.scrollbox2 {
+  background-color: white;
+  width: 250px;
+  height: 450px;
+  overflow: scroll;
+  border: 4px #574296 solid;
+  float: left;
+  padding: 20px 32px;
+  margin: 20px 30px;
+  border-radius: 15px;
 }
 
 .profile{
@@ -145,7 +226,7 @@ a.brand2 {
 grid-template-columns: 1fr;
 grid-template-rows: 5rem 1fr;
 
-  background-color: #f0f0ff;
+  background-color: #f9f0ff;
   height: 100%;
 }
 header {
@@ -154,7 +235,7 @@ header {
 }
 main {
   grid-area: main;
-  padding: 1rem;
+  padding: 0rem;
 }
 
 .about{
@@ -247,27 +328,6 @@ input {
 
 }
 
-/* Dropdown */
-.dropdown {
-  display: inline-block;
-  position: relative;
-}
-.dropdown-content {
-  position: absolute;
-  display: none;
-  right: 0;
-  min-width: 12rem;
-  padding: 1rem;
-  z-index: 1;
-  background-color: #203040;
-  margin: 0;
-  margin-top: 0.4rem;
-  border-radius: 0.5rem;
-}
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
 .btn {
   width: 100%;
   border-radius: 14px;
@@ -293,14 +353,14 @@ input {
 
 .btn2 {
   width: 45%;
-  border-radius: 24px;
+  
   opacity: 0.8;
-  font-size: 30px;
-  line-height: 20px;
+  line-height: 24px;
   text-decoration: none; /* remove underline from anchors */
   text-align: center;
-  padding: 12px 42px;
-  margin: 20px 10px;
+  padding: 15px 32px;
+  margin: 20px 8px;
+  border-radius: 24px;
 
   display: inline-block;
   background-color: #5a348b;
@@ -322,27 +382,10 @@ input {
   height: 290px;
   width: 400 px;
 }
-.btn2 span.icon {
-  background: url('image/icon_getappointment.png') no-repeat;
-  float: center;
-  width: 100px;
-  height: 400px;
-}
 
-.column {
-  float: left;
-  border: 1.5 rem #8d76d3 solid;
-  margin: 10px;
 
-}
 
-.left {
-  width: 25%;
-}
 
-.right {
-  width: 75%;
-}
 
 /* PROFILE */
 
@@ -423,4 +466,170 @@ input {
 
 
 /* TEST FORM */
+
+.rows{
+  margin: 0 auto;
+  padding: 4px 20px;
+}
+.labels{
+  display: inline-block;
+  text-align: left;
+  padding: 10px; 
+  margin-top: 2px;
+}
+.input{
+  display: inline-block;
+  text-align: left;
+  width: 90%;
+  padding: 10px; 
+  margin-top: 2px;
+  line-height: 15px;
+  font-size: 19px;
+}
+.text-input{
+  text-align: left;
+  background-color: white;
+  padding: 3px;
+  width: 100%;
+  border: 2px #6e4596 solid;
+}
+#dropdown{
+  position: relative;
+  text-align: left;
+  font-size: 19px;
+  color: #4b2879;
+  margin: 10px;
+  padding: 13px 5px;
+  width: 100%;
+  max-width: 580px;
+  line-height: 20px;
+  border: 2px #6e4596 solid;
+}
+#title{
+  text-align: center;
+  position: relative;
+}
+#radio-label{
+  vertical-align: middle;
+}
+#checkboxes-label{
+  vertical-align: top;
+}
+#text-area{
+  text-align: left;
+  height: 60px;
+  width: 100%;
+  max-width: 280px;
+  position: justify;
+}
+#textarea-label{
+  vertical-align: top;
+  position: justify;
+  
+}
+#description{
+  font-size: 18px;
+  text-align: center;
+  font-weight: bold;
+}
+#submit-button{
+  width: 100%;
+  text-align: center;
+}
+#submit{
+  padding: 6px;
+  width: 100px;
+  border-radius: 10px;
+  background-color: #782c9b;
+  color: white;
+}
+#submit:hover{
+  background-color: #da99ff;
+  color: black;
+  cursor: pointer;
+}
+#container{
+  background-color: rgb(250, 250,250);
+  margin: 0 auto;
+  border-radius: 30px;
+  padding: 10px;
+  position: justify;
+  top: 180px;
+  width: 70%;
+  left: 15%; 
+}
+@media screen and (max-width: 580px) {
+  .labels {
+    width: 100%;
+    max-width: 290px;
+    text-align: center;
+    
+  }
+  .input {
+    width: 100%;
+    text-align: justify;
+  }
+  #container{
+    width: 80%;
+    left:10%;
+    position: justify;
+  }
+}
+@media screen and (max-width: 397px) {
+  .labels { 
+     max-width: 90%; 
+  }
+}
+
+/* DRopdown Checklist */
+.dropdown-check-list {
+  display: inline-block;
+}
+
+.dropdown-check-list .anchor {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  padding: 5px 50px 5px 10px;
+  border: 1px solid #ccc;
+}
+
+.dropdown-check-list .anchor:after {
+  position: absolute;
+  content: "";
+  border-left: 2px solid black;
+  border-top: 2px solid black;
+  padding: 5px;
+  right: 10px;
+  top: 20%;
+  -moz-transform: rotate(-135deg);
+  -ms-transform: rotate(-135deg);
+  -o-transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}
+
+.dropdown-check-list .anchor:active:after {
+  right: 8px;
+  top: 21%;
+}
+
+.dropdown-check-list ul.items {
+  padding: 2px;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.dropdown-check-list ul.items li {
+  list-style: none;
+}
+
+.dropdown-check-list.visible .anchor {
+  color: #0094ff;
+}
+
+.dropdown-check-list.visible .items {
+  display: block;
+}
 
