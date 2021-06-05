@@ -115,7 +115,7 @@ export default class SigninScreen extends Component {
                             <div>
                                 <label />
                                 <button className="primary" type="submit">
-                                    SignIn
+                                    Sign In
                                 </button>
                             </div>
                             <div>
