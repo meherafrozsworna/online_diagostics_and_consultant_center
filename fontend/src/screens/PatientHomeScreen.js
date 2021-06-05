@@ -73,7 +73,7 @@ export default class PatientHomeScreen extends Component {
                     </div>
                 </header>
                 <main className="profile">
-                    <div className="row">
+                    <div className="row2">
                         <div className="column">
                             <div className="detail-box">
                                 <div className="user-image">
@@ -122,37 +122,24 @@ export default class PatientHomeScreen extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="column">
+                        <div className="column2">
+                            <br></br><br></br>
+                            Test collection notifications: 0<br></br>
+                            Appointment Notification: 0<br></br>
                             <div class="row center">
-                                <br></br>
-                                <br></br>
-                                <br></br>
-                                <br></br>
-                                <br></br>
+                                <br></br><br></br><br></br><br></br><br></br><br></br>
                                 <Link to="/" className="btn2">
-                                    Book Appointment
+                                    Get An Appointment
                                 </Link>
-                                <br></br>
-                                <br></br>
-                                <br></br>
-                                <br></br>
-                                <br></br>
+                                <br></br><br></br><br></br><br></br><br></br><br></br>
                                 <Link to="/testform" className="btn2">
                                     Need A Test?
                                 </Link>
-                                <br></br>
-                                <br></br>
-                                <br></br>
-                                <br></br>
-                                <br></br>
-                                <Link to="/" className="btn2">
+                                <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+                                <Link to="/reportpres" className="btn2">
                                     Reports And Prescriptions
                                 </Link>
-                                <br></br>
-                                <br></br>
-                                <br></br>
-                                <br></br>
-                                <br></br>
+                                <br></br><br></br><br></br><br></br><br></br><br></br>
                             </div>
                         </div>
                     </div>
