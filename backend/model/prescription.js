@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 
 const prescriptionSchema = new Schema({
-    appointmentId: { type: ObjectId, required: true },
+    appointmentId: mongoose.Schema.Types.ObjectId,
     doctorId: { type: ObjectId, required: true },
     patientId : { type: ObjectId, required: true },
     doctorName: { type: String, required: true },

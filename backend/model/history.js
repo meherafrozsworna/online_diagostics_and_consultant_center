@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 var ObjectId = mongoose.Types.ObjectId;
 
 const historySchema = new Schema({
-    patientId: { type: ObjectId, required: true },
+    patientId: mongoose.Schema.Types.ObjectId,
     bloodGroup: { type: String, required: true },
     gender: { type: String, required: true },
     weight: { type: Number, required: true },

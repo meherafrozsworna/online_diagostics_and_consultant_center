@@ -11,7 +11,7 @@ const patientSchema = new Schema({
     phone :{type: Number, required: true},
     email :{ type: String, required: true },
     address:{ type: String, required: true },
-    historyId: {type: ObjectId},
+    historyId: mongoose.Schema.Types.ObjectId,
     bloodGroup:{ type: String, required: true },
     appointmentDetails : [{
         doctorId: ObjectId,
