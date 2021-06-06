@@ -3,6 +3,7 @@
 const bcrypt = require('bcrypt');
 //const _ = require('lodash');
 const Patient = require("../model/patient");
+const TestForm=require("../model/testform");
 //const {Patient, validate} = require('../model/patient');
 //const Joi = require('@hapi/joi');
 const mongoose = require('mongoose');
@@ -13,7 +14,7 @@ router.get("/",(req,res)=>{
  res.send("HomePage of Helathway");
 });
 router.post("/add", async(req, res) => {   
-    console.log("working 1") 
+   // console.log("working 1") 
     let patient = new Patient();
     patient.name = req.body.name;
     patient.email = req.body.email;
@@ -35,9 +36,6 @@ router.post("/add", async(req, res) => {
 });
 
 router.post("/login", async(req, res) => {   
-    //validate will be different
-      //  const { error } = validatePatient(req.body); 
-      //  if (error) return res.status(400).send(error.details[0].message);
         let patient = await Patient.findOne({ email: req.body.email });
         if (!patient) return res.status(400).send('Invalid Email');
         console.log(`Password ${req.body.password}`);
@@ -49,14 +47,6 @@ router.post("/login", async(req, res) => {
             return res.status(400).send('Invalid password.');
           }
         
-         //   console.log(`Password ${patient.password}`);
-        //console.log(`Password ${req.body.password}`);
-        //if(req.body.password==patient.password){
-        //    res.send(patient);
-        //}
-        //else{
-        //    return res.status(400).send('Invalid password.');
-        //}
     
 });
 
@@ -94,13 +84,40 @@ router.get("/patients/:id/admit", function (req, res) {
     });
 });
 router.get('/:id', async (req, res) => {
-    const patient = await Doctor.findById(req.params.id);
+    const patient = await Patient.findById(req.params.id);
     if (!patient)
         return res
             .status(404)
-            .send('The doctor with the given ID was not found.');
+            .send('The patient with the given ID was not found.');
 
     res.send(patient);
+});
+router.post('/testform/submit',async (req, res) =>{
+    const patient = await Patient.find({
+        name: req.params.name,
+    });
+    if (!patient)
+        return res
+            .status(404)
+            .send('The patient with the given ID was not found.');
+    let testform = new TestForm();
+    testform.patientName=req.body.patientName;
+    testform.patientId=req.body.patientId;
+    testform.phoneNumber= req.body.phoneNumber;
+    testform.age= req.body.age;
+    testform.gender=req.body.gender;
+    testform.location=req.body.location;
+    testform.address=req.body.address;
+    testform.pref_gender=req.body.pref_gender;
+    testform.pref_time=req.body.pref_time;
+    testform.testName=req.body.testName;
+    testform.ref_doctor=req.body.ref_doctor;
+    testform.instructions=req.body.instructions;
+    testform.date=req.body.instructions;
+    testform.payment=req.body.payment;
+
+    res.send(testform);
+
 });
 //egula amader na
 router.get("/patients/:id/discharge", function (req, res) {
