@@ -135,32 +135,29 @@ router.get('/patients/:id/admit', function (req, res) {
     });
 });
 
-router.post('/testform/submit', verifyJWT, (req, res) => {
-    const patient = await Patient.find({
-        name: req.params.name,
-    });
-    if (!patient)
-        return res
-            .status(404)
-            .send('The patient with the given ID was not found.');
+router.post('/testform/submit',verifyJWT, (req, res) =>{
+    
     let testform = new TestForm();
-    testform.patientName = req.body.patientName;
-    testform.patientId = req.body.patientId;
-    testform.phoneNumber = req.body.phoneNumber;
-    testform.age = req.body.age;
-    testform.gender = req.body.gender;
-    testform.location = req.body.location;
-    testform.address = req.body.address;
-    testform.pref_gender = req.body.pref_gender;
-    testform.pref_time = req.body.pref_time;
-    testform.testName = req.body.testName;
-    testform.ref_doctor = req.body.ref_doctor;
-    testform.instructions = req.body.instructions;
-    testform.date = req.body.instructions;
-    testform.payment = req.body.payment;
+    testform.patientName=req.body.patientName;
+    testform.patientId= req.patient._id ;
+    testform.phoneNumber= req.body.phoneNumber;
+    testform.age= req.body.age;
+    testform.gender=req.body.gender;
+    testform.location=req.body.location;
+    testform.address=req.body.address;
+    testform.pref_gender=req.body.pref_gender;
+    testform.pref_time=req.body.pref_time;
+    testform.testName=req.body.testName;
+    testform.ref_doctor=req.body.ref_doctor;
+    testform.instructions=req.body.instructions;
+    testform.date=req.body.date;
+    testform.payment=req.body.payment;
 
-    res.send(testform);
-});
+    testform.save(err => {
+        if (err) return res.json({ success: false, error: err });
+        return res.json({ success: true });
+    });
+
 //egula amader na
 router.get('/patients/:id/discharge', function (req, res) {
     const id = { id: req.params.id };
