@@ -11,7 +11,7 @@ import RegisterScreen from './screens/RegisterScreen';
 import PatientHomeScreen from './screens/PatientHomeScreen';
 
 function App() {
-  console.log(localStorage.getItem('name'));
+    console.log(localStorage.getItem('name'));
     return (
         <BrowserRouter>
             <Route path="/about" component={AboutScreen}></Route>
@@ -19,16 +19,13 @@ function App() {
             <Route path="/register" component={RegisterScreen}></Route>
             <Route path="/samplecollector" component={SampleCollector}></Route>
             <Route
-                path="/patienthome/:id"
-                
-                  //component={PatientHomeScreen}}
-                render={props => 
-                  <PatientHomeScreen 
-                    {...props} 
-                    user={"Adiba"}/>
-                  /*using render to send custom props*/
-                } >
-            </Route>
+                path="/patienthome"
+                //component={PatientHomeScreen}}
+                render={
+                    (props) => <PatientHomeScreen {...props} user={'Adiba'} />
+                    /*using render to send custom props*/
+                }
+            ></Route>
             <Route path="/testform" component={TestForm}></Route>
             <Route path="/reportpres" component={ReportPrescription}></Route>
             <Route path="/doctor" component={DoctorScreen}></Route>

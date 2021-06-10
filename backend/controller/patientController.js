@@ -7,7 +7,8 @@ const TestForm = require('../model/testform');
 //const {Patient, validate} = require('../model/patient');
 //const Joi = require('@hapi/joi');
 const mongoose = require('mongoose');
-const express = require('express');const jwt = require('jsonwebtoken');
+const express = require('express');
+const jwt = require('jsonwebtoken');
 const router = express.Router();
 
 const verifyJWT = (req, res, next) => {
@@ -31,8 +32,22 @@ const verifyJWT = (req, res, next) => {
 };
 
 router.get('/isUserAuth', verifyJWT, (req, res) => {
-    res.send('You are authenticated......<3');
+    res.send("you are authenticated");
 });
+
+router.get('/home', verifyJWT, (req, res) => {
+    //const patient = await Patient.findById(req.params.id);
+
+    if (!req.patient)
+        return res
+            .status(404)
+            .send('The patient with the given ID was not found.');
+
+    console.log('In server home');
+    console.log(req.patient);
+    res.send(req.patient);
+});
+
 router.get('/', (req, res) => {
     console.log('ashche');
     res.send('HomePage of Helathway');
@@ -119,16 +134,8 @@ router.get('/patients/:id/admit', function (req, res) {
         return res.json(patient);
     });
 });
-router.get('/:id', async (req, res) => {
-    const patient = await Patient.findById(req.params.id);
-    if (!patient)
-        return res
-            .status(404)
-            .send('The patient with the given ID was not found.');
 
-    res.send(patient);
-});
-router.post('/testform/submit', async (req, res) => {
+router.post('/testform/submit', verifyJWT, (req, res) => {
     const patient = await Patient.find({
         name: req.params.name,
     });

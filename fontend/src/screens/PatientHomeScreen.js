@@ -21,11 +21,27 @@ export default class PatientHomeScreen extends Component {
 
     async componentDidMount() {
         //this.getTodos();
-        //console.log('BBBBBBBBBBB');
-        let data = await axios
-            .get('http://localhost:5000/patient/' + this.props.match.params.id)
+        console.log('BBBBBBBBBBB');
+        axios
+            .get('http://localhost:5000/patient/isUserAuth', {
+                headers: {
+                    'x-access-token': localStorage.getItem('token'),
+                },
+            })
+            .then((res) => {
+                console.log('user auth');
+                console.log(res);
+            });
+
+        axios
+            .get('http://localhost:5000/patient/home', {
+                headers: {
+                    'x-access-token': localStorage.getItem('token'),
+                },
+            })
             .then((response) => {
                 //let obj = await response.data;
+                console.log('AAAAAA');
                 console.log(response.data);
                 this.setState({
                     name: response.data.name,
@@ -39,6 +55,7 @@ export default class PatientHomeScreen extends Component {
                 });
             })
             .catch(function (error) {
+                console.log('error');
                 console.log(error);
             });
     }
@@ -101,19 +118,13 @@ export default class PatientHomeScreen extends Component {
                                         <li>Blood Group</li>
                                     </ul>
                                     <ul className="ul-second">
-                                        <li>{localStorage.getItem('name')}</li>
-                                        <li>
-                                            {localStorage.getItem('gender')}
-                                        </li>
-                                        <li>{localStorage.getItem('age')}</li>
-                                        <li>{localStorage.getItem('phone')}</li>
-                                        <li>{localStorage.getItem('email')}</li>
-                                        <li>
-                                            {localStorage.getItem('address')}
-                                        </li>
-                                        <li>
-                                            {localStorage.getItem('bloodGroup')}
-                                        </li>
+                                        <li>{this.state.name}</li>
+                                        <li>{this.state.gender}</li>
+                                        <li>{this.state.age}</li>
+                                        <li>{this.state.phone}</li>
+                                        <li>{this.state.email}</li>
+                                        <li>{this.state.address}</li>
+                                        <li>{this.state.bloodGroup}</li>
                                     </ul>
                                 </div>
 
@@ -123,23 +134,45 @@ export default class PatientHomeScreen extends Component {
                             </div>
                         </div>
                         <div className="column2">
-                            <br></br><br></br>
+                            <br></br>
+                            <br></br>
                             Test collection notifications: 0<br></br>
                             Appointment Notification: 0<br></br>
                             <div class="row center">
-                                <br></br><br></br><br></br><br></br><br></br><br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
                                 <Link to="/" className="btn2">
                                     Get An Appointment
                                 </Link>
-                                <br></br><br></br><br></br><br></br><br></br><br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
                                 <Link to="/testform" className="btn2">
                                     Need A Test?
                                 </Link>
-                                <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
                                 <Link to="/reportpres" className="btn2">
                                     Reports And Prescriptions
                                 </Link>
-                                <br></br><br></br><br></br><br></br><br></br><br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
                             </div>
                         </div>
                     </div>

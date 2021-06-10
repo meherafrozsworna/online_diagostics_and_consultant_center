@@ -63,8 +63,8 @@ export default class SigninScreen extends Component {
                     status: true,
                     //id: res.data._id,
                 });
-                //console.log(this.state.id);
-                this.userAuthenticated();
+                //this.userAuthenticated();
+
                 // localStorage.setItem('name', res.data.name);
                 // localStorage.setItem('password', res.data.password);
                 // localStorage.setItem('gender', res.data.gender);
@@ -73,7 +73,7 @@ export default class SigninScreen extends Component {
                 // localStorage.setItem('email', res.data.email);
                 // localStorage.setItem('address', res.data.address);
                 // localStorage.setItem('bloodGroup', res.data.bloodGroup);
-                //window.location = '/patienthome/' + this.state.id;
+                window.location = '/patienthome' 
             });
     }
 
