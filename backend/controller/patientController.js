@@ -7,8 +7,32 @@ const TestForm = require('../model/testform');
 //const {Patient, validate} = require('../model/patient');
 //const Joi = require('@hapi/joi');
 const mongoose = require('mongoose');
-const express = require('express');
+const express = require('express');const jwt = require('jsonwebtoken');
 const router = express.Router();
+
+const verifyJWT = (req, res, next) => {
+    const token = req.headers['x-access-token'];
+
+    if (!token) {
+        res.send('We need a token');
+    } else {
+        jwt.verify(token, 'jwtSecrete', (err, decoded) => {
+            if (err) {
+                res.send({
+                    auth: false,
+                    message: 'you failed to authenticate',
+                });
+            } else {
+                req.patient = decoded.patient;
+                next();
+            }
+        });
+    }
+};
+
+router.get('/isUserAuth', verifyJWT, (req, res) => {
+    res.send('You are authenticated......<3');
+});
 router.get('/', (req, res) => {
     console.log('ashche');
     res.send('HomePage of Helathway');
@@ -33,10 +57,13 @@ router.post('/add', async (req, res) => {
         return res.json({ success: true });
     });
 });
-
 router.post('/login', async (req, res) => {
+    //validate will be different
+    //  const { error } = validatePatient(req.body);
+    //  if (error) return res.status(400).send(error.details[0].message);
     let patient = await Patient.findOne({ email: req.body.email });
-    if (!patient) return res.status(400).send('Invalid Email');
+    if (!patient)
+        return res.status(400).send({ auth: false, message: 'Invalid Email' });
     console.log(`Password ${req.body.password}`);
     console.log(`Password ${patient.password}`);
     const validPassword = await bcrypt.compare(
@@ -44,12 +71,17 @@ router.post('/login', async (req, res) => {
         patient.password
     );
     if (validPassword) {
-        res.send(patient);
+        const token = jwt.sign({ patient }, 'jwtSecrete', {
+            expiresIn: 300,
+        });
+        res.send({ auth: true, token: token, result: patient });
     } else {
-        return res.status(400).send('Invalid password.');
+        return res.status(400).send({
+            auth: false,
+            message: 'wrong username/password combination',
+        });
     }
 });
-
 //eta add korsi patient er edit er jonne
 router.put('/:id/edit', async (req, res) => {
     const patient = await Patient.findByIdAndUpdate(
