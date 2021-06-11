@@ -163,10 +163,10 @@ export default class TestForm extends Component {
 
         axios
             .post('http://localhost:5000/patient/testform/submit', testdata, {
-              headers: {
-                  'x-access-token': localStorage.getItem('token'),
-              },
-          })
+                headers: {
+                    'x-access-token': localStorage.getItem('token'),
+                },
+            })
             .then((res) => console.log(res.data));
 
         //window.location = '/home';
@@ -192,7 +192,6 @@ export default class TestForm extends Component {
                                 the person whose sample will be collected.
                             </p>
                             <form id="survey-form" onSubmit={this.onSubmit}>
-                              
                                 <div class="rows">
                                     <div class="input">
                                         <input
@@ -586,6 +585,7 @@ export default class TestForm extends Component {
                                     </div>
                                 </div>
 
+                                <div class="rows">payment amount : 500</div>
                                 <div class="rows" id="submit-button">
                                     <button type="submit" id="submit">
                                         Submit
