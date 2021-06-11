@@ -46,9 +46,16 @@ export default class SampleCollector extends Component {
     }
     */
 
+    change_text(){
+        document.getElementById("paid").innerHTML = "PAID";
+    }
+
+
     render() {
         //const data = localStorage.getItem('data');
         return (
+
+            
             <div className="profile">
                 {
                     //<h1>{this.props.id}</h1>
@@ -92,18 +99,10 @@ export default class SampleCollector extends Component {
 
                                 <div className="detail-box2">
                                     <ul className="ul-first">
-                                        <li>Name</li>
-                                        <li>Gender</li>
-                                        <li>Age</li>
-                                        <li>Phone</li>
-                                    </ul>
-                                    <ul className="ul-second">
-                                        <li>{localStorage.getItem('name')}</li>
-                                        <li>
-                                            {localStorage.getItem('gender')}
-                                        </li>
-                                        <li>{localStorage.getItem('age')}</li>
-                                        <li>{localStorage.getItem('phone')}</li>
+                                        <li>Name :  {localStorage.getItem('name')}</li>
+                                        <li>Gender :  {localStorage.getItem('gender')}</li>
+                                        <li>Age :  {localStorage.getItem('age')}</li>
+                                        <li>Phone :  {localStorage.getItem('phone')}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -119,7 +118,13 @@ export default class SampleCollector extends Component {
                                         Khilgaon 204/A Road-10 House-2<br></br>
                                         01712345678<br></br>
                                         Tk 560
-                                        <h4>UNPAID</h4>
+                                        <p id="paid">
+                                            UNPAID
+                                        </p>
+                                        <button className="smallbtn" onClick="change_text()">
+                                            Completed
+                                        </button>
+                                        
                                         </li>
 
                                         <li>
@@ -128,6 +133,9 @@ export default class SampleCollector extends Component {
                                         01712345678<br></br>
                                         Tk 560
                                         <h4>PAID</h4>
+                                        <button className="smallbtn" onClick="change_text()">
+                                            Completed
+                                        </button>
                                         </li>
 
                                         <li>
@@ -136,6 +144,9 @@ export default class SampleCollector extends Component {
                                         01712345678<br></br>
                                         Tk 560
                                         <h4>UNPAID</h4>
+                                        <button className="smallbtn" onClick="change_text()">
+                                            Completed
+                                        </button>
                                         </li>
 
                                         <li>
@@ -144,6 +155,9 @@ export default class SampleCollector extends Component {
                                         01712345678<br></br>
                                         Tk 560
                                         <h4>PAID</h4>
+                                        <button className="smallbtn" onClick="change_text()">
+                                            Completed
+                                        </button>
                                         </li>
 
                                         <li>
@@ -152,6 +166,9 @@ export default class SampleCollector extends Component {
                                         01712345678<br></br>
                                         Tk 560
                                         <h4>UNPAID</h4>
+                                        <button className="smallbtn" onClick="change_text()">
+                                            Completed
+                                        </button>
                                         </li>
                                     </ul>
                                 </div>
