@@ -32,7 +32,7 @@ const verifyJWT = (req, res, next) => {
 };
 
 router.get('/isUserAuth', verifyJWT, (req, res) => {
-    res.send("you are authenticated");
+    res.send('you are authenticated');
 });
 
 router.get('/home', verifyJWT, (req, res) => {
@@ -135,27 +135,24 @@ router.get('/patients/:id/admit', function (req, res) {
     });
 });
 
-router.post('/testform/submit',verifyJWT, (req, res) =>{
-    
+router.post('/testform/submit', verifyJWT, (req, res) => {
     let testform = new TestForm();
-    testform.patientName=req.body.name;
-    console.log(testform.patientName);
-    testform.patientId= req.patient._id ;
-    console.log(testform.patientId);
-    testform.phoneNumber= req.body.number;
-    testform.age= req.body.age;
-    testform.gender=req.body.gender;
-    testform.location=req.body.location;
-    testform.address=req.body.address;
-    testform.pref_gender=req.body.prefGender;
-    testform.pref_time=req.body.prefTime;
-    testform.testName=req.body.checkedTestNames;
-    testform.ref_doctor=req.body.refDoctor;
-    testform.instructions=req.body.instructions;
-   // testform.date=req.body.date;
-    testform.payment=req.body.payment;
+    testform.patientName = req.body.patientName;
+    testform.patientId = req.patient._id;
+    testform.phoneNumber = req.body.phoneNumber;
+    testform.age = req.body.age;
+    testform.gender = req.body.gender;
+    testform.location = req.body.location;
+    testform.address = req.body.address;
+    testform.pref_gender = req.body.pref_gender;
+    testform.pref_time = req.body.pref_time;
+    testform.testName = req.body.testName;
+    testform.ref_doctor = req.body.ref_doctor;
+    testform.instructions = req.body.instructions;
+    testform.date = req.body.date;
+    testform.payment = req.body.payment;
 
-    testform.save(err => {
+    testform.save((err) => {
         if (err) return res.json({ success: false, error: err });
         return res.json({ success: true });
     });
@@ -174,5 +171,20 @@ router.get('/patients/:id/discharge', function (req, res) {
         return res.json(patient);
     });
 });
+//eta validation er jonne add korsilam
+function validatePatient(patient) {
+    const schema = {
+        name: Joi.string().min(3).required(),
+        email: Joi.string().required(),
+        password: Joi.string().required(),
+        age: Joi.number().required(),
+        address: Joi.string().required(),
+        phone: Joi.number().required(),
+        gender: Joi.string().required(),
+        bloodGroup: Joi.string().required(),
+    };
+
+    return Joi.validate(patient, schema);
+}
 
 module.exports = router;
