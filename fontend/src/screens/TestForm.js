@@ -162,7 +162,11 @@ export default class TestForm extends Component {
         console.log(testdata);
 
         axios
-            .post('http://localhost:5000/patient/testform/submit', testdata)
+            .post('http://localhost:5000/patient/testform/submit', testdata, {
+              headers: {
+                  'x-access-token': localStorage.getItem('token'),
+              },
+          })
             .then((res) => console.log(res.data));
 
         //window.location = '/home';
@@ -187,7 +191,8 @@ export default class TestForm extends Component {
                                 Please fill up this form with the information of
                                 the person whose sample will be collected.
                             </p>
-                            <form id="survey-form">
+                            <form id="survey-form" onSubmit={this.onSubmit}>
+                              
                                 <div class="rows">
                                     <div class="input">
                                         <input

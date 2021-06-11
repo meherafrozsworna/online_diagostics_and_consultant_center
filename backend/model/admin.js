@@ -5,10 +5,10 @@ const adminSchema = new Schema({
     password : {type: String , required: true},
     phone : { type: [Number], required: true },
     email: { type: email, required: true },
-    doctorList : [ObjectId],
-    sampleCollectorList :[ObjectId],
-    appointmentList : [ObjectId],
-    testList :[ObjectId],
+    doctorList : mongoose.Schema.Types.ObjectId,
+    sampleCollectorList :mongoose.Schema.Types.ObjectId,
+    appointmentList : [string],
+    testList :[string],
 });
 
 const Admin = mongoose.model('Admin', doctorSchema);
