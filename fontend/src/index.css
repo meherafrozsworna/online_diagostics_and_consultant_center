@@ -236,10 +236,21 @@ header {
 main {
   grid-area: main;
   padding: 0rem;
+  background-color: #f9f0ff;
 }
 
 .about{
   background-image: url('image/about.jpg');
+  background-size: cover;
+}
+.lab{
+  background-image: url('image/lab.jpg');
+  background-size: cover;
+  align-items: center;
+  justify-content: center;
+}
+.admin{
+  background-image: url('image/01.jpg');
   background-size: cover;
 }
 .frontend{
@@ -263,7 +274,26 @@ main {
   background-size: cover;
   height: 100%;
 }
+.extrlogins{
 
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: white;
+  align-items: right;
+  float: right;
+}
+.rows3{
+  margin: 0 auto;
+  padding: 4px 20px;
+  justify-content: center;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.spacedLink{
+  padding: 10px 70px;
+}
 
 
 /* Form */
@@ -371,6 +401,27 @@ input {
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
+
+.btn3 {
+  width: 35%;
+  
+  opacity: 0.8;
+  line-height: 24px;
+  text-decoration: none; /* remove underline from anchors */
+  text-align: center;
+  padding: 15px 32px;
+  margin: 20px 8px;
+  border-radius: 14px;
+
+  display: inline-block;
+  background-color: #5a348b;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 100%;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+
 .icon1 {
   border-radius: 14px;
   margin: 25px 10;
@@ -471,6 +522,11 @@ input {
   margin: 0 auto;
   padding: 4px 20px;
 }
+.rows2{
+  float:left;
+  padding: 4px 20px;
+}
+
 .labels{
   display: inline-block;
   text-align: left;
