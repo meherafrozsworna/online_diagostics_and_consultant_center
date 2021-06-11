@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -109,22 +109,13 @@ export default class PatientHomeScreen extends Component {
 
                                 <div className="detail-box2">
                                     <ul className="ul-first">
-                                        <li>Name</li>
-                                        <li>Gender</li>
-                                        <li>Age</li>
-                                        <li>Phone</li>
-                                        <li>Email</li>
-                                        <li>Address</li>
-                                        <li>Blood Group</li>
-                                    </ul>
-                                    <ul className="ul-second">
-                                        <li>{this.state.name}</li>
-                                        <li>{this.state.gender}</li>
-                                        <li>{this.state.age}</li>
-                                        <li>{this.state.phone}</li>
-                                        <li>{this.state.email}</li>
-                                        <li>{this.state.address}</li>
-                                        <li>{this.state.bloodGroup}</li>
+                                        <li>Name :  {this.state.name}</li>
+                                        <li>Gender :  {this.state.gender}</li>
+                                        <li>Age :  {this.state.age}</li>
+                                        <li>Phone:  {this.state.phone}</li>
+                                        <li>Email :  {this.state.email}</li>
+                                        <li>Address :  {this.state.address}</li>
+                                        <li>Blood Group :  {this.state.bloodGroup}</li>
                                     </ul>
                                 </div>
 
