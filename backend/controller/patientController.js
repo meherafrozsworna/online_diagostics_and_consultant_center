@@ -157,7 +157,7 @@ router.post('/testform/submit',verifyJWT, (req, res) =>{
         if (err) return res.json({ success: false, error: err });
         return res.json({ success: true });
     });
-
+});
 //egula amader na
 router.get('/patients/:id/discharge', function (req, res) {
     const id = { id: req.params.id };
