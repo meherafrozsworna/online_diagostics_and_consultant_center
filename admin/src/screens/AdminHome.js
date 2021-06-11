@@ -56,20 +56,20 @@ export default class AdminHome extends Component {
 
                 <header className="row">
                     <div>
-                        <a className="brand" href="/">
+                        <a className="brand" href="/adminhome">
                             Home
                         </a>
                     </div>
                     <div className="row center">
-                        <a className="brand2" href="/about">
+                        <a className="brand2" href="/adminhome">
                             {' '}
                             Appointments |{' '}
                         </a>
-                        <a className="brand2" href="/signin">
+                        <a className="brand2" href="/adminhome">
                             {' '}
                             Sample Collection |{' '}
                         </a>
-                        <a className="brand2" href="/signin">
+                        <a className="brand2" href="/adminhome">
                             {' '}
                             Patients
                             {'  '} 
@@ -82,12 +82,12 @@ export default class AdminHome extends Component {
                         Test collection notifications: 0<br></br>
                             Appointment Notification: 0<br></br>
                             <div class="row center">
-                                <Link to="/" className="btn3">
+                                <Link to="/adddoctor" className="btn3">
                                     Add/Remove Doctor
                                 </Link>
                                 </div>
                                 <div class="row center">
-                                <Link to="/testform" className="btn3">
+                                <Link to="/addcollector" className="btn3">
                                     Add/Remove Sample Collector
                                 </Link>
                                 </div>
@@ -97,8 +97,13 @@ export default class AdminHome extends Component {
                                 </Link>
                             </div>
                                 <div class="row center">
-                                <Link to="/reportpres" className="btn3">
-                                    Check Feedbacks 
+                                <Link to="/" className="btn3">
+                                    Add New Report
+                                </Link>
+                            </div>
+                            <div class="row center">
+                                <Link to="/" className="btn3">
+                                    Check Feedbacks
                                 </Link>
                             </div>
                             
