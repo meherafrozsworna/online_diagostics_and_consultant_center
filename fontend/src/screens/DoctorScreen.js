@@ -92,18 +92,10 @@ export default class DoctorScreen extends Component {
 
                                 <div className="detail-box2">
                                     <ul className="ul-first">
-                                        <li>Name</li>
-                                        <li>Position</li>
-                                        <li>Institution</li>
-                                        <li>Phone</li>
-                                    </ul>
-                                    <ul className="ul-second">
-                                        <li>{localStorage.getItem('name')}</li>
-                                        <li>
-                                            {localStorage.getItem('gender')}
-                                        </li>
-                                        <li>{localStorage.getItem('age')}</li>
-                                        <li>{localStorage.getItem('phone')}</li>
+                                        <li>Name : {localStorage.getItem('name')}</li>
+                                        <li>Position : {localStorage.getItem('name')}</li>
+                                        <li>Institution : {localStorage.getItem('age')}</li>
+                                        <li>Phone : {localStorage.getItem('phone')}</li>
                                     </ul>
                                 </div>
                             </div>
