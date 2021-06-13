@@ -10,23 +10,49 @@ export default class SigninScreen extends Component {
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeGender = this.onChangeGender.bind(this);
-        this.onChangeAge = this.onChangeDegree.bind(this);
-        this.onChangeAge = this.onChangeInstitution.bind(this);
-        this.onChangeAge = this.onChangeSpecialization.bind(this);
-        this.onChangePhone = this.onChangePhone.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChangePhone = this.onChangePhone.bind(this);
+        this.onChangeDegree = this.onChangeDegree.bind(this);
+        this.onChangeCurrentInstitution = this.onChangeCurrentInstitution.bind(
+            this
+        );
+        this.onChangeSpecialization = this.onChangeSpecialization.bind(this);
+
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
             name: '',
             password: '',
             gender: '',
-            age: null,
+            //age: null,
             phone: null,
             email: '',
+            degree: '',
+            specialization: '',
+            currentInstitution: '',
         };
     }
 
+    // onChangeAge(e) {
+    //     this.setState({
+    //         age: e.target.value,
+    //     });
+    // }
+    onChangeDegree(e) {
+        this.setState({
+            degree: e.target.value,
+        });
+    }
+    onChangeSpecialization(e) {
+        this.setState({
+            specialization: e.target.value,
+        });
+    }
+    onChangeCurrentInstitution(e) {
+        this.setState({
+            currentInstitution: e.target.value,
+        });
+    }
     onChangeName(e) {
         this.setState({
             name: e.target.value,
@@ -57,7 +83,7 @@ export default class SigninScreen extends Component {
             specialization: e.target.value,
         });
     }
-    
+
     onChangePhone(e) {
         this.setState({
             phone: e.target.value,
@@ -72,21 +98,21 @@ export default class SigninScreen extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        const patient = {
+        const doctor = {
             name: this.state.name,
             password: this.state.password,
             gender: this.state.gender,
             degree: this.state.degree,
-            institution: this.state.institution,
+            currentInstitution: this.state.institution,
             specialization: this.state.specialization,
             phone: this.state.phone,
             email: this.state.email,
         };
 
-        console.log(patient);
+        console.log(doctor);
 
         axios
-            .post('http://localhost:5000/patient/add', patient)
+            .post('http://localhost:5000/doctor/add', doctor)
             .then((res) => console.log(res.data));
 
         window.location = '/adminhome';
@@ -185,8 +211,8 @@ export default class SigninScreen extends Component {
                                     placeholder="Institution"
                                     className="specialborder"
                                     required
-                                    value={this.state.institution}
-                                    onChange={this.onChangeInstitution}
+                                    value={this.state.currentInstitution}
+                                    onChange={this.onChangeCurrentInstitution}
                                 />
                             </div>
                             <div>
@@ -210,7 +236,9 @@ export default class SigninScreen extends Component {
                             <div>
                                 <label />
                                 <div>
-                                    <Link to="/adddoctor">See Existing Doctors</Link>
+                                    <Link to="/adddoctor">
+                                        See Existing Doctors
+                                    </Link>
                                 </div>
                             </div>
                         </form>

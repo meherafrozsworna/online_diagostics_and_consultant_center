@@ -1,28 +1,26 @@
-const sampleCollector = require("../model/sampleCollector");
+const sampleCollector = require('../model/sampleCollector');
 //const {Patient, validate} = require('../model/patient');
 //const Joi = require('@hapi/joi');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
-router.get("/",(req,res)=>{
- res.send("HomePage of Helathway");
+router.get('/', (req, res) => {
+    res.send('HomePage of Helathway');
 });
-router.post("/add", (req, res) => { 
-     
+router.post('/add', (req, res) => {
     let scollector = new sampleCollector({
-    name: req.body.name,
-    email: req.body.email,
-    password :req.body.password,
-    phone : req.body.phone,
-    age: req.body.age,
-    gender:req.body.password,
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+        phone: req.body.phone,
+        age: req.body.age,
+        gender: req.body.gender,
     });
-    console.log("wroking 2")   
-    scollector.save(err => {
+    console.log('wroking 2');
+    scollector.save((err) => {
         if (err) return res.json({ success: false, error: err });
         return res.json({ success: true });
     });
-
 });
 router.post('/login', async (req, res) => {
     let scollector = await sampleCollector.findOne({ email: req.body.email });
@@ -38,11 +36,11 @@ router.put('/:id/edit', async (req, res) => {
         req.params.id,
         {
             name: req.body.name,
-            password :req.body.password,
-            phone : req.body.phone,
+            password: req.body.password,
+            phone: req.body.phone,
             age: req.body.age,
             email: req.body.email,
-            gender:req.body.password,
+            gender: req.body.password,
         },
         { new: true }
     );
@@ -52,7 +50,6 @@ router.put('/:id/edit', async (req, res) => {
             .send('The samplecollector with the given ID was not found.');
 
     res.send(scollector);
-    
 });
 
 module.exports = router;
