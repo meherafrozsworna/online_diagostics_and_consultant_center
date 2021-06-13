@@ -23,12 +23,14 @@ const doctorRouter = require('./controller/doctorController');
 const historyRouter=require('./controller/historyController');
 const reportRouter=require('./controller/reportController');
 const sampleCollectorRouter=require('./controller/sampleCollectorController');
+const adminRouter=require('./controller/adminController');
 
 app.use('/patient', patientRouter);
 app.use('/doctor', doctorRouter) ;
 app.use('/history',historyRouter);
 app.use('/report',reportRouter);
 app.use('/sampleCollector',sampleCollectorRouter);
+app.use('/admin',adminRouter);
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
 });

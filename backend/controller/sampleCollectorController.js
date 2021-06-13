@@ -84,4 +84,22 @@ router.put('/:id/edit', async (req, res) => {
     
 });
 
+router.get('/getAllsampleCollector', async(req, res)=> {
+    const filter = {};
+    const all = await sampleCollector.find(filter);
+    console.log(all);
+    res.send(all);
+  });
+  router.post('/addPendingTest',verifyJWT,(req, res) => {
+    const admin_temp =  Admin.findByIdAndUpdate(
+        req.sampleCollector._id,
+        {
+            testList:req.body.testId,
+            
+        },
+        { new: true }
+    );
+  //  req.admin.sampleCollectorList=req.body.scId;
+    res.send(admin);
+});
 module.exports = router;

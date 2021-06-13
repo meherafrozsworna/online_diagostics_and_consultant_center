@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const adminSchema = new Schema({
 
     password : {type: String},
-    email: { type: email},
+    email: { type: String},
     doctorList :[mongoose.Schema.Types.ObjectId],
     sampleCollectorList :[mongoose.Schema.Types.ObjectId],
     appointmentList : [mongoose.Schema.Types.ObjectId],
