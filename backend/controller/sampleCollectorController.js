@@ -1,34 +1,65 @@
-const sampleCollector = require('../model/sampleCollector');
-//const {Patient, validate} = require('../model/patient');
-//const Joi = require('@hapi/joi');
+const sampleCollector = require("../model/sampleCollector");
+const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const express = require('express');
+const jwt = require('jsonwebtoken');
 const router = express.Router();
-router.get('/', (req, res) => {
-    res.send('HomePage of Helathway');
+const verifyJWT = (req, res, next) => {
+    const token = req.headers['x-access-token'];
+
+    if (!token) {
+        res.send('We need a token');
+    } else {
+        jwt.verify(token, 'jwtSecrete', (err, decoded) => {
+            if (err) {
+                res.send({
+                    auth: false,
+                    message: 'you failed to authenticate',
+                });
+            } else {
+                req.sampleCollector = decoded.sampleCollector;
+                next();
+            }
+        });
+    }
+};
+router.get("/",(req,res)=>{
+ res.send("HomePage of Helathway");
 });
-router.post('/add', (req, res) => {
-    let scollector = new sampleCollector({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-        phone: req.body.phone,
-        age: req.body.age,
-        gender: req.body.gender,
-    });
-    console.log('wroking 2');
+router.post("/add", async(req, res) => { 
+    let scollector = new sampleCollector();
+    scollector.name = req.body.name;
+    scollector.email = req.body.email;
+    const salt = await bcrypt.genSalt(10);
+    scollector.password = await bcrypt.hash(req.body.password, salt);
+    scollector.age = req.body.age;
+    scollector.phone = req.body.phone;
+    scollector.gender = req.body.gender;
     scollector.save((err) => {
         if (err) return res.json({ success: false, error: err });
         return res.json({ success: true });
     });
+    
+
 });
 router.post('/login', async (req, res) => {
     let scollector = await sampleCollector.findOne({ email: req.body.email });
-    if (!scollector) return res.status(400).send('Invalid Email');
-    if (req.body.password == scollector.password) {
-        res.send(scollector);
+    if (!scollector)
+        return res.status(400).send({ auth: false, message: 'Invalid Email' });
+    const validPassword = await bcrypt.compare(
+        req.body.password,
+        scollector.password
+    );
+    if (validPassword) {
+        const token = jwt.sign({ scollector }, 'jwtSecrete', {
+            expiresIn: 300,
+        });
+        res.send({ auth: true, token: token, result: scollector });
     } else {
-        return res.status(400).send('Invalid password.');
+        return res.status(400).send({
+            auth: false,
+            message: 'wrong username/password combination',
+        });
     }
 });
 router.put('/:id/edit', async (req, res) => {
