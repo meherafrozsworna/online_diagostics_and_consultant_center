@@ -1,16 +1,15 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const adminSchema = new Schema({
-    name: { type: String, required: true },
-    password : {type: String , required: true},
-    phone : { type: [Number], required: true },
-    email: { type: email, required: true },
-    doctorList : mongoose.Schema.Types.ObjectId,
-    sampleCollectorList :mongoose.Schema.Types.ObjectId,
-    appointmentList : [string],
-    testList :[string],
+
+    password : {type: String},
+    email: { type: email},
+    doctorList :[mongoose.Schema.Types.ObjectId],
+    sampleCollectorList :[mongoose.Schema.Types.ObjectId],
+    appointmentList : [mongoose.Schema.Types.ObjectId],
+    testList :[mongoose.Schema.Types.ObjectId],
 });
 
-const Admin = mongoose.model('Admin', doctorSchema);
+const Admin = mongoose.model('Admin', adminSchema);
 
-module.exports = Doctor;
+module.exports = Admin;
