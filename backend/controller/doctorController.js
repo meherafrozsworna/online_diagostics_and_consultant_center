@@ -11,6 +11,9 @@ router.route('/add').post((req, res) => {
     doctor.degree = req.body.degree;
     doctor.phone = req.body.phone;
     doctor.email = req.body.email;
+    doctor.degree = req.body.degree;
+    doctor.specialization = req.body.specialization;
+    doctor.currentInstitution = req.body.currentInstitution ;
 
     doctor
         .save()

@@ -59,7 +59,7 @@ export default class SigninScreen extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        const patient = {
+        const sampleCollector = {
             name: this.state.name,
             password: this.state.password,
             gender: this.state.gender,
@@ -68,10 +68,10 @@ export default class SigninScreen extends Component {
             email: this.state.email,
         };
 
-        console.log(patient);
+        console.log(sampleCollector);
 
         axios
-            .post('http://localhost:5000/patient/add', patient)
+            .post('http://localhost:5000/sampleCollector/add', sampleCollector)
             .then((res) => console.log(res.data));
 
         window.location = '/adminhome';
@@ -171,7 +171,9 @@ export default class SigninScreen extends Component {
                             <div>
                                 <label />
                                 <div>
-                                    <Link to="/addcollector">See Existing Sample Collectors</Link>
+                                    <Link to="/addcollector">
+                                        See Existing Sample Collectors
+                                    </Link>
                                 </div>
                             </div>
                         </form>

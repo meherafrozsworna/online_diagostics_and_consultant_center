@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import HomeScreen from './screens/HomeScreen';
@@ -17,7 +16,7 @@ import DoctorSignin from './screens/DoctorSignin';
 import CollectorSignin from './screens/CollectorSignin';
 
 function App() {
-  console.log(localStorage.getItem('name'));
+    console.log(localStorage.getItem('name'));
     return (
         <BrowserRouter>
             <Route path="/about" component={AboutScreen}></Route>
@@ -27,16 +26,13 @@ function App() {
             <Route path="/admin" component={Admin}></Route>
             <Route path="/admintest" component={AdminTest}></Route>
             <Route
-                path="/patienthome/:id"
-                
-                  //component={PatientHomeScreen}}
-                render={props => 
-                  <PatientHomeScreen 
-                    {...props} 
-                    user={"Adiba"}/>
-                  /*using render to send custom props*/
-                } >
-            </Route>
+                path="/patienthome"
+                //component={PatientHomeScreen}}
+                render={
+                    (props) => <PatientHomeScreen {...props} user={'Adiba'} />
+                    /*using render to send custom props*/
+                }
+            ></Route>
             <Route path="/testform" component={TestForm}></Route>
             <Route path="/reportpres" component={ReportPrescription}></Route>
             <Route path="/doctor" component={DoctorScreen}></Route>
@@ -44,7 +40,6 @@ function App() {
 
             <Route path="/signindoctor" component={DoctorSignin}></Route>
             <Route path="/signincollector" component={CollectorSignin}></Route>
-            
         </BrowserRouter>
     );
 }
