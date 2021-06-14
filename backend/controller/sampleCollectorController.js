@@ -67,11 +67,11 @@ router.put('/:id/edit', async (req, res) => {
         req.params.id,
         {
             name: req.body.name,
-            password: req.body.password,
-            phone: req.body.phone,
+            password :req.body.password,
+            phone : req.body.phone,
             age: req.body.age,
             email: req.body.email,
-            gender: req.body.password,
+            gender:req.body.password,
         },
         { new: true }
     );
@@ -81,6 +81,25 @@ router.put('/:id/edit', async (req, res) => {
             .send('The samplecollector with the given ID was not found.');
 
     res.send(scollector);
+    
 });
 
+router.get('/getAllsampleCollector', async(req, res)=> {
+    const filter = {};
+    const all = await sampleCollector.find(filter);
+    console.log(all);
+    res.send(all);
+  });
+  router.post('/addPendingTest',verifyJWT,(req, res) => {
+    const admin_temp =  Admin.findByIdAndUpdate(
+        req.sampleCollector._id,
+        {
+            testList:req.body.testId,
+            
+        },
+        { new: true }
+    );
+  //  req.admin.sampleCollectorList=req.body.scId;
+    res.send(admin);
+});
 module.exports = router;
