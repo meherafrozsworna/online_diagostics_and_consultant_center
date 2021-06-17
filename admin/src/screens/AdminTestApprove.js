@@ -128,9 +128,9 @@ export default class SampleCollector extends Component {
                                 </label>
                             </div>
                             <div class="input">
-                                <input type="radio" name="positions" value="male" id="male" /><label for="male">Male</label><br></br>
-                                <input type="radio" name="positions" value="female" id="female" /><label for="female">Female</label><br></br>
-                                <input type="radio" name="positions" value="any" id="any" /><label for="any">Any</label>
+                                <input type="radio" name="gender" value="male" id="male" /><label for="male">Male</label><br></br>
+                                <input type="radio" name="gender" value="female" id="female" /><label for="female">Female</label><br></br>
+                                <input type="radio" name="gender" value="any" id="any" /><label for="any">Any</label>
                             </div>
                         </div>
 
@@ -141,10 +141,10 @@ export default class SampleCollector extends Component {
                                 </label>
                             </div>
                             <div class="input">
-                                <input type="radio" name="positions" value="morning" id="morning" />Morning<br></br>
-                                <input type="radio" name="positions" value="afternoon" id="afternoon" />Afternoon<br></br>
-                                <input type="radio" name="positions" value="night" id="night" />Night<br></br>
-                                <input type="radio" name="positions" value="any" id="any" />Any<br></br>
+                                <input type="radio" name="time" value="morning" id="morning" />Morning<br></br>
+                                <input type="radio" name="time" value="afternoon" id="afternoon" />Afternoon<br></br>
+                                <input type="radio" name="time" value="night" id="night" />Night<br></br>
+                                <input type="radio" name="time" value="any" id="any" />Any<br></br>
                             </div>
                         </div>
 
@@ -160,7 +160,7 @@ export default class SampleCollector extends Component {
                                     <option value="asad">Asad</option>
                                     <option value="asad">Alamin</option>
                                     <option value="asad">Mokammel</option>
-                                    <option value="asad" value="other">Nazia</option>
+                                    <option value="asad">Nazia</option>
                                     <option value="asad">Joti</option>
                                 </select>
                             </div>
