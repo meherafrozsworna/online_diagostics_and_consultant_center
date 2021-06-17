@@ -15,8 +15,11 @@ import RegisterScreen from './screens/RegisterScreen';
 import DoctorSignin from './screens/DoctorSignin';
 import CollectorSignin from './screens/CollectorSignin';
 
+import ChooseField from './screens/ChooseField';
+import ChooseDoctor from './screens/ChooseDoctor';
+
 function App() {
-    console.log(localStorage.getItem('name'));
+  console.log(localStorage.getItem('name'));
     return (
         <BrowserRouter>
             <Route path="/about" component={AboutScreen}></Route>
@@ -26,13 +29,16 @@ function App() {
             <Route path="/admin" component={Admin}></Route>
             <Route path="/admintest" component={AdminTest}></Route>
             <Route
-                path="/patienthome"
-                //component={PatientHomeScreen}}
-                render={
-                    (props) => <PatientHomeScreen {...props} user={'Adiba'} />
-                    /*using render to send custom props*/
-                }
-            ></Route>
+                path="/patienthome/:id"
+                
+                  //component={PatientHomeScreen}}
+                render={props => 
+                  <PatientHomeScreen 
+                    {...props} 
+                    user={"Adiba"}/>
+                  /*using render to send custom props*/
+                } >
+            </Route>
             <Route path="/testform" component={TestForm}></Route>
             <Route path="/reportpres" component={ReportPrescription}></Route>
             <Route path="/doctor" component={DoctorScreen}></Route>
@@ -40,6 +46,10 @@ function App() {
 
             <Route path="/signindoctor" component={DoctorSignin}></Route>
             <Route path="/signincollector" component={CollectorSignin}></Route>
+
+            <Route path="/choosefield" component={ChooseField}></Route>
+            <Route path="/choosedoctor" component={ChooseDoctor}></Route>
+            
         </BrowserRouter>
     );
 }
