@@ -339,7 +339,7 @@ export default class TestForm extends Component {
                                     >
                                         <input
                                             type="radio"
-                                            name="positions"
+                                            name="cgender"
                                             value="male"
                                             id="male"
                                         />
@@ -347,7 +347,7 @@ export default class TestForm extends Component {
                                         <br></br>
                                         <input
                                             type="radio"
-                                            name="positions"
+                                            name="cgender"
                                             value="female"
                                             id="female"
                                         />
@@ -355,13 +355,16 @@ export default class TestForm extends Component {
                                         <br></br>
                                         <input
                                             type="radio"
-                                            name="positions"
+                                            name="cgender"
                                             value="any"
                                             id="any"
                                         />
                                         <label for="any">Any</label>
                                     </div>
                                 </div>
+
+                                
+                               
 
                                 <div class="rows">
                                     <div class="labels" id="radio-label">
@@ -373,28 +376,28 @@ export default class TestForm extends Component {
                                     >
                                         <input
                                             type="radio"
-                                            name="positions"
+                                            name="time"
                                             value="morning"
                                             id="morning"
                                         />
                                         Morning<br></br>
                                         <input
                                             type="radio"
-                                            name="positions"
+                                            name="time"
                                             value="afternoon"
                                             id="afternoon"
                                         />
                                         Afternoon<br></br>
                                         <input
                                             type="radio"
-                                            name="positions"
+                                            name="time"
                                             value="night"
                                             id="night"
                                         />
                                         Night<br></br>
                                         <input
                                             type="radio"
-                                            name="positions"
+                                            name="time"
                                             value="any"
                                             id="any"
                                         />
@@ -566,26 +569,29 @@ export default class TestForm extends Component {
                                     >
                                         <input
                                             type="radio"
+                                            name="payment"
                                             value="cash"
-                                            id="morning"
+                                            id="casdh"
                                         />
                                         Cash to the Sample Collector<br></br>
                                         <input
                                             type="radio"
+                                            name="payment"
                                             value="bkash"
-                                            id="afternoon"
+                                            id="bkash"
                                         />
                                         Bkash<br></br>
                                         <input
                                             type="radio"
+                                            name="payment"
                                             value="rocket"
-                                            id="night"
+                                            id="rocket"
                                         />
                                         Rocket<br></br>
                                     </div>
                                 </div>
 
-                                <div class="rows">payment amount : 500</div>
+                                <div class="rows">Payment amount : 500</div>
                                 <div class="rows" id="submit-button">
                                     <button type="submit" id="submit">
                                         Submit
