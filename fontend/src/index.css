@@ -84,19 +84,66 @@ h4 {
   color: red;
 }
 
+h6 {
+  font-size: 2.5rem;
+  width:80%;
+  
+  opacity: 0.9;
+  line-height: 30px;
+  text-decoration: none; /* remove underline from anchors */
+  text-align: center;
+  padding: 10px 32px;
+  margin: 6px 6px;
+  position: relative;
+  border-radius: 20px;
+
+  border: 3px  #643677 solid;
+
+  display: inline-block;
+  background-color: #e3cdff;
+  color: #2b0741;
+  cursor: pointer;
+  font-weight: bolder;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+h6:hover{
+
+  border: 3px  #debaee solid;
+  background-color: #57346e;
+  color: #e3cdff;
+
+}
+
+.smallbtn{
+  width: 45%;
+  
+  opacity: 0.8;
+  line-height: 15px;
+  text-decoration: none; /* remove underline from anchors */
+  text-align: center;
+  padding: 8px 18px;
+  margin: 20px 8px;
+  border-radius: 10px;
+
+  display: inline-block;
+  background-color: #5a348b;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 90%;
+}
+
 button {
   display: inline;
   background-color: #ffffff;
   color: #494949;
   cursor: pointer;
-  font-size: 100%;
+  font-size: 90%;
   padding: 1 rem;
-  border-radius: 0.5 rem;
+  border-radius: 15px;
   border: 0.1 rem #ffffff solid;
-  font-weight: bolder;
   opacity: 0.8;
     filter: alpha(opacity=90);
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    width: 50%;
 }
 button:hover{
   border: 0.1 rem #715e9c solid;
@@ -111,6 +158,23 @@ button.primary {
   display: inline;
   opacity: 1;
 
+}
+button.smallbtn{
+  width: 60%;
+  
+  opacity: 0.8;
+  line-height: 15px;
+  text-decoration: none; /* remove underline from anchors */
+  text-align: center;
+  padding: 8px 18px;
+  margin: 20px 8px;
+  border-radius: 10px;
+
+  display: inline-block;
+  background-color: #5a348b;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 90%;
 }
 button.block {
   
@@ -239,6 +303,29 @@ main {
   background-color: #f9f0ff;
 }
 
+
+.profile2{
+  display: grid;
+
+  grid-template-areas:
+  'header'
+  'main';
+grid-template-columns: 1fr;
+grid-template-rows: 5rem 1fr;
+
+  background-color: #ffffff;
+  height: 100%;
+}
+header {
+  grid-area: header;
+  background-color: #8180dd;
+}
+main {
+  grid-area: main;
+  padding: 0rem;
+  background-color: #ffffff;
+}
+
 .about{
   background-image: url('image/about.jpg');
   background-size: cover;
@@ -293,6 +380,15 @@ main {
 }
 .spacedLink{
   padding: 10px 70px;
+}
+
+/* FIELDS */
+.fields{
+  float:center;
+  margin-top: 10px;;
+  padding: 0px;
+  list-style: none;
+  
 }
 
 
