@@ -144,7 +144,7 @@ export default class TestForm extends Component {
         e.preventDefault();
 
         const testdata = {
-            name: this.state.name,
+            patientName: this.state.name,
             number: this.state.numeber,
             age: this.state.age,
             gender: this.state.gender,
@@ -362,9 +362,6 @@ export default class TestForm extends Component {
                                         <label for="any">Any</label>
                                     </div>
                                 </div>
-
-                                
-                               
 
                                 <div class="rows">
                                     <div class="labels" id="radio-label">

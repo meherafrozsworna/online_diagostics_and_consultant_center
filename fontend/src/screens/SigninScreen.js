@@ -59,21 +59,11 @@ export default class SigninScreen extends Component {
                 } else {
                     this.setState({ login: false });
                 }
-                this.setState({
-                    status: true,
-                    //id: res.data._id,
-                });
-                //this.userAuthenticated();
-
-                // localStorage.setItem('name', res.data.name);
-                // localStorage.setItem('password', res.data.password);
-                // localStorage.setItem('gender', res.data.gender);
-                // localStorage.setItem('age', res.data.age);
-                // localStorage.setItem('phone', res.data.phone);
-                // localStorage.setItem('email', res.data.email);
-                // localStorage.setItem('address', res.data.address);
-                // localStorage.setItem('bloodGroup', res.data.bloodGroup);
-                window.location = '/patienthome' 
+                // this.setState({
+                //     status: true,
+                //     //id: res.data._id,
+                // });
+                window.location = '/patienthome';
             });
     }
 

@@ -19,7 +19,7 @@ import ChooseField from './screens/ChooseField';
 import ChooseDoctor from './screens/ChooseDoctor';
 
 function App() {
-  console.log(localStorage.getItem('name'));
+    console.log(localStorage.getItem('name'));
     return (
         <BrowserRouter>
             <Route path="/about" component={AboutScreen}></Route>
@@ -28,17 +28,7 @@ function App() {
             <Route path="/samplecollector" component={SampleCollector}></Route>
             <Route path="/admin" component={Admin}></Route>
             <Route path="/admintest" component={AdminTest}></Route>
-            <Route
-                path="/patienthome/:id"
-                
-                  //component={PatientHomeScreen}}
-                render={props => 
-                  <PatientHomeScreen 
-                    {...props} 
-                    user={"Adiba"}/>
-                  /*using render to send custom props*/
-                } >
-            </Route>
+            <Route path="/patienthome" component={PatientHomeScreen}></Route>
             <Route path="/testform" component={TestForm}></Route>
             <Route path="/reportpres" component={ReportPrescription}></Route>
             <Route path="/doctor" component={DoctorScreen}></Route>
@@ -49,7 +39,6 @@ function App() {
 
             <Route path="/choosefield" component={ChooseField}></Route>
             <Route path="/choosedoctor" component={ChooseDoctor}></Route>
-            
         </BrowserRouter>
     );
 }

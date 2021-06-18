@@ -19,6 +19,8 @@ const verifyJWT = (req, res, next) => {
     } else {
         jwt.verify(token, 'jwtSecrete', (err, decoded) => {
             if (err) {
+                console.log('Error : ');
+                console.log(err);
                 res.send({
                     auth: false,
                     message: 'you failed to authenticate',
@@ -87,7 +89,7 @@ router.post('/login', async (req, res) => {
     );
     if (validPassword) {
         const token = jwt.sign({ patient }, 'jwtSecrete', {
-            expiresIn: 300,
+            expiresIn: 30000,
         });
         res.send({ auth: true, token: token, result: patient });
     } else {
