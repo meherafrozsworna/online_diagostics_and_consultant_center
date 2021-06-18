@@ -13,8 +13,7 @@ const doctorSchema = new Schema({
     specialization: { type: String, required: false },
     schedule: [
         {
-            Start: Date,
-            End: Date,
+            date:String,
             limitation: Number,
         },
     ],

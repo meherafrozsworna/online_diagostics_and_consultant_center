@@ -1,7 +1,5 @@
-//const jwt = require('jsonwebtoken');
-//const config = require('config');
 const bcrypt = require('bcrypt');
-//const _ = require('lodash');
+const Doctor = require('../model/doctor');
 const Patient = require('../model/patient');
 const TestForm = require('../model/testform');
 //const {Patient, validate} = require('../model/patient');
@@ -61,7 +59,6 @@ router.post('/add', async (req, res) => {
     patient.email = req.body.email;
     const salt = await bcrypt.genSalt(10);
     patient.password = await bcrypt.hash(req.body.password, salt);
-    //patient.password = req.body.password;
     console.log('working 2');
     patient.age = req.body.age;
     patient.address = req.body.address;
@@ -100,9 +97,9 @@ router.post('/login', async (req, res) => {
     }
 });
 //eta add korsi patient er edit er jonne
-router.put('/:id/edit', async (req, res) => {
+router.put('/edit',verifyJWT, async (req, res) => {
     const patient = await Patient.findByIdAndUpdate(
-        req.params.id,
+        req.patient._id,
         {
             name: req.body.name,
             email: req.body.email,
@@ -174,6 +171,49 @@ router.get('/patients/:id/discharge', function (req, res) {
         if (err) return res.json({ success: false, error: err });
         return res.json(patient);
     });
+});
+router.get('/:name', async (req, res) => {
+    console.log(req.params.name);
+    const doctor = await Doctor.find({
+        name: req.params.name,
+    });
+    console.log(doctor.name);
+    if (!doctor)
+        return res
+            .status(404)
+            .send('The doctor with the given ID was not found.');
+
+    res.send(doctor);
+});
+router.get('/specialization/:at', async (req, res) => {
+    const doctor = await Doctor.find({
+        specialization: req.params.at.toLocaleLowerCase(),
+    });
+    if (!doctor)
+        return res
+            .status(404)
+            .send('The doctor with the given ID was not found.');
+
+    res.send(doctor);
+});
+//eta thik korte hobe.......
+router.get('/takeAppointment/:name',async (req, res) => {
+    const doctor = await Doctor.find({
+        name: req.params.name,
+    });
+    
+    if (!doctor)
+        return res
+            .status(404)
+            .send('The doctor with the given ID was not found.');
+    doctor.schedule.limitation=doctor.schedule.limitation-1;
+    doctor.save((err) => {
+        if (err) return res.json({ success: false, error: err });
+        return res.json({ success: true });
+    });
+
+
+    res.send(doctor);
 });
 //eta validation er jonne add korsilam
 function validatePatient(patient) {
