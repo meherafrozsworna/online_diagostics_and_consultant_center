@@ -89,7 +89,7 @@ router.post('/login', async (req, res) => {
     );
     if (validPassword) {
         const token = jwt.sign({ patient }, 'jwtSecrete', {
-            expiresIn: 30000,
+            expiresIn: 300000,
         });
         res.send({ auth: true, token: token, result: patient });
     } else {

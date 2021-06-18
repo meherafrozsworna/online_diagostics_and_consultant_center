@@ -1,4 +1,4 @@
-const sampleCollector = require("../model/sampleCollector");
+const sampleCollector = require('../model/sampleCollector');
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const express = require('express');
@@ -23,10 +23,10 @@ const verifyJWT = (req, res, next) => {
         });
     }
 };
-router.get("/",(req,res)=>{
- res.send("HomePage of Helathway");
+router.get('/', (req, res) => {
+    res.send('HomePage of Helathway');
 });
-router.post("/add", async(req, res) => { 
+router.post('/add', async (req, res) => {
     let scollector = new sampleCollector();
     scollector.name = req.body.name;
     scollector.email = req.body.email;
@@ -39,8 +39,6 @@ router.post("/add", async(req, res) => {
         if (err) return res.json({ success: false, error: err });
         return res.json({ success: true });
     });
-    
-
 });
 router.post('/login', async (req, res) => {
     let scollector = await sampleCollector.findOne({ email: req.body.email });
@@ -52,7 +50,7 @@ router.post('/login', async (req, res) => {
     );
     if (validPassword) {
         const token = jwt.sign({ scollector }, 'jwtSecrete', {
-            expiresIn: 300,
+            expiresIn: 300000,
         });
         res.send({ auth: true, token: token, result: scollector });
     } else {
@@ -67,11 +65,11 @@ router.put('/:id/edit', async (req, res) => {
         req.params.id,
         {
             name: req.body.name,
-            password :req.body.password,
-            phone : req.body.phone,
+            password: req.body.password,
+            phone: req.body.phone,
             age: req.body.age,
             email: req.body.email,
-            gender:req.body.password,
+            gender: req.body.password,
         },
         { new: true }
     );
@@ -81,25 +79,23 @@ router.put('/:id/edit', async (req, res) => {
             .send('The samplecollector with the given ID was not found.');
 
     res.send(scollector);
-    
 });
 
-router.get('/getAllsampleCollector', async(req, res)=> {
+router.get('/getAllsampleCollector', async (req, res) => {
     const filter = {};
     const all = await sampleCollector.find(filter);
     console.log(all);
     res.send(all);
-  });
-  router.post('/addPendingTest',verifyJWT,(req, res) => {
-    const admin_temp =  Admin.findByIdAndUpdate(
+});
+router.post('/addPendingTest', verifyJWT, (req, res) => {
+    const admin_temp = Admin.findByIdAndUpdate(
         req.sampleCollector._id,
         {
-            testList:req.body.testId,
-            
+            testList: req.body.testId,
         },
         { new: true }
     );
-  //  req.admin.sampleCollectorList=req.body.scId;
+    //  req.admin.sampleCollectorList=req.body.scId;
     res.send(admin);
 });
 module.exports = router;
