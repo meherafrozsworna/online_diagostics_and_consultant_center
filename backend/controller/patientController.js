@@ -11,7 +11,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 
-const verifyJWT = (req, res, next) => {
+const verifyJWT = async(req, res, next) => {
     const token = req.headers['x-access-token'];
 
     if (!token) {
@@ -137,8 +137,10 @@ router.get('/patients/:id/admit', function (req, res) {
     });
 });
 
-router.post('/testform/submit', verifyJWT, (req, res) => {
+router.post('/testform/submit', verifyJWT,async(req, res) => {
     let testform = new TestForm();
+    console.log("Adibaaa");
+    console.log(testform);
     testform.patientName = req.body.patientName;
     testform.patientId = req.patient._id;
     testform.phoneNumber = req.body.phoneNumber;
@@ -148,7 +150,7 @@ router.post('/testform/submit', verifyJWT, (req, res) => {
     testform.address = req.body.address;
     testform.pref_gender = req.body.pref_gender;
     testform.pref_time = req.body.pref_time;
-    testform.testName = req.body.testName;
+    testform.testName = req.body.checkedTestNames;
     testform.ref_doctor = req.body.ref_doctor;
     testform.instructions = req.body.instructions;
     testform.date = req.body.date;

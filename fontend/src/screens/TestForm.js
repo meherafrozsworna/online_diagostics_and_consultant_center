@@ -172,7 +172,7 @@ export default class TestForm extends Component {
                 
             });
 
-        //window.location = '/home';
+        window.location = '/patienthome';
     }
 
     render() {
