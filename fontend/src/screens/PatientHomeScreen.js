@@ -1,4 +1,4 @@
- import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -92,7 +92,7 @@ export default class PatientHomeScreen extends Component {
                 <main className="profile">
                     <div className="row2">
                         <div className="column">
-                            <div className="detail-box">
+                            <div className="detail-box1">
                                 <div className="user-image">
                                     <img
                                         src="https://data.whicdn.com/images/345295536/original.jpg"
