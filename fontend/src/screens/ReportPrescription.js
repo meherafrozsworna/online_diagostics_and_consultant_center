@@ -75,7 +75,7 @@ export default class PatientHomeScreen extends Component {
                 <main className="profile">
                     <div className="row2">
                         <div className="column">
-                            <div className="detail-box">
+                            <div className="detail-box1">
                                 <div className="user-image">
                                     <img
                                         src="https://data.whicdn.com/images/345295536/original.jpg"
@@ -92,28 +92,13 @@ export default class PatientHomeScreen extends Component {
 
                                 <div className="detail-box2">
                                     <ul className="ul-first">
-                                        <li>Name</li>
-                                        <li>Gender</li>
-                                        <li>Age</li>
-                                        <li>Phone</li>
-                                        <li>Email</li>
-                                        <li>Address</li>
-                                        <li>Blood Group</li>
-                                    </ul>
-                                    <ul className="ul-second">
-                                        <li>{localStorage.getItem('name')}</li>
-                                        <li>
-                                            {localStorage.getItem('gender')}
-                                        </li>
-                                        <li>{localStorage.getItem('age')}</li>
-                                        <li>{localStorage.getItem('phone')}</li>
-                                        <li>{localStorage.getItem('email')}</li>
-                                        <li>
-                                            {localStorage.getItem('address')}
-                                        </li>
-                                        <li>
-                                            {localStorage.getItem('bloodGroup')}
-                                        </li>
+                                        <li>Name :  {this.state.name}</li>
+                                        <li>Gender :  {this.state.gender}</li>
+                                        <li>Age :  {this.state.age}</li>
+                                        <li>Phone:  {this.state.phone}</li>
+                                        <li>Email :  {this.state.email}</li>
+                                        <li>Address :  {this.state.address}</li>
+                                        <li>Blood Group :  {this.state.bloodGroup}</li>
                                     </ul>
                                 </div>
 
@@ -127,37 +112,71 @@ export default class PatientHomeScreen extends Component {
                             <div className="scrollbox2">
                                 <ul>
                                 <h2> Reports</h2>
-                                        <li>Haemoglobin Report of Abeda Sultana<br></br>
-                                        05-12-2020<br></br><br></br>
+
+                                        
+
+                                        <li>
+                                        <a href="https://drive.google.com/file/d/16ydAvrZ5lAYdcCAkj4j_ygulse_l1vqP/view?usp=sharing" target="_blank">
+                                        <h3>Haemoglobin Report of Abeda Sultana<br></br>
+                                        05-12-2020 </h3>
+                                        </a>
                                         </li>
 
-                                        <li>Haemoglobin Report of Abeda Sultana<br></br>
-                                        05-12-2020<br></br><br></br>
+                                        <li>
+                                        <a href="https://drive.google.com/file/d/16ydAvrZ5lAYdcCAkj4j_ygulse_l1vqP/view?usp=sharing" target="_blank">
+                                        <h3>Haemoglobin Report of Abeda Sultana<br></br>
+                                        05-12-2020 </h3>
+                                        </a>
                                         </li>
 
-                                        <li>Haemoglobin Report of Abeda Sultana<br></br>
-                                        05-12-2020<br></br><br></br>
+
+                                        <li>
+                                        <a href="https://drive.google.com/file/d/16ydAvrZ5lAYdcCAkj4j_ygulse_l1vqP/view?usp=sharing" target="_blank">
+                                        <h3>Haemoglobin Report of Abeda Sultana<br></br>
+                                        05-12-2020 </h3>
+                                        </a>
                                         </li>
 
-                                        <li>Haemoglobin Report of Abeda Sultana<br></br>
-                                        05-12-2020<br></br><br></br>
+
+                                        <li>
+                                        <a href="https://drive.google.com/file/d/16ydAvrZ5lAYdcCAkj4j_ygulse_l1vqP/view?usp=sharing" target="_blank">
+                                        <h3>Haemoglobin Report of Abeda Sultana<br></br>
+                                        05-12-2020 </h3>
+                                        </a>
                                         </li>
 
-                                        <li>Haemoglobin Report of Abeda Sultana<br></br>
-                                        05-12-2020<br></br><br></br>
+
+                                        <li>
+                                        <a href="https://drive.google.com/file/d/16ydAvrZ5lAYdcCAkj4j_ygulse_l1vqP/view?usp=sharing" target="_blank">
+                                        <h3>Haemoglobin Report of Abeda Sultana<br></br>
+                                        05-12-2020 </h3>
+                                        </a>
                                         </li>
 
-                                        <li>Haemoglobin Report of Abeda Sultana<br></br>
-                                        05-12-2020<br></br><br></br>
+
+                                        <li>
+                                        <a href="https://drive.google.com/file/d/16ydAvrZ5lAYdcCAkj4j_ygulse_l1vqP/view?usp=sharing" target="_blank">
+                                        <h3>Haemoglobin Report of Abeda Sultana<br></br>
+                                        05-12-2020 </h3>
+                                        </a>
                                         </li>
 
-                                        <li>Haemoglobin Report of Abeda Sultana<br></br>
-                                        05-12-2020<br></br><br></br>
+
+                                        <li>
+                                        <a href="https://drive.google.com/file/d/16ydAvrZ5lAYdcCAkj4j_ygulse_l1vqP/view?usp=sharing" target="_blank">
+                                        <h3>Haemoglobin Report of Abeda Sultana<br></br>
+                                        05-12-2020 </h3>
+                                        </a>
                                         </li>
 
-                                        <li>Haemoglobin Report of Abeda Sultana<br></br>
-                                        05-12-2020<br></br><br></br>
+
+                                        <li>
+                                        <a href="https://drive.google.com/file/d/16ydAvrZ5lAYdcCAkj4j_ygulse_l1vqP/view?usp=sharing" target="_blank">
+                                        <h3>Haemoglobin Report of Abeda Sultana<br></br>
+                                        05-12-2020 </h3>
+                                        </a>
                                         </li>
+
                                     </ul>
                                 </div>
                         </div>
@@ -168,44 +187,77 @@ export default class PatientHomeScreen extends Component {
                             <div className="scrollbox2">
                                 <ul>
                                     <h2> Prescriptions</h2>
-                                        <li>Dr. Afzal Prescription<br></br>
+
+                                        <li>
+                                        <a href="https://drive.google.com/file/d/1Lzo2WY6DzN_NXhcSfppsOrzKtLqD-l7w/view?usp=sharing" target="_blank">
+                                        <h3>Dr. Afzal Prescription<br></br>
                                         Cardiology<br></br>
-                                        05-12-2020<br></br><br></br>
+                                        05-12-2020<br></br> </h3>
+                                        </a>
                                         </li>
 
-                                        <li>Dr. Afzal Prescription<br></br>
+                                        <li>
+                                        <a href="https://drive.google.com/file/d/1Lzo2WY6DzN_NXhcSfppsOrzKtLqD-l7w/view?usp=sharing" target="_blank">
+                                        <h3>Dr. Afzal Prescription<br></br>
                                         Cardiology<br></br>
-                                        05-12-2020<br></br><br></br>
+                                        05-12-2020<br></br> </h3>
+                                        </a>
                                         </li>
 
-                                        <li>Dr. Afzal Prescription<br></br>
+                                        <li>
+                                        <a href="https://drive.google.com/file/d/1Lzo2WY6DzN_NXhcSfppsOrzKtLqD-l7w/view?usp=sharing" target="_blank">
+                                        <h3>Dr. Afzal Prescription<br></br>
                                         Cardiology<br></br>
-                                        05-12-2020<br></br><br></br>
+                                        05-12-2020<br></br> </h3>
+                                        </a>
                                         </li>
 
-                                        <li>Dr. Afzal Prescription<br></br>
+                                        <li>
+                                        <a href="https://drive.google.com/file/d/1Lzo2WY6DzN_NXhcSfppsOrzKtLqD-l7w/view?usp=sharing" target="_blank">
+                                        <h3>Dr. Afzal Prescription<br></br>
                                         Cardiology<br></br>
-                                        05-12-2020<br></br><br></br>
+                                        05-12-2020<br></br> </h3>
+                                        </a>
                                         </li>
 
-                                        <li>Dr. Afzal Prescription<br></br>
+                                        <li>
+                                        <a href="https://drive.google.com/file/d/1Lzo2WY6DzN_NXhcSfppsOrzKtLqD-l7w/view?usp=sharing" target="_blank">
+                                        <h3>Dr. Afzal Prescription<br></br>
                                         Cardiology<br></br>
-                                        05-12-2020<br></br><br></br>
+                                        05-12-2020<br></br> </h3>
+                                        </a>
                                         </li>
 
-                                        <li>Dr. Afzal Prescription<br></br>
+                                        <li>
+                                        <a href="https://drive.google.com/file/d/1Lzo2WY6DzN_NXhcSfppsOrzKtLqD-l7w/view?usp=sharing" target="_blank">
+                                        <h3>Dr. Afzal Prescription<br></br>
                                         Cardiology<br></br>
-                                        05-12-2020<br></br><br></br>
+                                        05-12-2020<br></br> </h3>
+                                        </a>
                                         </li>
 
-                                        <li>Dr. Afzal Prescription<br></br>
+                                        <li>
+                                        <a href="https://drive.google.com/file/d/1Lzo2WY6DzN_NXhcSfppsOrzKtLqD-l7w/view?usp=sharing" target="_blank">
+                                        <h3>Dr. Afzal Prescription<br></br>
                                         Cardiology<br></br>
-                                        05-12-2020<br></br><br></br>
+                                        05-12-2020<br></br> </h3>
+                                        </a>
                                         </li>
 
-                                        <li>Dr. Afzal Prescription<br></br>
+                                        <li>
+                                        <a href="https://drive.google.com/file/d/1Lzo2WY6DzN_NXhcSfppsOrzKtLqD-l7w/view?usp=sharing" target="_blank">
+                                        <h3>Dr. Afzal Prescription<br></br>
                                         Cardiology<br></br>
-                                        05-12-2020<br></br><br></br>
+                                        05-12-2020<br></br> </h3>
+                                        </a>
+                                        </li>
+
+                                        <li>
+                                        <a href="https://drive.google.com/file/d/1Lzo2WY6DzN_NXhcSfppsOrzKtLqD-l7w/view?usp=sharing" target="_blank">
+                                        <h3>Dr. Afzal Prescription<br></br>
+                                        Cardiology<br></br>
+                                        05-12-2020<br></br> </h3>
+                                        </a>
                                         </li>
                                     </ul>
                                 </div>
