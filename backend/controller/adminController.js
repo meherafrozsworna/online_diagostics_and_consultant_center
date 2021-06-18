@@ -56,59 +56,86 @@ router.post('/login', async (req, res) => {
         });
     }
 });
-router.post('/addSampleCollector', async (req, res) => {
+router.post('/addSampleCollector',async(req, res) => {
+    let admins=await Admin.find({});
+    console.log(admins.length);
+    console.log(req.body._id);
+    for(let i=0;i<admins.length;i++){
     const admin_temp = await Admin.findByIdAndUpdate(
-        req.admin._id,
+        admins[i]._id,
         {
-            sampleCollectorList: req.body.scId,
+            $push: {sampleCollectorList: req.body._id} ,
+           
         },
         { new: true }
     );
-    //  req.admin.sampleCollectorList=req.body.scId;
-    res.send(admin);
+    }
+    res.send("Done");
 });
-router.post('/deleteSampleCollector', verifyJWT, (req, res) => {
-    const admin_temp = Admin.findByIdAndUpdate(
-        req.admin._id,
-
-        { $pull: { sampleCollectorList: req.body.scId } },
-
-        { new: true }
-    );
-    console.log(admin.sampleCollectorList), res.send('Done');
-});
-
-router.post('/addDoctor', verifyJWT, (req, res) => {
-    const admin_temp = Admin.findByIdAndUpdate(
-        req.admin._id,
+router.post('/deleteSampleCollector',async(req, res) => {
+    let admins=await Admin.find({});
+    console.log(admins.length);
+    console.log(req.body._id);
+    for(let i=0;i<admins.length;i++){
+    const admin_temp = await Admin.findByIdAndUpdate(
+        admins[i]._id,
         {
-            doctorList: req.body.doctorId,
+            $pull: {sampleCollectorList: req.body._id} ,
+           
         },
         { new: true }
     );
-    //  req.admin.sampleCollectorList=req.body.scId;
-    res.send(admin);
+    }
+    res.send("Done");
 });
-router.post('/addPendingTest', verifyJWT, (req, res) => {
-    const admin_temp = Admin.findByIdAndUpdate(
-        req.admin._id,
+
+router.post('/addDoctor', async(req, res) => {
+    let admins=await Admin.find({});
+    console.log(admins.length);
+    console.log(req.body._id);
+    for(let i=0;i<admins.length;i++){
+    const admin_temp = await Admin.findByIdAndUpdate(
+        admins[i]._id,
         {
-            testList: req.body.testId,
+            $push: {doctorList: req.body._id} ,
+           
         },
         { new: true }
     );
-    //  req.admin.sampleCollectorList=req.body.scId;
-    res.send(admin);
+    }
+    res.send("Done");
 });
-router.post('/deletePendingTest', verifyJWT, (req, res) => {
-    const admin_temp = Admin.findByIdAndUpdate(
-        req.admin._id,
-        { $pull: { testList: req.body.testId } },
-
+router.post('/addPendingTest',async(req, res) => {
+    let admins=await Admin.find({});
+    console.log(admins.length);
+    console.log(req.body._id);
+    for(let i=0;i<admins.length;i++){
+    const admin_temp = await Admin.findByIdAndUpdate(
+        admins[i]._id,
+        {
+            $push: {testList: req.body._id} ,
+           
+        },
         { new: true }
     );
-    //  req.admin.sampleCollectorList=req.body.scId;
-    res.send(admin);
+    }
+    res.send("Done");
+});
+router.post('/deletePendingTest',async(req, res) => {
+    let admins=await Admin.find({});
+    console.log(admins.length);
+    console.log(req.body._id);
+    for(let i=0;i<admins.length;i++){
+    const admin_temp = await Admin.findByIdAndUpdate(
+        admins[i]._id,
+        {
+            $pull: {testList: req.body._id} ,
+           
+        },
+        { new: true }
+    );
+    }
+    res.send("Done");
 });
 
 module.exports = router;
