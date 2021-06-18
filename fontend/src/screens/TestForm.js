@@ -167,7 +167,10 @@ export default class TestForm extends Component {
                     'x-access-token': localStorage.getItem('token'),
                 },
             })
-            .then((res) => console.log(res.data));
+            .then((res) => {
+                console.log(res.data);
+                
+            });
 
         //window.location = '/home';
     }
