@@ -201,7 +201,6 @@ router.get('/takeAppointment/:name',async (req, res) => {
     const doctor = await Doctor.find({
         name: req.params.name,
     });
-    
     if (!doctor)
         return res
             .status(404)
