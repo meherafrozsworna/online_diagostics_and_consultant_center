@@ -72,7 +72,17 @@ export default class SigninScreen extends Component {
 
         axios
             .post('http://localhost:5000/sampleCollector/add', sampleCollector)
-            .then((res) => console.log(res.data));
+            .then((res) => {
+                console.log(res.data);
+                axios
+                    .post(
+                        'http://localhost:5000/admin/addSampleCollector',
+                        res.data.data
+                    )
+                    .then((response) => {
+                        console.log(response.data);
+                    });
+            });
 
         window.location = '/adminhome';
     }

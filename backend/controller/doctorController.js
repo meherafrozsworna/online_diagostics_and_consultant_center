@@ -91,7 +91,7 @@ router.put('/edit',verifyJWT, async (req, res) => {
     
 });
 
-router.post('/:id',verifyJWT, async (req, res) => {
+router.get('/:id',verifyJWT, async (req, res) => {
     const doctor = await Doctor.findById(req.params.id);
     if (!doctor)
         return res

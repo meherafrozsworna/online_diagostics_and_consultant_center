@@ -24,6 +24,15 @@ const verifyJWT = (req, res, next) => {
         });
     }
 };
+
+router.get('/sampleCollectorList', verifyJWT, (req, res) => {
+    res.json(req.admin.sampleCollectorList);
+});
+
+router.get('/testFormList', verifyJWT, (req, res) => {
+    res.json(req.admin.testList);
+});
+
 router.post('/add', (req, res) => {
     let admin = new Admin();
     admin.email = 'healthway123@gmail.com';
@@ -46,7 +55,7 @@ router.post('/login', async (req, res) => {
     }
     if (validPassword) {
         const token = jwt.sign({ admin }, 'jwtSecrete', {
-            expiresIn: 300,
+            expiresIn: 3000000,
         });
         res.send({ auth: true, token: token, result: admin });
     } else {
@@ -56,86 +65,81 @@ router.post('/login', async (req, res) => {
         });
     }
 });
-router.post('/addSampleCollector',async(req, res) => {
-    let admins=await Admin.find({});
+router.post('/addSampleCollector', async (req, res) => {
+    let admins = await Admin.find({});
     console.log(admins.length);
     console.log(req.body._id);
-    for(let i=0;i<admins.length;i++){
-    const admin_temp = await Admin.findByIdAndUpdate(
-        admins[i]._id,
-        {
-            $push: {sampleCollectorList: req.body._id} ,
-           
-        },
-        { new: true }
-    );
+    for (let i = 0; i < admins.length; i++) {
+        const admin_temp = await Admin.findByIdAndUpdate(
+            admins[i]._id,
+            {
+                $push: { sampleCollectorList: req.body._id },
+            },
+            { new: true }
+        );
     }
-    res.send("Done");
+    res.send('Done');
 });
-router.post('/deleteSampleCollector',async(req, res) => {
-    let admins=await Admin.find({});
+router.post('/deleteSampleCollector', async (req, res) => {
+    let admins = await Admin.find({});
     console.log(admins.length);
     console.log(req.body._id);
-    for(let i=0;i<admins.length;i++){
-    const admin_temp = await Admin.findByIdAndUpdate(
-        admins[i]._id,
-        {
-            $pull: {sampleCollectorList: req.body._id} ,
-           
-        },
-        { new: true }
-    );
+    for (let i = 0; i < admins.length; i++) {
+        const admin_temp = await Admin.findByIdAndUpdate(
+            admins[i]._id,
+            {
+                $pull: { sampleCollectorList: req.body._id },
+            },
+            { new: true }
+        );
     }
-    res.send("Done");
+    res.send('Done');
 });
 
-router.post('/addDoctor', async(req, res) => {
-    let admins=await Admin.find({});
+router.post('/addDoctor', async (req, res) => {
+    let admins = await Admin.find({});
     console.log(admins.length);
     console.log(req.body._id);
-    for(let i=0;i<admins.length;i++){
-    const admin_temp = await Admin.findByIdAndUpdate(
-        admins[i]._id,
-        {
-            $push: {doctorList: req.body._id} ,
-           
-        },
-        { new: true }
-    );
+    for (let i = 0; i < admins.length; i++) {
+        const admin_temp = await Admin.findByIdAndUpdate(
+            admins[i]._id,
+            {
+                $push: { doctorList: req.body._id },
+            },
+            { new: true }
+        );
     }
-    res.send("Done");
+    res.send('Done');
 });
-router.post('/addPendingTest',async(req, res) => {
-    let admins=await Admin.find({});
+router.post('/addPendingTest', async (req, res) => {
+    let admins = await Admin.find({});
     console.log(admins.length);
     console.log(req.body._id);
-    for(let i=0;i<admins.length;i++){
-    const admin_temp = await Admin.findByIdAndUpdate(
-        admins[i]._id,
-        {
-            $push: {testList: req.body._id} ,
-           
-        },
-        { new: true }
-    );
+    for (let i = 0; i < admins.length; i++) {
+        const admin_temp = await Admin.findByIdAndUpdate(
+            admins[i]._id,
+            {
+                $push: { testList: req.body._id },
+            },
+            { new: true }
+        );
     }
-    res.send("Done");
+    res.send('Done');
 });
-router.post('/deletePendingTest',async(req, res) => {
-    let admins=await Admin.find({});
+router.post('/deletePendingTest', async (req, res) => {
+    let admins = await Admin.find({});
     console.log(admins.length);
     console.log(req.body._id);
-    for(let i=0;i<admins.length;i++){
-    const admin_temp = await Admin.findByIdAndUpdate(
-        admins[i]._id,
-        {
-            $pull: {testList: req.body._id} ,
-           
-        },
-        { new: true }
-    );
+    for (let i = 0; i < admins.length; i++) {
+        const admin_temp = await Admin.findByIdAndUpdate(
+            admins[i]._id,
+            {
+                $pull: { testList: req.body._id },
+            },
+            { new: true }
+        );
     }
-    res.send("Done");
+    res.send('Done');
 });
 
 module.exports = router;

@@ -37,7 +37,7 @@ router.post('/add', async (req, res) => {
     scollector.gender = req.body.gender;
     scollector.save((err) => {
         if (err) return res.json({ success: false, error: err });
-        return res.json({ success: true , data : scollector });
+        return res.json({ success: true, data: scollector });
     });
 });
 router.post('/login', async (req, res) => {
@@ -79,6 +79,24 @@ router.put('/:id/edit', async (req, res) => {
             .send('The samplecollector with the given ID was not found.');
 
     res.send(scollector);
+});
+
+router.get('/:id', async (req, res) => {
+    /*var _id = mongoose.Types.ObjectId(req.params.id);*/
+    try {
+        console.log('IIIIIIIIIIIIIIIDDDDDDDDDDDDDDDDD : ');
+        console.log(req.params.id);
+        const sc = await sampleCollector.findById(req.params.id);
+        if (!sc)
+            return res
+                .status(404)
+                .send('The doctor with the given ID was not found.');
+
+        console.log(sc);
+        res.send(sc);
+    } catch (err) {
+        console.log(err);
+    }
 });
 
 router.get('/getAllsampleCollector', async (req, res) => {

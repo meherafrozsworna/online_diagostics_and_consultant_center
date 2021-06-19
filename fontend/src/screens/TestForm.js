@@ -169,7 +169,15 @@ export default class TestForm extends Component {
             })
             .then((res) => {
                 console.log(res.data);
-                
+
+                axios
+                    .post(
+                        'http://localhost:5000/admin/addPendingTest',
+                        res.data
+                    )
+                    .then((response) => {
+                        console.log(response.data);
+                    });
             });
 
         window.location = '/patienthome';

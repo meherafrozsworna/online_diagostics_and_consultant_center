@@ -52,6 +52,17 @@ router.get('/', (req, res) => {
     console.log('ashche');
     res.send('HomePage of Helathway');
 });
+
+router.get('/:id',verifyJWT, async (req, res) => {
+    const testForm = await TestForm.findById(req.params.id);
+    if (!testForm)
+        return res
+            .status(404)
+            .send('The doctor with the given ID was not found.');
+
+    res.send(testForm);
+});
+
 router.post('/add', async (req, res) => {
     // console.log("working 1")
     let patient = new Patient();
@@ -196,6 +207,9 @@ router.get('/specialization/:at', async (req, res) => {
 
     res.send(doctor);
 });
+
+
+
 //eta thik korte hobe.......
 router.get('/takeAppointment/:name',async (req, res) => {
     const doctor = await Doctor.find({
