@@ -354,6 +354,12 @@ main {
   align-items: center;
   justify-content: center;
 }
+.testform{
+  background-image: url('image/01.jpg');
+  background-size: cover;
+  align-items: center;
+  justify-content: center;
+}
 .admin{
   background-image: url('image/01.jpg');
   background-size: cover;
