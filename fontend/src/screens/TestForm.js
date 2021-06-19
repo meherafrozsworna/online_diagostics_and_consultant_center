@@ -188,7 +188,7 @@ export default class TestForm extends Component {
             <div className="grid-container">
                 <header className="row">
                     <div>
-                        <a className="brand" href="/">
+                        <a className="brand" href="/patienthome/:id">
                             Home
                         </a>
                     </div>
