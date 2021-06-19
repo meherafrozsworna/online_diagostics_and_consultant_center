@@ -194,7 +194,7 @@ export default class TestForm extends Component {
                     </div>
                 </header>
 
-                <main>
+                <main className="testform">
                     <div>
                         <h1 id="title">Sample Collection Form</h1>
                         <div id="container">
