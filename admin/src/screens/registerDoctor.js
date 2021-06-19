@@ -111,9 +111,14 @@ export default class SigninScreen extends Component {
 
         console.log(doctor);
 
-        axios
-            .post('http://localhost:5000/doctor/add', doctor)
-            .then((res) => console.log(res.data));
+        axios.post('http://localhost:5000/doctor/add', doctor).then((res) => {
+            console.log(res.data);
+            axios
+                .post('http://localhost:5000/admin/addDoctor', res.data)
+                .then((res) => {
+                    console.log(res.data);
+                });
+        });
 
         window.location = '/adminhome';
     }

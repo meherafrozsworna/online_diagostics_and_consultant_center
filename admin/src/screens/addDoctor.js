@@ -3,59 +3,77 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 //export default function PatientHomeScreen() {
-export default class SampleCollector extends Component {
-
-    /*
+export default class addDoctor extends Component {
     constructor(props) {
         super(props);
+        this.addDoctorsList = this.addDoctorsList.bind(this);
 
         this.state = {
-            name: '',
-            password: '',
-            gender: '',
-            age: 0,
-            phone: 0,
-            email: '',
-            address: '',
-            bloodGroup: '',
+            doctorList: [],
         };
     }
 
-    async componentDidMount() {
-        //this.getTodos();
-        //console.log('BBBBBBBBBBB');
-        let data = await axios
-            .get('http://localhost:5000/patient/' + this.props.match.params.id)
+    addDoctorsList(item, index) {
+        console.log('In add collector function ' + item);
+        const id = item;
+        axios
+            .get('http://localhost:5000/doctor/' + id)
             .then((response) => {
-                //let obj = await response.data;
                 console.log(response.data);
-                this.setState({
-                    name: response.data.name,
-                    password: response.data.password,
-                    gender: response.data.gender,
-                    age: response.data.age,
-                    phone: response.data.phone,
-                    email: response.data.email,
-                    address: response.data.address,
-                    bloodGroup: response.data.bloodGroup,
-                });
+                this.setState((previousState) => ({
+                    doctorList: [...previousState.doctorList, response.data],
+                }));
+
+                console.log(this.state.doctorList);
             })
             .catch(function (error) {
+                console.log('In function : ');
                 console.log(error);
             });
     }
-    */
 
-    removeDoctor(){
+    componentDidMount() {
+        axios
+            .get('http://localhost:5000/admin/doctorList', {
+                headers: {
+                    'x-access-token': localStorage.getItem('admintoken'),
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                const idlist = response.data;
+
+                idlist.forEach(this.addDoctorsList);
+
+                //this.setState({});
+                console.log('Doctor collectors : ');
+                console.log(this.state.doctorList);
+            })
+            .catch(function (error) {
+                console.log('error');
+                console.log(error);
+            });
+    }
+
+    removeDoctor() {
         //
     }
 
-
     render() {
         //const data = localStorage.getItem('data');
+        const listItems = this.state.doctorList.map((d) => (
+            <li>
+                Name : {d.name} <br></br>
+                Phone number : 0{d.phone} <br></br>
+                <button className="smallbtn" onClick="removeDoctor()">
+                    Remove
+                </button>
+                <br></br>
+                <br></br>
+                <br></br>
+            </li>
+        ));
         return (
-
-            
             <div className="profile">
                 {
                     //<h1>{this.props.id}</h1>
@@ -79,62 +97,76 @@ export default class SampleCollector extends Component {
                     </div>
                 </header>
                 <main className="profile">
-
                     <div className="row center">
+                        <br></br>
+                        <br></br>
+                        <div className="rows2">
+                            <Link to="/registerdoctor" className="btn4">
+                                + Add New Doctor
+                            </Link>
+                        </div>
 
-                    <br></br><br></br>
-                    <div className="rows2">
-                    <Link to="/registerdoctor" className="btn4">
-                                   + Add New Doctor
-                     </Link>
-                    </div>
+                        <div className="scrollbox3">
+                            <ul className="ul-first">
+                                {listItems}
+                                {/*<li>
+                                    Name : Azad <br></br>
+                                    Phone number : 000 <br></br>
+                                    <button
+                                        className="smallbtn"
+                                        onClick="removeDoctor()"
+                                    >
+                                        Remove
+                                    </button>
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+                                </li>
 
-                    <div className="scrollbox3">
-                    
+                                <li>
+                                    Name : Alim <br></br>
+                                    Phone number : 000 <br></br>
+                                    <button
+                                        className="smallbtn"
+                                        onClick="removeDoctor()"
+                                    >
+                                        Remove
+                                    </button>
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+                                </li>
 
-                    <ul className="ul-first">
-                        <li> 
-                            Name : Azad  <br></br>
-                            Phone number : 000 <br></br>
-                            <button className="smallbtn" onClick="removeDoctor()">
-                                Remove
-                            </button>
-                            <br></br><br></br><br></br>
-                        </li>
+                                <li>
+                                    Name : Alim <br></br>
+                                    Phone number : 000 <br></br>
+                                    <button
+                                        className="smallbtn"
+                                        onClick="removeDoctor()"
+                                    >
+                                        Remove
+                                    </button>
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+                                </li>
 
-
-                        <li> 
-                            Name : Alim <br></br>
-                            Phone number : 000 <br></br>
-                            <button className="smallbtn" onClick="removeDoctor()">
-                                Remove
-                            </button>
-                            <br></br><br></br><br></br>
-                        </li>
-
-                        <li> 
-                            Name : Alim <br></br>
-                            Phone number : 000 <br></br>
-                            <button className="smallbtn" onClick="removeDoctor()">
-                                Remove
-                            </button>
-                            <br></br><br></br><br></br>
-                        </li>
-
-                        <li> 
-                            Name : Alim <br></br>
-                            Phone number : 000 <br></br>
-                            <button className="smallbtn" onClick="removeDoctor()">
-                                Remove
-                            </button>
-                            <br></br><br></br><br></br>
-                        </li>
-
-
-
-                    </ul>
-                    </div>
-
+                                <li>
+                                    Name : Alim <br></br>
+                                    Phone number : 000 <br></br>
+                                    <button
+                                        className="smallbtn"
+                                        onClick="removeDoctor()"
+                                    >
+                                        Remove
+                                    </button>
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+                                </li>
+                                */}
+                            </ul>
+                        </div>
                     </div>
                 </main>
             </div>

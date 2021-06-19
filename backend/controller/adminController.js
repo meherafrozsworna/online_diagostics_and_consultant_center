@@ -33,6 +33,10 @@ router.get('/testFormList', verifyJWT, (req, res) => {
     res.json(req.admin.testList);
 });
 
+router.get('/doctorList', verifyJWT, (req, res) => {
+    res.json(req.admin.doctorList);
+});
+
 router.post('/add', (req, res) => {
     let admin = new Admin();
     admin.email = 'healthway123@gmail.com';
