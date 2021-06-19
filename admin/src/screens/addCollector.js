@@ -26,6 +26,11 @@ export default class SampleCollector extends Component {
                         response.data,
                     ],
                 }));
+                // this.setState({
+                //     sampleCollector: this.state.sampleCollector.concat([
+                //         response.data,
+                //     ]),
+                // });
                 console.log(this.state.sampleCollector);
             })
             .catch(function (error) {

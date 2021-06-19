@@ -9,21 +9,21 @@ import registerCollector from './screens/registerCollector';
 import addDoctor from './screens/addDoctor';
 import registerDoctor from './screens/registerDoctor';
 
-
 function App() {
-  console.log(localStorage.getItem('name'));
+    console.log(localStorage.getItem('name'));
     return (
         <BrowserRouter>
-           
-            <Route path="/" component={HomeScreen} exact></Route>  
-            <Route path="/signinadmin" component={AdminSignin}></Route>  
+            <Route path="/" component={HomeScreen} exact></Route>
+            <Route path="/signinadmin" component={AdminSignin}></Route>
             <Route path="/adminhome" component={AdminHome}></Route>
-            <Route path="/admintest" component={AdminTest}></Route>          
-            <Route path="/addcollector" component={addCollector}></Route>  
-            <Route path="/registercollector" component={registerCollector}></Route>    
-            <Route path="/adddoctor" component={addDoctor}></Route>  
-            <Route path="/registerdoctor" component={registerDoctor}></Route>  
-
+            <Route path="/admintest/:id" component={AdminTest}></Route>
+            <Route path="/addcollector" component={addCollector}></Route>
+            <Route
+                path="/registercollector"
+                component={registerCollector}
+            ></Route>
+            <Route path="/adddoctor" component={addDoctor}></Route>
+            <Route path="/registerdoctor" component={registerDoctor}></Route>
         </BrowserRouter>
     );
 }

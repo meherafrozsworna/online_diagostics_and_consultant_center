@@ -95,7 +95,7 @@ export default class TestForm extends Component {
 
     onChangeGender(e) {
         this.setState({
-            prefGender: e.target.value,
+            gender: e.target.value,
         });
     }
     onChangeLocation(e) {
@@ -145,7 +145,7 @@ export default class TestForm extends Component {
 
         const testdata = {
             patientName: this.state.name,
-            number: this.state.numeber,
+            number: this.state.number,
             age: this.state.age,
             gender: this.state.gender,
             location: this.state.location,
@@ -180,7 +180,7 @@ export default class TestForm extends Component {
                     });
             });
 
-        window.location = '/patienthome';
+        //window.location = '/patienthome';
     }
 
     render() {

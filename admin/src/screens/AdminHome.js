@@ -4,50 +4,75 @@ import axios from 'axios';
 
 //export default function PatientHomeScreen() {
 export default class AdminHome extends Component {
-
-    /*
     constructor(props) {
         super(props);
+        this.addTestList = this.addTestList.bind(this);
 
         this.state = {
-            name: '',
-            password: '',
-            gender: '',
-            age: 0,
-            phone: 0,
-            email: '',
-            address: '',
-            bloodGroup: '',
+            testList: [],
         };
     }
 
-    async componentDidMount() {
-        //this.getTodos();
-        //console.log('BBBBBBBBBBB');
-        let data = await axios
-            .get('http://localhost:5000/patient/' + this.props.match.params.id)
+    addTestList(item, index) {
+        console.log('In add collector function ' + item);
+        const id = item;
+        axios
+            .get('http://localhost:5000/patient/testform/' + id)
             .then((response) => {
-                //let obj = await response.data;
                 console.log(response.data);
-                this.setState({
-                    name: response.data.name,
-                    password: response.data.password,
-                    gender: response.data.gender,
-                    age: response.data.age,
-                    phone: response.data.phone,
-                    email: response.data.email,
-                    address: response.data.address,
-                    bloodGroup: response.data.bloodGroup,
-                });
+                this.setState((previousState) => ({
+                    testList: [...previousState.testList, response.data],
+                }));
+                // this.setState({
+                //     sampleCollector: this.state.sampleCollector.concat([
+                //         response.data,
+                //     ]),
+                // });
+                console.log(this.state.testList);
             })
             .catch(function (error) {
+                console.log('In function : ');
                 console.log(error);
             });
     }
-    */
+
+    componentDidMount() {
+        axios
+            .get('http://localhost:5000/admin/testFormList', {
+                headers: {
+                    'x-access-token': localStorage.getItem('admintoken'),
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                const idlist = response.data;
+
+                idlist.forEach(this.addTestList);
+
+                //this.setState({});
+                console.log('test collectors : ');
+                console.log(this.state.testList);
+            })
+            .catch(function (error) {
+                console.log('error');
+                console.log(error);
+            });
+    }
 
     render() {
-        //const data = localStorage.getItem('data');
+        const listItems = this.state.testList.map((d) => (
+            <li>
+                <Link to={'/admintest/' + d._id}>
+                    <h3>Name : {d.patientName} </h3>
+                    Address : {d.address}
+                    <br></br>
+                    Phone Number : 0{d.phoneNumber}
+                    <br></br>
+                    Amount : 500 Tk
+                    <h4>Status : UNPAID</h4>
+                </Link>
+            </li>
+        ));
         return (
             <div className="profile">
                 {
@@ -72,31 +97,31 @@ export default class AdminHome extends Component {
                         <a className="brand2" href="/adminhome">
                             {' '}
                             Patients
-                            {'  '} 
-                            </a>
+                            {'  '}
+                        </a>
                     </div>
-                                   </header>
+                </header>
                 <main className="profile">
                     <div className="row2">
                         <div className="column">
-                        Test collection notifications: 0<br></br>
+                            Test collection notifications: 0<br></br>
                             Appointment Notification: 0<br></br>
                             <div class="row center">
                                 <Link to="/adddoctor" className="btn3">
                                     Add/Remove Doctor
                                 </Link>
-                                </div>
-                                <div class="row center">
+                            </div>
+                            <div class="row center">
                                 <Link to="/addcollector" className="btn3">
                                     Add/Remove Sample Collector
                                 </Link>
-                                </div>
-                                <div class="row center">
+                            </div>
+                            <div class="row center">
                                 <Link to="/" className="btn3">
                                     View Appointments
                                 </Link>
                             </div>
-                                <div class="row center">
+                            <div class="row center">
                                 <Link to="/" className="btn3">
                                     Add New Report
                                 </Link>
@@ -106,53 +131,57 @@ export default class AdminHome extends Component {
                                     Check Feedbacks
                                 </Link>
                             </div>
-                            
                         </div>
                         <div className="column2">
                             <div className="row center">
                                 <div className="scrollbox">
-                                <ul>
-
-                                <h2>Sample Collection Requests</h2>
-                                         <li>
-                                        <Link to="/admintest">
-                                        <h3>Abeda Sultana </h3>
-                                        Khilgaon 204/A Road-10 House-2<br></br>
-                                        01712345678<br></br>
-                                        Tk 560
-                                        <h4>UNPAID</h4>
-                                        </Link>
+                                    <ul>
+                                        <h2>Sample Collection Requests</h2>
+                                        {listItems}
+                                        {/*<li>
+                                            <Link to="/admintest">
+                                                <h3>Abeda Sultana </h3>
+                                                Khilgaon 204/A Road-10 House-2
+                                                <br></br>
+                                                01712345678<br></br>
+                                                Tk 560
+                                                <h4>UNPAID</h4>
+                                            </Link>
                                         </li>
 
                                         <li>
-                                        <Link to="/admintest">
-                                        <h3>Abeda Sultana </h3>
-                                        Khilgaon 204/A Road-10 House-2<br></br>
-                                        01712345678<br></br>
-                                        Tk 560
-                                        <h4>UNPAID</h4>
-                                        </Link>
+                                            <Link to="/admintest">
+                                                <h3>Abeda Sultana </h3>
+                                                Khilgaon 204/A Road-10 House-2
+                                                <br></br>
+                                                01712345678<br></br>
+                                                Tk 560
+                                                <h4>UNPAID</h4>
+                                            </Link>
                                         </li>
 
                                         <li>
-                                        <Link to="/admintest">
-                                        <h3>Abeda Sultana </h3>
-                                        Khilgaon 204/A Road-10 House-2<br></br>
-                                        01712345678<br></br>
-                                        Tk 560
-                                        <h4>UNPAID</h4>
-                                        </Link>
+                                            <Link to="/admintest">
+                                                <h3>Abeda Sultana </h3>
+                                                Khilgaon 204/A Road-10 House-2
+                                                <br></br>
+                                                01712345678<br></br>
+                                                Tk 560
+                                                <h4>UNPAID</h4>
+                                            </Link>
                                         </li>
 
                                         <li>
-                                        <Link to="/admintest">
-                                        <h3>Abeda Sultana </h3>
-                                        Khilgaon 204/A Road-10 House-2<br></br>
-                                        01712345678<br></br>
-                                        Tk 560
-                                        <h4>UNPAID</h4>
-                                        </Link>
+                                            <Link to="/admintest">
+                                                <h3>Abeda Sultana </h3>
+                                                Khilgaon 204/A Road-10 House-2
+                                                <br></br>
+                                                01712345678<br></br>
+                                                Tk 560
+                                                <h4>UNPAID</h4>
+                                            </Link>
                                         </li>
+                                        */}
                                     </ul>
                                 </div>
                             </div>

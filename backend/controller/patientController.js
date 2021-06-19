@@ -9,7 +9,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 
-const verifyJWT = async(req, res, next) => {
+const verifyJWT = async (req, res, next) => {
     const token = req.headers['x-access-token'];
 
     if (!token) {
@@ -53,7 +53,7 @@ router.get('/', (req, res) => {
     res.send('HomePage of Helathway');
 });
 
-router.get('/:id',verifyJWT, async (req, res) => {
+router.get('/testform/:id', async (req, res) => {
     const testForm = await TestForm.findById(req.params.id);
     if (!testForm)
         return res
@@ -108,7 +108,7 @@ router.post('/login', async (req, res) => {
     }
 });
 //eta add korsi patient er edit er jonne
-router.put('/edit',verifyJWT, async (req, res) => {
+router.put('/edit', verifyJWT, async (req, res) => {
     const patient = await Patient.findByIdAndUpdate(
         req.patient._id,
         {
@@ -145,21 +145,21 @@ router.get('/patients/:id/admit', function (req, res) {
     });
 });
 
-router.post('/testform/submit', verifyJWT,async(req, res) => {
+router.post('/testform/submit', verifyJWT, async (req, res) => {
     let testform = new TestForm();
-    console.log("Adibaaa");
+    console.log('Adibaaa');
     console.log(testform);
     testform.patientName = req.body.patientName;
     testform.patientId = req.patient._id;
-    testform.phoneNumber = req.body.phoneNumber;
+    testform.phoneNumber = req.body.number;
     testform.age = req.body.age;
     testform.gender = req.body.gender;
     testform.location = req.body.location;
     testform.address = req.body.address;
-    testform.pref_gender = req.body.pref_gender;
-    testform.pref_time = req.body.pref_time;
+    testform.pref_gender = req.body.prefGender;
+    testform.pref_time = req.body.prefTime;
     testform.testName = req.body.checkedTestNames;
-    testform.ref_doctor = req.body.ref_doctor;
+    testform.ref_doctor = req.body.refDoctor;
     testform.instructions = req.body.instructions;
     testform.date = req.body.date;
     testform.payment = req.body.payment;
@@ -208,10 +208,8 @@ router.get('/specialization/:at', async (req, res) => {
     res.send(doctor);
 });
 
-
-
 //eta thik korte hobe.......
-router.get('/takeAppointment/:name',async (req, res) => {
+router.get('/takeAppointment/:name', async (req, res) => {
     const doctor = await Doctor.find({
         name: req.params.name,
     });
@@ -219,12 +217,11 @@ router.get('/takeAppointment/:name',async (req, res) => {
         return res
             .status(404)
             .send('The doctor with the given ID was not found.');
-    doctor.schedule.limitation=doctor.schedule.limitation-1;
+    doctor.schedule.limitation = doctor.schedule.limitation - 1;
     doctor.save((err) => {
         if (err) return res.json({ success: false, error: err });
         return res.json({ success: true });
     });
-
 
     res.send(doctor);
 });
