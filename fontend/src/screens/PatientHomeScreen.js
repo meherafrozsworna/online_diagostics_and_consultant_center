@@ -27,7 +27,7 @@ export default class PatientHomeScreen extends Component {
             address: '',
             bloodGroup: '',
 
-            report_notif: 0,
+            report_notif: 1,
             appoint_notif: 1,
             test_notif: 1,
         };
@@ -50,7 +50,8 @@ export default class PatientHomeScreen extends Component {
       notif_function3(){
 
         this.setState(prevState => ({
-            isToggle3On: !prevState.isToggle3On
+            isToggle3On: !prevState.isToggle3On,
+            report_notif:0
           }))
       }
 
@@ -211,46 +212,20 @@ export default class PatientHomeScreen extends Component {
                                     </div>
                                 </div>
                                 <div className="column2">
-                                    <br></br>
-                                    <br></br>
-                                    <br></br>
-                                    <br></br>
-                                    <br></br>
-                                    <br></br>
+                              
                                     <div class="row center">
                                         <br></br>
-                                        <br></br>
-                                        <br></br>
-                                        <br></br>
-                                        <br></br>
-                                        <br></br>
-                                        <Link to="/" className="btn2">
-                                            Get An Appointment
+                                        <Link to="/choosefield" className="btnIcon1">
+                                           {' '}
                                         </Link>
                                         <br></br>
-                                        <br></br>
-                                        <br></br>
-                                        <br></br>
-                                        <br></br>
-                                        <br></br>
-                                        <Link to="/testform" className="btn2">
-                                            Need A Test?
+                                        <Link to="/testform" className="btnIcon2">
+                                            {' '}
                                         </Link>
                                         <br></br>
-                                        <br></br>
-                                        <br></br>
-                                        <br></br>
-                                        <br></br>
-                                        <br></br>
-                                        <br></br>
-                                        <Link to="/reportpres" className="btn2">
-                                            Reports And Prescriptions
+                                        <Link to="/reportpres" className="btnIcon3">
+                                            {' '}
                                         </Link>
-                                        <br></br>
-                                        <br></br>
-                                        <br></br>
-                                        <br></br>
-                                        <br></br>
                                         <br></br>
                                     </div>
                                 </div>
