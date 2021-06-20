@@ -103,12 +103,20 @@ button:hover {
 }
 
 button.primary {
-    background-color: #624197;
-    color: white;
-    border-radius: 15px;
-    height: 40px;
-    display: inline;
-    opacity: 1;
+  
+  background-color: #624197;
+  color: white;
+  border-radius: 15px;
+  height: 40px;
+  padding: 0px 25px;
+  display: inline;
+  opacity: 1;
+
+}
+button.primary:hover{
+  border: 0.1 rem #715e9c solid;
+  background-color: #db9eff;
+  color: #3c144e;
 }
 button.block {
     width: 450px;
@@ -429,25 +437,26 @@ input {
 }
 
 .btn4 {
-    width: 85%;
+  width: 85%;
+  
+  opacity: 0.8;
+  line-height: 24px;
+  text-decoration: none; /* remove underline from anchors */
+  text-align: center;
+  padding: 15px 32px;
+  margin: 20px 8px;
+  border-radius: 34px;
+  margin-top: 40px;
 
-    opacity: 0.8;
-    line-height: 24px;
-    text-decoration: none; /* remove underline from anchors */
-    text-align: center;
-    padding: 15px 32px;
-    margin: 20px 8px;
-    border-radius: 34px;
-
-    display: inline-block;
-    background-color: #5a348b;
-    color: #ffffff;
-    cursor: pointer;
-    font-size: 120%;
-    font-weight: bolder;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
-        sans-serif;
+  display: inline-block;
+  background-color: #5a348b;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 120%;
+  font-weight: bolder;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
+
 
 .icon1 {
     border-radius: 14px;
@@ -477,18 +486,17 @@ input {
     border-radius: 50%;
     padding: 10px;
 }
-.detail-box {
-    float: left;
-    width: 42%;
-    border: 3px solid #7956a7;
-    padding: 50px 100px;
-    border-radius: 14px;
-    font-size: 20px;
-    color: #632d83;
-    align-items: center;
-    margin: 50px;
-    margin-top: 20px;
-    margin-bottom: 40px;
+.detail-box{
+  float: left;
+  width: 42%;
+  border:3px solid #7956a7;
+  padding: 20px 100px ;
+  border-radius: 14px;
+  font-size: 16px;
+  color: #632d83;
+  align-items: center;
+  margin: 10px;
+  margin-bottom: 40px;
 }
 .detail-box .ul-first {
     float: left;
@@ -562,7 +570,7 @@ input {
     padding: 10px;
     margin-top: 2px;
     line-height: 15px;
-    font-size: 19px;
+    font-size: 16px;
 }
 .text-input {
     text-align: left;
@@ -574,7 +582,7 @@ input {
 #dropdown {
     position: relative;
     text-align: left;
-    font-size: 19px;
+    font-size: 16px;
     color: #4b2879;
     margin: 10px;
     padding: 13px 5px;
@@ -605,7 +613,7 @@ input {
     position: justify;
 }
 #description {
-    font-size: 18px;
+    font-size: 16px;
     text-align: center;
     font-weight: bold;
 }
