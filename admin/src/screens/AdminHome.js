@@ -86,21 +86,21 @@ export default class AdminHome extends Component {
                         </a>
                     </div>
                     <div className="row center">
-                        <a className="brand2" href="/adminhome">
+                        <a className="brand2" href="/adminhome_appointments">
                             {' '}
                             Appointments |{' '}
                         </a>
-                        <a className="brand2" href="/adminhome">
+                        <a className="brand3" href="/adminhome">
                             {' '}
                             Sample Collection |{' '}
                         </a>
                         <a className="brand2" href="/adminhome">
                             {' '}
                             Patients
-                            {'  '}
-                        </a>
+                            {'  '} 
+                            </a>
                     </div>
-                </header>
+                                   </header>
                 <main className="profile">
                     <div className="row2">
                         <div className="column">
@@ -117,12 +117,7 @@ export default class AdminHome extends Component {
                                 </Link>
                             </div>
                             <div class="row center">
-                                <Link to="/" className="btn3">
-                                    View Appointments
-                                </Link>
-                            </div>
-                            <div class="row center">
-                                <Link to="/" className="btn3">
+                                <Link to="/fileupload" className="btn3">
                                     Add New Report
                                 </Link>
                             </div>
