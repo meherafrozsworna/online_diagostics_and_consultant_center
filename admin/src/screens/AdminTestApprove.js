@@ -87,7 +87,7 @@ export default class SampleCollector extends Component {
                 </header>
                 <main
                     className="profile"
-                    style={{ fontSize: 22, paddingLeft: 200 }}
+                    style={{ fontSize: 21 }}
                 >
                     <br></br>
                     <div className="row center">
@@ -257,9 +257,6 @@ export default class SampleCollector extends Component {
                             </div>
 
                             <div class="rows2">
-                                <br></br>
-                                <br></br>
-                                <br></br>
                                 <br></br>
                                 <button className="primary" type="submit">
                                     {' '}
