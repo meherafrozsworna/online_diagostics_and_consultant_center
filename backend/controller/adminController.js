@@ -145,5 +145,42 @@ router.post('/deletePendingTest', async (req, res) => {
     }
     res.send('Done');
 });
+//asad samplecollector er id jabe param e ar testform er id body te
+router.post('/:id/addTestForminSampleCollector', async (req, res) => {
+    let sc=await SampleCollector.findByIdAndUpdate(
+        req.params.id,{
+            $push:{testList:req.body._id},
+        }
+    )
 
+    res.send('Done');
+});
+//asad jokhon ekta payment complete dibe ekhane eshe add hobe report generation er jonne
+router.post('/addReportList', async (req, res) => {
+    let admins = await Admin.find({});
+    for (let i = 0; i < admins.length; i++) {
+        const admin_temp = await Admin.findByIdAndUpdate(
+            admins[i]._id,
+            {
+                $push: { reportList: req.body._id },
+            },
+            { new: true }
+        );
+    }
+    res.send('Done');
+});
+//report submit hoye gele delete hobe
+router.post('/deleteReportList', async (req, res) => {
+    let admins = await Admin.find({});
+    for (let i = 0; i < admins.length; i++) {
+        const admin_temp = await Admin.findByIdAndUpdate(
+            admins[i]._id,
+            {
+                $pull: { reportList: req.body._id },
+            },
+            { new: true }
+        );
+    }
+    res.send('Done');
+});
 module.exports = router;

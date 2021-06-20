@@ -5,7 +5,6 @@ import axios from 'axios';
 //export default function PatientHomeScreen() {
 export default class SampleCollector extends Component {
 
-    /*
     constructor(props) {
         super(props);
 
@@ -16,18 +15,33 @@ export default class SampleCollector extends Component {
             age: 0,
             phone: 0,
             email: '',
-            address: '',
-            bloodGroup: '',
         };
     }
-
     async componentDidMount() {
         //this.getTodos();
-        //console.log('BBBBBBBBBBB');
-        let data = await axios
-            .get('http://localhost:5000/patient/' + this.props.match.params.id)
+        console.log('BBBBBBBBBBB');
+        axios
+            .get('http://localhost:5000/sampleCollector/isUserAuth', {
+                headers: {
+                    'x-access-token': localStorage.getItem('token'),
+                },
+            })
+            .then((res) => {
+                console.log('user auth');
+                console.log(res);
+            });
+
+        axios
+            .get('http://localhost:5000/sampleCollector/screen', {
+              
+                headers: {
+                    'x-access-token': localStorage.getItem('token'),
+                },
+            
+            })
             .then((response) => {
                 //let obj = await response.data;
+                console.log('AAAAAA');
                 console.log(response.data);
                 this.setState({
                     name: response.data.name,
@@ -36,15 +50,13 @@ export default class SampleCollector extends Component {
                     age: response.data.age,
                     phone: response.data.phone,
                     email: response.data.email,
-                    address: response.data.address,
-                    bloodGroup: response.data.bloodGroup,
                 });
             })
             .catch(function (error) {
+                console.log('error');
                 console.log(error);
             });
-    }
-    */
+        }
 
     change_text(){
         document.getElementById("paid").innerHTML = "PAID";
@@ -52,9 +64,9 @@ export default class SampleCollector extends Component {
 
 
     render() {
-        //const data = localStorage.getItem('data');
+        const data = localStorage.getItem('data');
         return (
-
+           
             
             <div className="profile">
                 {
@@ -99,10 +111,10 @@ export default class SampleCollector extends Component {
 
                                 <div className="detail-box2">
                                     <ul className="ul-first">
-                                        <li>Name :  {localStorage.getItem('name')}</li>
-                                        <li>Gender :  {localStorage.getItem('gender')}</li>
-                                        <li>Age :  {localStorage.getItem('age')}</li>
-                                        <li>Phone :  {localStorage.getItem('phone')}</li>
+                                        <li>Name :   {this.state.name}</li>
+                                        <li>Gender :   {this.state.gender}</li>
+                                        <li>Age :   {this.state.age}</li>
+                                        <li>Phone :   {this.state.phone}</li>
                                     </ul>
                                 </div>
                             </div>

@@ -180,7 +180,7 @@ export default class TestForm extends Component {
                     });
             });
 
-        //window.location = '/patienthome';
+        window.location = '/patienthome';
     }
 
     render() {

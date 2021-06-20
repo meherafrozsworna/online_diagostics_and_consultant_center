@@ -31,7 +31,7 @@ const verifyJWT = async (req, res, next) => {
     }
 };
 
-router.get('/isUserAuth', verifyJWT, (req, res) => {
+router.get('/isUserAuth', verifyJWT, async(req, res) => {
     res.send('you are authenticated');
 });
 

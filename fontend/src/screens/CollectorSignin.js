@@ -14,6 +14,7 @@ export default class SigninScreen extends Component {
             email: '',
             password: '',
             id: '',
+            login: false,
         };
     }
     onChangeEmail(e) {
@@ -27,44 +28,38 @@ export default class SigninScreen extends Component {
         });
     }
 
+    userAuthenticated = () => {
+        axios
+            .get('http://localhost:5000/sampleCollector/isUserAuth', {
+                headers: {
+                    'x-access-token': localStorage.getItem('token'),
+                },
+            })
+            .then((res) => {
+                console.log(res);
+            });
+    };
     async onSubmit(e) {
         e.preventDefault();
 
-        const patient = {
+        const sampleCollector = {
             email: this.state.email,
             password: this.state.password,
         };
 
-        console.log(patient);
+        //console.log(patient);
 
         axios
-            .post('http://localhost:5000/patient/login', patient)
+            .post('http://localhost:5000/sampleCollector/login',sampleCollector)
             .then((res) => {
                 console.log(res.data);
-                this.setState({
-                    status: true,
-                    id: res.data._id,
-                });
-                console.log(this.state.id);
-                /*
-                name: '',
-            password: '',
-            gender: '',
-            age: 0,
-            phone: 0,
-            email: '',
-            address: '',
-            bloodGroup: '',
-                */
-                localStorage.setItem('name', res.data.name);
-                localStorage.setItem('password', res.data.password);
-                localStorage.setItem('gender', res.data.gender);
-                localStorage.setItem('age', res.data.age);
-                localStorage.setItem('phone', res.data.phone);
-                localStorage.setItem('email', res.data.email);
-                localStorage.setItem('address', res.data.address);
-                localStorage.setItem('bloodGroup', res.data.bloodGroup);
-                window.location = '/patienthome/' + this.state.id;
+                if (res.data.auth) {
+                    this.setState({ login: true });
+                    localStorage.setItem('token', res.data.token);
+                } else {
+                    this.setState({ login: false });
+                }
+                window.location = '/samplecollector';
             });
     }
 

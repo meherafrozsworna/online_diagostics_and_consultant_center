@@ -1,10 +1,11 @@
-const sampleCollector = require('../model/sampleCollector');
+//const sampleCollector = require('../model/sampleCollector');
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const express = require('express');
 const jwt = require('jsonwebtoken');
+const SampleCollector = require('../model/sampleCollector');
 const router = express.Router();
-const verifyJWT = (req, res, next) => {
+const verifyJWT = async(req, res, next) => {
     const token = req.headers['x-access-token'];
 
     if (!token) {
@@ -17,17 +18,21 @@ const verifyJWT = (req, res, next) => {
                     message: 'you failed to authenticate',
                 });
             } else {
-                req.sampleCollector = decoded.sampleCollector;
+                req.sampleCollector = decoded.scollector;
+                
                 next();
             }
         });
     }
 };
+router.get('/isUserAuth', verifyJWT, async(req, res) => {
+    res.send('you are authenticated');
+});
 router.get('/', (req, res) => {
     res.send('HomePage of Helathway');
 });
 router.post('/add', async (req, res) => {
-    let scollector = new sampleCollector();
+    let scollector = new SampleCollector();
     scollector.name = req.body.name;
     scollector.email = req.body.email;
     const salt = await bcrypt.genSalt(10);
@@ -41,7 +46,8 @@ router.post('/add', async (req, res) => {
     });
 });
 router.post('/login', async (req, res) => {
-    let scollector = await sampleCollector.findOne({ email: req.body.email });
+
+    let scollector = await SampleCollector.findOne({ email: req.body.email });
     if (!scollector)
         return res.status(400).send({ auth: false, message: 'Invalid Email' });
     const validPassword = await bcrypt.compare(
@@ -52,6 +58,7 @@ router.post('/login', async (req, res) => {
         const token = jwt.sign({ scollector }, 'jwtSecrete', {
             expiresIn: 300000,
         });
+        console.log()
         res.send({ auth: true, token: token, result: scollector });
     } else {
         return res.status(400).send({
@@ -61,7 +68,7 @@ router.post('/login', async (req, res) => {
     }
 });
 router.put('/:id/edit', async (req, res) => {
-    const scollector = await sampleCollector.findByIdAndUpdate(
+    const scollector = await SampleCollector.findByIdAndUpdate(
         req.params.id,
         {
             name: req.body.name,
@@ -80,40 +87,58 @@ router.put('/:id/edit', async (req, res) => {
 
     res.send(scollector);
 });
+router.get('/screen', verifyJWT, async(req, res) => {
+    console.log("Ashche");
+    console.log(req.sampleCollector);
+    res.send(req.sampleCollector);
+    if (!req.sampleCollector)
+        return res
+            .status(404)
+            .send('The sampleCollector with the given ID was not found.');
 
-router.get('/:id', async (req, res) => {
-    /*var _id = mongoose.Types.ObjectId(req.params.id);*/
+    console.log('In server home');
+    //console.log(req.patient);
+    res.send(req.sampleCollector);
+});
+/*router.get('/:id', async (req, res) => {
     try {
         console.log('IIIIIIIIIIIIIIIDDDDDDDDDDDDDDDDD : ');
         console.log(req.params.id);
-        const sc = await sampleCollector.findById(req.params.id);
+        const sc = await SampleCollector.findById(req.params.id);
         if (!sc)
             return res
                 .status(404)
-                .send('The doctor with the given ID was not found.');
+                .send('The sampleCollector with the given ID was not found.');
 
-        console.log(sc);
         res.send(sc);
     } catch (err) {
         console.log(err);
     }
-});
+});*/
 
 router.get('/getAllsampleCollector', async (req, res) => {
     const filter = {};
-    const all = await sampleCollector.find(filter);
+    const all = await SampleCollector.find(filter);
     console.log(all);
     res.send(all);
 });
-router.post('/addPendingTest', verifyJWT, (req, res) => {
-    const admin_temp = Admin.findByIdAndUpdate(
+//testlistgula ekjon samplecollector er jonne pawa jabe
+router.get('/alltheList', verifyJWT, async(req, res) => {
+    
+    const testList=req.sampleCollector.testList;
+    console.log(testList)
+    res.json(testList);
+});
+//jokhon done payment button e press korbe tokhon test ta delete hobe list theke
+router.post('/deleteTest',verifyJWT, async(req, res) => {
+    const sc = await SampleCollector.findByIdAndUpdate(
         req.sampleCollector._id,
         {
-            testList: req.body.testId,
+            $pull: { testList: req.body._id },
         },
         { new: true }
     );
-    //  req.admin.sampleCollectorList=req.body.scId;
-    res.send(admin);
+   res.send("done");
 });
+
 module.exports = router;

@@ -8,6 +8,7 @@ const adminSchema = new Schema({
     sampleCollectorList :[mongoose.Schema.Types.ObjectId],
     appointmentList : [mongoose.Schema.Types.ObjectId],
     testList :[mongoose.Schema.Types.ObjectId],
+    reportList:[mongoose.Schema.Types.ObjectId],
 });
 
 const Admin = mongoose.model('Admin', adminSchema);
