@@ -23,6 +23,11 @@ export default class FileUpload extends Component {
         })
       }
 
+      onClickHandler = () => {
+        const data = new FormData() 
+        data.append('file', this.state.selectedFile)
+    }
+
     /*
     async componentDidMount() {
         //this.getTodos();
@@ -112,7 +117,7 @@ export default class FileUpload extends Component {
                                         <br></br>
                                         <input type="file" name="file" onChange={this.onChangeHandler} />
                                         <br></br><br></br>
-                                        <button class="box__button" type="submit">Upload</button>
+                                        <button class="box__button" type="submit" onClick={this.onClickHandler}>Upload</button>
                                     </div>
                                 </div>
                             </form>
