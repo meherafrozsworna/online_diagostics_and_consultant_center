@@ -150,6 +150,12 @@ a.brand2 {
   font-weight: bold;
 }
 
+a.brand3 {
+  color: #e4cbf3;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;
