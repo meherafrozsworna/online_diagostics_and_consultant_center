@@ -104,8 +104,7 @@ export default class AdminHome extends Component {
                 <main className="profile">
                     <div className="row2">
                         <div className="column">
-                            Test collection notifications: 0<br></br>
-                            Appointment Notification: 0<br></br>
+                            <br></br>                   
                             <div class="row center">
                                 <Link to="/adddoctor" className="btn3">
                                     Add/Remove Doctor
