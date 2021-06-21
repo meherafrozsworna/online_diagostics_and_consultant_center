@@ -61,16 +61,17 @@ export default class DoctorScreen extends Component {
                         </a>
                     </div>
                     <div className="row center">
-                        <a className="brand2" href="/signin">
+                        <a className="brand2" href="/makepres">
                             {' '}
-                            Sample Collection |{' '}
+                            + Add Prescription{' '}{' '}{' '}
                         </a>
-                        <a className="brand2" href="/signin">
-                            {' '}
-                            Feedback{' '}
+                        <a className="brand2" href="/makepres">
+                            {' '}{' '}{' '}{' '}{' '}{' '}{' '}
+                            
                         </a>
                     </div>
                 </header>
+
                 <main className="profile">
                     <div className="row2">
                         <div className="column">
