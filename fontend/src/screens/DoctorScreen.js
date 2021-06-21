@@ -102,7 +102,8 @@ export default class DoctorScreen extends Component {
                         </div>
                         <div className="column2">
                             
-                            <div className="scrollbox2">
+                            
+                            <div className="scrollbox22">
                                 <ul>
                                 <h2> Upcoming Appointments</h2>
                                          <li>
@@ -133,9 +134,9 @@ export default class DoctorScreen extends Component {
                                 </div>
 
 
-                        <div className="column2">
+                        <div className="column3">
                             
-                            <div className="scrollbox2">
+                            <div className="scrollbox22">
                                 <ul>
                                 <h2>Pending Your Approval</h2>
                                         <li>
