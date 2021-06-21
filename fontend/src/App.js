@@ -18,6 +18,10 @@ import CollectorSignin from './screens/CollectorSignin';
 import ChooseField from './screens/ChooseField';
 import ChooseDoctor from './screens/ChooseDoctor';
 
+import seeReport from './screens/seeReport';
+
+
+
 function App() {
     console.log(localStorage.getItem('name'));
     return (
@@ -39,6 +43,8 @@ function App() {
 
             <Route path="/choosefield" component={ChooseField}></Route>
             <Route path="/choosedoctor" component={ChooseDoctor}></Route>
+
+            <Route path="/seereport" component={seeReport}></Route>
         </BrowserRouter>
     );
 }
