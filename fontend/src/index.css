@@ -255,6 +255,13 @@ a.brand2:hover{
 
 }
 
+.column3 {
+  float:right;
+  padding: auto;
+  z-index: 0;
+
+}
+
 .left {
   width: 25%;
 }
@@ -292,6 +299,18 @@ a.brand2:hover{
   float: left;
   padding: 20px 32px;
   margin: 20px 30px;
+  border-radius: 15px;
+}
+
+.scrollbox22 {
+  background-color: white;
+  width: 250px;
+  height: 450px;
+  overflow: scroll;
+  border: 4px #574296 solid;
+  float: left;
+  padding: 20px 32px;
+  margin: 20px 12px;
   border-radius: 15px;
 }
 
