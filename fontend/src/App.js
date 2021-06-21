@@ -17,7 +17,8 @@ import CollectorSignin from './screens/CollectorSignin';
 
 import ChooseField from './screens/ChooseField';
 import ChooseDoctor from './screens/ChooseDoctor';
-
+import seePres from './screens/seePrescription';
+import makePres from './screens/makePrescription';
 import seeReport from './screens/seeReport';
 
 
@@ -45,6 +46,8 @@ function App() {
             <Route path="/choosedoctor" component={ChooseDoctor}></Route>
 
             <Route path="/seereport" component={seeReport}></Route>
+            <Route path="/seepres" component={seePres}></Route>
+            <Route path="/makepres" component={makePres}></Route>
         </BrowserRouter>
     );
 }
