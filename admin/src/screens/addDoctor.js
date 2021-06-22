@@ -6,51 +6,19 @@ import axios from 'axios';
 export default class addDoctor extends Component {
     constructor(props) {
         super(props);
-        this.addDoctorsList = this.addDoctorsList.bind(this);
-
         this.state = {
             doctorList: [],
         };
     }
 
-    addDoctorsList(item, index) {
-        console.log('In add collector function ' + item);
-        const id = item;
-        axios
-            .get('http://localhost:5000/doctor/' + id)
-            .then((response) => {
-                console.log(response.data);
-                this.setState((previousState) => ({
-                    doctorList: [...previousState.doctorList, response.data],
-                }));
-
-                console.log(this.state.doctorList);
-            })
-            .catch(function (error) {
-                console.log('In function : ');
-                console.log(error);
-            });
-    }
-
     componentDidMount() {
         axios
-            .get('http://localhost:5000/admin/doctorList', {
-                headers: {
-                    'x-access-token': localStorage.getItem('admintoken'),
-                },
-            })
+            .get('http://localhost:5000/doctor/getAlldoctor')
             .then((response) => {
-                console.log(response.data);
-                const idlist = response.data;
-
-                idlist.forEach(this.addDoctorsList);
-
-                //this.setState({});
-                console.log('Doctor collectors : ');
-                console.log(this.state.doctorList);
+                //console.log(response.data);
+                this.setState({ doctorList: response.data });
             })
-            .catch(function (error) {
-                console.log('error');
+            .catch((error) => {
                 console.log(error);
             });
     }
@@ -63,7 +31,7 @@ export default class addDoctor extends Component {
         //const data = localStorage.getItem('data');
         const listItems = this.state.doctorList.map((d) => (
             <li>
-                Name : {d.name} <br></br>
+                Name : {d.name.toUpperCase()} <br></br>
                 Phone number : 0{d.phone} <br></br>
                 <button className="smallbtn" onClick="removeDoctor()">
                     Remove

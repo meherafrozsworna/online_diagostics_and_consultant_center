@@ -6,61 +6,11 @@ import axios from 'axios';
 export default class SampleCollector extends Component {
     constructor(props) {
         super(props);
-        //this.addCollectors = this.addCollectors.bind(this);
-
         this.state = {
             sampleCollector: [],
         };
     }
-
-    /*addCollectors(item, index) {
-        console.log('In add collector function ' + item);
-        const id = item;
-        axios
-            .get('http://localhost:5000/sampleCollector/' + id)
-            .then((response) => {
-                console.log(response.data);
-                this.setState((previousState) => ({
-                    sampleCollector: [
-                        ...previousState.sampleCollector,
-                        response.data,
-                    ],
-                }));
-                // this.setState({
-                //     sampleCollector: this.state.sampleCollector.concat([
-                //         response.data,
-                //     ]),
-                // });
-                console.log(this.state.sampleCollector);
-            })
-            .catch(function (error) {
-                console.log('In function : ');
-                console.log(error);
-            });
-    }
-*/
     componentDidMount() {
-        /*axios
-            .get('http://localhost:5000/admin/sampleCollectorList', {
-                headers: {
-                    'x-access-token': localStorage.getItem('admintoken'),
-                },
-            })
-            .then((response) => {
-                console.log(response.data);
-                const idlist = response.data;
-
-                idlist.forEach(this.addCollectors);
-
-                //this.setState({});
-                console.log('Sample collectors : ');
-                console.log(this.state.sampleCollector);
-            })
-            .catch(function (error) {
-                console.log('error');
-                console.log(error);
-            });
-            */
         axios
             .get('http://localhost:5000/sampleCollector/getAllsampleCollector')
             .then((response) => {
@@ -81,7 +31,7 @@ export default class SampleCollector extends Component {
         const listItems = this.state.sampleCollector.map((d) => (
             <li>
                 Name : {d.name} <br></br>
-                Phone number : {d.phone} <br></br>
+                Phone number : 0{d.phone} <br></br>
                 <button className="smallbtn" onClick="removeCollector()">
                     Remove
                 </button>

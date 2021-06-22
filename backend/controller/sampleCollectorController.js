@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const SampleCollector = require('../model/sampleCollector');
+const TestForm = require('../model/testform');
 const router = express.Router();
 const verifyJWT = async (req, res, next) => {
     const token = req.headers['x-access-token'];
@@ -55,7 +56,7 @@ router.post('/login', async (req, res) => {
     );
     if (validPassword) {
         const token = jwt.sign({ scollector }, 'jwtSecrete', {
-            expiresIn: 300000,
+            expiresIn: 30000000,
         });
         console.log();
         res.send({ auth: true, token: token, result: scollector });
@@ -99,6 +100,7 @@ router.get('/screen', verifyJWT, async (req, res) => {
     //console.log(req.patient);
     res.send(req.sampleCollector);
 });
+/*
 router.get('/:id', async (req, res) => {
     try {
         console.log('IIIIIIIIIIIIIIIDDDDDDDDDDDDDDDDD : ');
@@ -114,9 +116,9 @@ router.get('/:id', async (req, res) => {
         console.log(err);
     }
 });
-
+*/
 router.get('/getAllsampleCollector', async (req, res) => {
-    let sc=await SampleCollector.find({});
+    let sc = await SampleCollector.find({});
     res.send(sc);
 });
 //testlistgula ekjon samplecollector er jonne pawa jabe
@@ -137,13 +139,22 @@ router.post('/deleteTest', verifyJWT, async (req, res) => {
     res.send('done');
 });
 
-/*
-router.get('/allSampleCollectors', (req, res) => {
-    SampleCollector.find()
-        .then((sc) => res.json(sc))
+router.post('/addTest', async (req, res) => {
+    const sc = await SampleCollector.findByIdAndUpdate(
+        req.body.id,
+        {
+            $push: { testList: req.body._id },
+        },
+        { new: true }
+    );
+    res.send(sc);
+});
+
+router.get('/testform/:id', (req, res) => {
+    TestForm.findById(req.params.id)
+        .then((tf) => res.json(tf))
         .catch((err) => res.status(400).json('Error: ' + err));
 });
-*/
 
 // router.route('/allSampleCollectors').get((req, res) => {
 //     SampleCollector.find()

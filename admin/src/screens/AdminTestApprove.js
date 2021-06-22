@@ -6,25 +6,12 @@ import axios from 'axios';
 export default class SampleCollector extends Component {
     constructor(props) {
         super(props);
-
-        //this.onChangeUsername = this.onChangeUsername.bind(this);
-        //this.onChangeDescription = this.onChangeDescription.bind(this);
+        this.onChangeID = this.onChangeID.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            name: '',
-            number: '',
-            age: null,
-            gender: '',
-            location: '',
-            address: '',
-            prefGender: '',
-            prefTime: null,
-            checkedTestNames: [],
-            refDoctor: '',
-            instructions: '',
-            date: null,
-            payment: '',
             id: '',
+            sampleCollector: [],
         };
     }
 
@@ -57,21 +44,47 @@ export default class SampleCollector extends Component {
             });
 
         axios
-            .get('http://localhost:5000/users/')
+            .get('http://localhost:5000/sampleCollector/getAllsampleCollector')
             .then((response) => {
-                if (response.data.length > 0) {
-                    this.setState({
-                        users: response.data.map((user) => user.username),
-                    });
-                }
+                console.log(response.data);
+                this.setState({ sampleCollector: response.data });
             })
             .catch((error) => {
                 console.log(error);
             });
     }
 
+    onChangeID(e) {
+        this.setState({
+            id: e.target.value,
+        });
+    }
+
+    onSubmit(e) {
+        e.preventDefault();
+
+        const testdata = {
+            id: this.state.id,
+            _id: this.props.match.params.id,
+        };
+
+        console.log(testdata);
+
+        axios
+            .post('http://localhost:5000/sampleCollector/addTest', testdata)
+            .then((res) => {
+                console.log(res.data);
+            })
+            .catch((err) => console.log(err));
+
+        window.location = '/adminhome';
+    }
+
     render() {
-        const listItems = this.state.checkedTestNames.map((d) => <li>{d}</li>);
+        //const listItems = this.state.checkedTestNames.map((d) => <li>{d}</li>);
+        const listItems = this.state.sampleCollector.map((d) => (
+            <option value={d._id}>{d.name}</option>
+        ));
         return (
             <div className="profile">
                 {
@@ -85,10 +98,7 @@ export default class SampleCollector extends Component {
                         </a>
                     </div>
                 </header>
-                <main
-                    className="profile"
-                    style={{ fontSize: 21 }}
-                >
+                <main className="profile" style={{ fontSize: 21 }}>
                     <br></br>
                     <div className="row center">
                         <h2> Test Form Information</h2>
@@ -103,8 +113,7 @@ export default class SampleCollector extends Component {
                             <br></br>Preferred Gender of Sample Collector :{' '}
                             {this.state.prefGender}
                             <br></br>Referring Doctor : {this.state.refDoctor}
-                            <br></br>Required Tests :
-                            <ol>{listItems}</ol>
+                            <br></br>Required Tests :<ol>{listItems}</ol>
                             <br></br>Payment Amount : 500 Tk
                             <br></br>Payment Method : {this.state.payment}
                             <br></br>Payment Status : Unpaid
@@ -236,16 +245,12 @@ export default class SampleCollector extends Component {
                                 options:
                             </div>
 
-                            <div class="rows2">
-                                <div classNme="input">
-                                    <select id="dropdown">
-                                        <option>Select Sample Collector</option>
-                                        <option value="asad">Asad</option>
-                                        <option value="asad">Alamin</option>
-                                        <option value="asad">Mokammel</option>
-                                        <option value="asad">Nazia</option>
-                                        <option value="asad">Joti</option>
-                                    </select>
+                            <div className="rows2">
+                                <div
+                                    className="input"
+                                    onChange={this.onChangeID}
+                                >
+                                    <select id="dropdown">{listItems}</select>
                                 </div>
                             </div>
 
@@ -258,7 +263,11 @@ export default class SampleCollector extends Component {
 
                             <div class="rows2">
                                 <br></br>
-                                <button className="primary" type="submit">
+                                <button
+                                    className="primary"
+                                    type="submit"
+                                    onClick={this.onSubmit}
+                                >
                                     {' '}
                                     Assign{' '}
                                 </button>

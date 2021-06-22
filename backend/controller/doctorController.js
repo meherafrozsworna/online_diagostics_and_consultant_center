@@ -4,6 +4,12 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+
+router.get('/getAlldoctor', async (req, res) => {
+    let doctor = await Doctor.find({});
+    res.send(doctor);
+});
+
 const verifyJWT = async (req, res, next) => {
     console.log(req.headers);
     const token = req.headers['x-access-token'];
@@ -89,6 +95,7 @@ router.put('/edit', verifyJWT, async (req, res) => {
     res.send(doctor);
 });
 
+/*
 router.get('/:id', async (req, res) => {
     const doctor = await Doctor.findById(req.params.id);
     if (!doctor)
@@ -98,7 +105,7 @@ router.get('/:id', async (req, res) => {
 
     res.send(doctor);
 });
-
+*/
 router.get('/:name', async (req, res) => {
     const doctor = await Doctor.find({
         name: req.params.name,
