@@ -117,10 +117,8 @@ router.get('/screen', verifyJWT, async(req, res) => {
 });*/
 
 router.get('/getAllsampleCollector', async (req, res) => {
-    const filter = {};
-    const all = await SampleCollector.find(filter);
-    console.log(all);
-    res.send(all);
+    let sc=await SampleCollector.find({});
+    res.send(sc);
 });
 //testlistgula ekjon samplecollector er jonne pawa jabe
 router.get('/alltheList', verifyJWT, async(req, res) => {
