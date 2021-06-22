@@ -115,8 +115,8 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.get('/allsampleCollector', async (req, res) => {
-    let sc = await SampleCollector.find({});
+router.get('/getAllsampleCollector', async (req, res) => {
+    let sc=await SampleCollector.find({});
     res.send(sc);
 });
 //testlistgula ekjon samplecollector er jonne pawa jabe
