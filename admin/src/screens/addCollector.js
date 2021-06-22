@@ -6,14 +6,14 @@ import axios from 'axios';
 export default class SampleCollector extends Component {
     constructor(props) {
         super(props);
-        this.addCollectors = this.addCollectors.bind(this);
+        //this.addCollectors = this.addCollectors.bind(this);
 
         this.state = {
             sampleCollector: [],
         };
     }
 
-    addCollectors(item, index) {
+    /*addCollectors(item, index) {
         console.log('In add collector function ' + item);
         const id = item;
         axios
@@ -38,9 +38,9 @@ export default class SampleCollector extends Component {
                 console.log(error);
             });
     }
-
+*/
     componentDidMount() {
-        axios
+        /*axios
             .get('http://localhost:5000/admin/sampleCollectorList', {
                 headers: {
                     'x-access-token': localStorage.getItem('admintoken'),
@@ -58,6 +58,16 @@ export default class SampleCollector extends Component {
             })
             .catch(function (error) {
                 console.log('error');
+                console.log(error);
+            });
+            */
+        axios
+            .get('http://localhost:5000/sampleCollector/getAllsampleCollector')
+            .then((response) => {
+                console.log(response.data);
+                this.setState({ sampleCollector: response.data });
+            })
+            .catch((error) => {
                 console.log(error);
             });
     }

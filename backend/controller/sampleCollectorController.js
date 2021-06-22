@@ -5,7 +5,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const SampleCollector = require('../model/sampleCollector');
 const router = express.Router();
-const verifyJWT = async(req, res, next) => {
+const verifyJWT = async (req, res, next) => {
     const token = req.headers['x-access-token'];
 
     if (!token) {
@@ -19,13 +19,13 @@ const verifyJWT = async(req, res, next) => {
                 });
             } else {
                 req.sampleCollector = decoded.scollector;
-                
+
                 next();
             }
         });
     }
 };
-router.get('/isUserAuth', verifyJWT, async(req, res) => {
+router.get('/isUserAuth', verifyJWT, async (req, res) => {
     res.send('you are authenticated');
 });
 router.get('/', (req, res) => {
@@ -46,7 +46,6 @@ router.post('/add', async (req, res) => {
     });
 });
 router.post('/login', async (req, res) => {
-
     let scollector = await SampleCollector.findOne({ email: req.body.email });
     if (!scollector)
         return res.status(400).send({ auth: false, message: 'Invalid Email' });
@@ -58,7 +57,7 @@ router.post('/login', async (req, res) => {
         const token = jwt.sign({ scollector }, 'jwtSecrete', {
             expiresIn: 300000,
         });
-        console.log()
+        console.log();
         res.send({ auth: true, token: token, result: scollector });
     } else {
         return res.status(400).send({
@@ -87,8 +86,8 @@ router.put('/:id/edit', async (req, res) => {
 
     res.send(scollector);
 });
-router.get('/screen', verifyJWT, async(req, res) => {
-    console.log("Ashche");
+router.get('/screen', verifyJWT, async (req, res) => {
+    console.log('Ashche');
     console.log(req.sampleCollector);
     res.send(req.sampleCollector);
     if (!req.sampleCollector)
@@ -100,7 +99,7 @@ router.get('/screen', verifyJWT, async(req, res) => {
     //console.log(req.patient);
     res.send(req.sampleCollector);
 });
-/*router.get('/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         console.log('IIIIIIIIIIIIIIIDDDDDDDDDDDDDDDDD : ');
         console.log(req.params.id);
@@ -114,23 +113,20 @@ router.get('/screen', verifyJWT, async(req, res) => {
     } catch (err) {
         console.log(err);
     }
-});*/
+});
 
-router.get('/getAllsampleCollector', async (req, res) => {
-    const filter = {};
-    const all = await SampleCollector.find(filter);
-    console.log(all);
-    res.send(all);
+router.get('/allsampleCollector', async (req, res) => {
+    let sc = await SampleCollector.find({});
+    res.send(sc);
 });
 //testlistgula ekjon samplecollector er jonne pawa jabe
-router.get('/alltheList', verifyJWT, async(req, res) => {
-    
-    const testList=req.sampleCollector.testList;
-    console.log(testList)
+router.get('/alltheList', verifyJWT, async (req, res) => {
+    const testList = req.sampleCollector.testList;
+    console.log(testList);
     res.json(testList);
 });
 //jokhon done payment button e press korbe tokhon test ta delete hobe list theke
-router.post('/deleteTest',verifyJWT, async(req, res) => {
+router.post('/deleteTest', verifyJWT, async (req, res) => {
     const sc = await SampleCollector.findByIdAndUpdate(
         req.sampleCollector._id,
         {
@@ -138,7 +134,21 @@ router.post('/deleteTest',verifyJWT, async(req, res) => {
         },
         { new: true }
     );
-   res.send("done");
+    res.send('done');
 });
+
+/*
+router.get('/allSampleCollectors', (req, res) => {
+    SampleCollector.find()
+        .then((sc) => res.json(sc))
+        .catch((err) => res.status(400).json('Error: ' + err));
+});
+*/
+
+// router.route('/allSampleCollectors').get((req, res) => {
+//     SampleCollector.find()
+//         .then((sc) => res.json(sc))
+//         .catch((err) => res.status(400).json('Error: ' + err));
+// });
 
 module.exports = router;

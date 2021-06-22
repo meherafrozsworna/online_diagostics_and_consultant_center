@@ -37,6 +37,7 @@ router.get('/doctorList', verifyJWT, (req, res) => {
     res.json(req.admin.doctorList);
 });
 
+
 router.post('/add', (req, res) => {
     let admin = new Admin();
     admin.email = 'healthway123@gmail.com';
@@ -147,11 +148,9 @@ router.post('/deletePendingTest', async (req, res) => {
 });
 //asad samplecollector er id jabe param e ar testform er id body te
 router.post('/:id/addTestForminSampleCollector', async (req, res) => {
-    let sc=await SampleCollector.findByIdAndUpdate(
-        req.params.id,{
-            $push:{testList:req.body._id},
-        }
-    )
+    let sc = await SampleCollector.findByIdAndUpdate(req.params.id, {
+        $push: { testList: req.body._id },
+    });
 
     res.send('Done');
 });
