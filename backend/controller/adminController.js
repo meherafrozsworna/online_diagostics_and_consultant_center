@@ -1,5 +1,7 @@
 const bcrypt = require('bcrypt');
 const Admin = require('../model/admin');
+const Patient=require('../model/patient');
+const Report = require("../model/report");
 const mongoose = require('mongoose');
 const express = require('express');
 const jwt = require('jsonwebtoken');
@@ -146,14 +148,7 @@ router.post('/deletePendingTest', async (req, res) => {
     }
     res.send('Done');
 });
-//asad samplecollector er id jabe param e ar testform er id body te
-router.post('/:id/addTestForminSampleCollector', async (req, res) => {
-    let sc = await SampleCollector.findByIdAndUpdate(req.params.id, {
-        $push: { testList: req.body._id },
-    });
 
-    res.send('Done');
-});
 //asad jokhon ekta payment complete dibe ekhane eshe add hobe report generation er jonne
 router.post('/addReportList', async (req, res) => {
     let admins = await Admin.find({});
@@ -181,5 +176,39 @@ router.post('/deleteReportList', async (req, res) => {
         );
     }
     res.send('Done');
+});
+
+router.post("/addReport", async(req, res) =>{
+    report = new Report({
+        name:req.body.name,
+        age:req.body.age,
+        phone:req.body.phone,
+        date:req.body.date,
+        testName:req.body.testName,
+        details:req.body.details
+        });
+        report.save(err => {
+            if (err) return res.json({ success: false, error: err });
+            return res.json({ success: true });
+        });
+
+});
+router.post('/:name/addtheReportToPatientProfile',async(req, res) =>{
+    let patient = await Patient.find({
+        name: req.params.name,
+    });
+    console.log(patient);
+    let rep=[...patient[0].report,req.body.id];
+    console.log(rep);
+
+     patient = await Patient.findByIdAndUpdate(
+        patient[0]._id,
+        {
+             report: rep,
+        },
+        { new: true }
+    );
+res.send(patient);
+
 });
 module.exports = router;

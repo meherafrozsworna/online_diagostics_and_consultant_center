@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const Doctor = require('../model/doctor');
 const Patient = require('../model/patient');
 const TestForm = require('../model/testform');
+const Report=require('../model/report');
 //const {Patient, validate} = require('../model/patient');
 //const Joi = require('@hapi/joi');
 const mongoose = require('mongoose');
@@ -207,7 +208,12 @@ router.get('/specialization/:at', async (req, res) => {
 
     res.send(doctor);
 });
-
+router.get('/:id/showReport',async (req, res) => {
+    
+    const report = await Report.findById(req.params.id);
+    res.send(report);
+    
+});
 //eta thik korte hobe.......
 router.get('/takeAppointment/:name', async (req, res) => {
     const doctor = await Doctor.find({

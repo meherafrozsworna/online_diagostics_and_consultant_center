@@ -18,7 +18,7 @@ const patientSchema = new Schema({
         link : String,
         date : Date,
     }],
-    report:{type:ObjectId},
+    report: [mongoose.Schema.Types.ObjectId],
 })
 const Patient = mongoose.model('Patient', patientSchema);
 

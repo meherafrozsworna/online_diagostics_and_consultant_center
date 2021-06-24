@@ -8,12 +8,10 @@ router.get("/",(req,res)=>{
 });
 router.post("/addReport", async(req, res) =>{
     report = new Report({
-        patientId:req.body.patientId,
         name:req.body.name,
         age:req.body.age,
         phone:req.body.phone,
         date:req.body.date,
-        testId:req.body.testId,
         testName:req.body.testName,
         details:req.body.details
         });

@@ -3,12 +3,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const reportSchema = new Schema({
-  patientId: { type: String, required: true },
-  name: { type: String, required: true },
-  age: { type: Number, required: true },
-  phone : {type: Number , required: true},
-  date: { type: Date, required: true },
-  details : {type : [String], required : true}   //String rakhbo?
+ 
+  name: { type: String},
+  age: { type: Number },
+  phone : {type: Number},
+  date: { type: String},
+  testName:{type : [String]},
+  details : {type : [String]}   //String rakhbo?
 });
 
 const Report = mongoose.model('Report', reportSchema);

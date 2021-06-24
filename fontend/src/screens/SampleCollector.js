@@ -73,9 +73,6 @@ export default class SampleCollector extends Component {
                 console.log('BBBBBBBBBBB');
                 console.log(response.data);
                 let idList = response.data;
-                // this.setState({
-                //     testListId: response.data,
-                // });
                 console.log(idList);
                 idList.forEach(this.addDoctorsList);
             })
