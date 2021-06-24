@@ -21,6 +21,8 @@ import seePres from './screens/seePrescription';
 import makePres from './screens/makePrescription';
 import seeReport from './screens/seeReport';
 
+import editProfile from './screens/editProfile';
+
 
 
 function App() {
@@ -48,6 +50,7 @@ function App() {
             <Route path="/seereport" component={seeReport}></Route>
             <Route path="/seepres" component={seePres}></Route>
             <Route path="/makepres" component={makePres}></Route>
+            <Route path="/editprofile" component={editProfile}></Route>
         </BrowserRouter>
     );
 }
