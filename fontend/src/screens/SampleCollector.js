@@ -132,7 +132,7 @@ export default class SampleCollector extends Component {
                 <main className="profile">
                     <div className="row2">
                         <div className="column">
-                            <div className="detail-box">
+                            <div className="detail-box1">
                                 <div className="user-image">
                                     <img
                                         src="https://data.whicdn.com/images/345295536/original.jpg"
@@ -166,85 +166,10 @@ export default class SampleCollector extends Component {
                         </div>
                         <div className="column2">
                             <div className="row center">
-                                <div className="scrollbox">
+                                <div className="scrollbox_sample">
                                     <ul>
-                                        <h2> Pending Sample Collections</h2>
+                                        <h2 style={{marginLeft:"40px"}}> Pending Sample Collections</h2>
                                         {listItems}
-                                        {/*<li>
-                                            <h3>Abeda Sultana</h3>
-                                            Khilgaon 204/A Road-10 House-2
-                                            <br></br>
-                                            01712345678<br></br>
-                                            Tk 560
-                                            <p id="paid">UNPAID</p>
-                                            <button
-                                                className="smallbtn"
-                                                onClick="change_text()"
-                                            >
-                                                Completed
-                                            </button>
-                                        </li>
-
-                                        <li>
-                                            <h3>Abeda Sultana</h3>
-                                            Khilgaon 204/A Road-10 House-2
-                                            <br></br>
-                                            01712345678<br></br>
-                                            Tk 560
-                                            <h4>PAID</h4>
-                                            <button
-                                                className="smallbtn"
-                                                onClick="change_text()"
-                                            >
-                                                Completed
-                                            </button>
-                                        </li>
-
-                                        <li>
-                                            <h3>Abeda Sultana</h3>
-                                            Khilgaon 204/A Road-10 House-2
-                                            <br></br>
-                                            01712345678<br></br>
-                                            Tk 560
-                                            <h4>UNPAID</h4>
-                                            <button
-                                                className="smallbtn"
-                                                onClick="change_text()"
-                                            >
-                                                Completed
-                                            </button>
-                                        </li>
-
-                                        <li>
-                                            <h3>Abeda Sultana</h3>
-                                            Khilgaon 204/A Road-10 House-2
-                                            <br></br>
-                                            01712345678<br></br>
-                                            Tk 560
-                                            <h4>PAID</h4>
-                                            <button
-                                                className="smallbtn"
-                                                onClick="change_text()"
-                                            >
-                                                Completed
-                                            </button>
-                                        </li>
-
-                                        <li>
-                                            <h3>Abeda Sultana</h3>
-                                            Khilgaon 204/A Road-10 House-2
-                                            <br></br>
-                                            01712345678<br></br>
-                                            Tk 560
-                                            <h4>UNPAID</h4>
-                                            <button
-                                                className="smallbtn"
-                                                onClick="change_text()"
-                                            >
-                                                Completed
-                                            </button>
-                                        </li>
-                                        */}
                                     </ul>
                                 </div>
                             </div>
