@@ -19,7 +19,7 @@ export default class SampleCollector extends Component {
         };
     }
 
-    addDoctorsList(item, index) {
+    /*addDoctorsList(item, index) {
         console.log('In add collector function ' + item);
         const id = item;
         axios
@@ -37,7 +37,7 @@ export default class SampleCollector extends Component {
                 console.log(error);
             });
     }
-
+*/
     componentDidMount() {
         axios
             .get('http://localhost:5000/sampleCollector/screen', {
@@ -72,9 +72,13 @@ export default class SampleCollector extends Component {
             .then((response) => {
                 console.log('BBBBBBBBBBB');
                 console.log(response.data);
-                let idList = response.data;
+                this.setState({
+                    testList: response.data,
+                });
+                /*let idList = response.data;
                 console.log(idList);
                 idList.forEach(this.addDoctorsList);
+                */
             })
             .catch(function (error) {
                 console.log('error');
