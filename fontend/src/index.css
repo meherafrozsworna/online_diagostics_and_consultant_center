@@ -290,6 +290,19 @@ a.brand2:hover{
   border-radius: 15px;
 }
 
+.scrollbox_sample {
+  background-color: white;
+  width: 450px;
+  height: 450px;
+  overflow: scroll;
+  border: 4px #574296 solid;
+  float: left;
+  padding: 2px 2px;
+  margin: 20px 100px;
+  border-radius: 15px;
+}
+
+
 .scrollbox2 {
   background-color: white;
   width: 250px;
@@ -665,6 +678,7 @@ input {
   align-items: center;
 }
 .detail-box1{
+  background-color: #f7e4ff;
   float: left;
   width: 45%;
   border:4px solid #7956a7;
@@ -675,6 +689,7 @@ input {
   align-items: center;
   margin-left: 80px;
   margin-top: 20px;
+  box-shadow: #8541b3;
 }
 .detail-box .ul-first{
   float: left;
