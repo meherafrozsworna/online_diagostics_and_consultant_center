@@ -124,8 +124,13 @@ router.get('/getAllsampleCollector', async (req, res) => {
 //testlistgula ekjon samplecollector er jonne pawa jabe
 router.get('/alltheList', verifyJWT, async (req, res) => {
     const testList = req.sampleCollector.testList;
-    console.log(testList);
-    res.json(testList);
+    let test_temp=[];
+    for (let i = 0; i < testList.length; i++){
+      const test=await TestForm.findById(testList[i]);
+      test_temp.push(test);
+    }
+    console.log(test_temp);
+    res.json(test_temp);
 });
 //jokhon done payment button e press korbe tokhon test ta delete hobe list theke
 router.post('/deleteTest', verifyJWT, async (req, res) => {
