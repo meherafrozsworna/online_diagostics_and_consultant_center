@@ -80,14 +80,11 @@ export default class SampleCollector extends Component {
                         <h2> Doctor's Prescription</h2>
 
                         <div id="container">
-                            <br></br>Patient ID : {this.state.id}
                             <br></br>Patient Name : {this.state.name}
                             <br></br>Patient Age : {this.state.age}
-                            <br></br>Patient Gender : {this.state.gender}
-                            <br></br>Date : {this.state.date}
-                            <br></br>Diagnosis: {this.state.diagnosis}
-                            <br></br>Medicines: {this.state.medicines}
-                            <br></br><br></br>Suggestions/Comments : {this.state.suggestions}
+
+                            <br></br><br></br>
+                            <a href="https://drive.google.com/file/d/1Lzo2WY6DzN_NXhcSfppsOrzKtLqD-l7w/view?usp=sharing" target="_blank" download><h6>View / Download</h6>  </a>
                            
                             <br></br>
                             <br></br>

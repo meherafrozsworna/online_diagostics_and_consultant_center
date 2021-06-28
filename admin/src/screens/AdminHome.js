@@ -130,52 +130,9 @@ export default class AdminHome extends Component {
                             <div className="row center">
                                 <div className="scrollbox">
                                     <ul>
-                                        <h2>Sample Collection Requests</h2>
+                                        <h2 style={{marginLeft:"40px"}}>Sample Collection Requests</h2>
                                         {listItems}
-                                        {/*<li>
-                                            <Link to="/admintest">
-                                                <h3>Abeda Sultana </h3>
-                                                Khilgaon 204/A Road-10 House-2
-                                                <br></br>
-                                                01712345678<br></br>
-                                                Tk 560
-                                                <h4>UNPAID</h4>
-                                            </Link>
-                                        </li>
-
-                                        <li>
-                                            <Link to="/admintest">
-                                                <h3>Abeda Sultana </h3>
-                                                Khilgaon 204/A Road-10 House-2
-                                                <br></br>
-                                                01712345678<br></br>
-                                                Tk 560
-                                                <h4>UNPAID</h4>
-                                            </Link>
-                                        </li>
-
-                                        <li>
-                                            <Link to="/admintest">
-                                                <h3>Abeda Sultana </h3>
-                                                Khilgaon 204/A Road-10 House-2
-                                                <br></br>
-                                                01712345678<br></br>
-                                                Tk 560
-                                                <h4>UNPAID</h4>
-                                            </Link>
-                                        </li>
-
-                                        <li>
-                                            <Link to="/admintest">
-                                                <h3>Abeda Sultana </h3>
-                                                Khilgaon 204/A Road-10 House-2
-                                                <br></br>
-                                                01712345678<br></br>
-                                                Tk 560
-                                                <h4>UNPAID</h4>
-                                            </Link>
-                                        </li>
-                                        */}
+                                        
                                     </ul>
                                 </div>
                             </div>

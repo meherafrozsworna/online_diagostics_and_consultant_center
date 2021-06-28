@@ -108,7 +108,7 @@ export default class SigninScreen extends Component {
                         <a href="/signin">Sign In </a>
                     </div>
                 </header>
-                <main>
+                <main className="testform">
                     <div>
                         <form className="form" onSubmit={this.onSubmit}>
                             <div>

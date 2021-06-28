@@ -87,7 +87,7 @@ h4 {
 }
 
 h6 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   width:80%;
   
   opacity: 0.9;
@@ -106,7 +106,7 @@ h6 {
   color: #2b0741;
   cursor: pointer;
   font-weight: bolder;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+  font-family: sans-serif
 }
 h6:hover{
 
@@ -133,6 +133,8 @@ h6:hover{
   cursor: pointer;
   font-size: 90%;
 }
+
+
 
 button {
   display: inline;
@@ -689,7 +691,7 @@ input {
   align-items: center;
   margin-left: 80px;
   margin-top: 20px;
-  box-shadow: #8541b3;
+  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2);
 }
 .detail-box .ul-first{
   float: left;
@@ -1005,3 +1007,66 @@ font-size: 18px;
 		margin-top: 12px;
 		font-size: 18px;
 		}
+
+
+    /* CHOOSE DOC */
+    .grid-container1 {
+      display: grid;
+
+      grid-template-columns: auto auto auto;
+  padding-left: 50px;
+  padding-top: 30px;;
+  background-color:  #f9f0ff;
+
+      grid-row-gap: 12px;
+      grid-column-gap: 12px;
+    }
+    .grid-item {
+      text-align: center;
+    }
+
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+     width: 250px;
+      margin: 10px 10px;
+      text-align: center;
+      position: relative;
+      clear:left;
+      float: left;
+    
+    }
+
+    .card:hover {
+      box-shadow: 0 24px 28px 0 rgba(0, 0, 0, 0.2);
+      width: 300px;
+    
+    }
+    
+    .title {
+      color: grey;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .book_btn{
+      width: 55%;
+      
+      opacity: 0.8;
+      line-height: 15px;
+      text-decoration: none; /* remove underline from anchors */
+      text-align: center;
+      padding: 8px 18px;
+      margin: 20px 8px;
+      border-radius: 10px;
+    
+      display: inline-block;
+      background-color: #5a348b;
+      color: #ffffff;
+      cursor: pointer;
+      font-size: 90%;
+    }
+    
+    .book_btn:hover{
+      background-color: #c79dff;
+      color: #3e144f;
+    }
