@@ -3,13 +3,16 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const reportSchema = new Schema({
- 
+
+  id:mongoose.Schema.Types.ObjectId,
   name: { type: String},
+  email:{type:String},
   age: { type: Number },
   phone : {type: Number},
   date: { type: String},
   testName:{type : [String]},
-  details : {type : [String]}   //String rakhbo?
+  details : {type : [String]} ,  //String rakhbo?
+  fileStorage : {type:String}
 });
 
 const Report = mongoose.model('Report', reportSchema);
