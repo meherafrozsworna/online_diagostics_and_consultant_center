@@ -244,15 +244,39 @@ a.brand3 {
 /*SCROLL BOX*/
 .scrollbox {
 background-color: white;
-width: 160%;
+width: 420px;
 height: 490px;
 overflow: scroll;
 border: 4px #574296 solid;
 float: left;
 padding: 2px 2px;
-margin: 10px 190px;
+margin-top: 10px;
+margin-left: 15px;
+margin-right: 190px;
 border-radius: 15px;
+box-shadow: 0 24px 28px 0 rgba(0, 0, 0, 0.2);
 }
+
+.btn3 {
+  width: 100%;
+  
+  opacity: 0.8;
+  line-height: 21px;
+  text-decoration: none; /* remove underline from anchors */
+  text-align: center;
+  padding: 15px 32px;
+  margin: 28px 8px 20px 80px;
+  border-radius: 24px;
+  
+  display: inline-block;
+  background-color: #5a348b;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 100%;
+  font-family: sans-serif;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.3);
+  }
+  
 
 .scrollbox3 {
   background-color: white;
@@ -462,24 +486,7 @@ input {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
       sans-serif;
 }
-.btn3 {
-width: 55%;
 
-opacity: 0.8;
-line-height: 21px;
-text-decoration: none; /* remove underline from anchors */
-text-align: center;
-padding: 15px 32px;
-margin: 25px 8px 10px 30px;
-border-radius: 24px;
-
-display: inline-block;
-background-color: #5a348b;
-color: #ffffff;
-cursor: pointer;
-font-size: 100%;
-font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
-}
 
 .btn3:hover{
 background-color: #cdaff3;
