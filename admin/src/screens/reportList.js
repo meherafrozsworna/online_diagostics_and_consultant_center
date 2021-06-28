@@ -47,10 +47,6 @@ export default class ReportList extends Component {
         ));
         return (
             <div className="profile">
-                {
-                    //<h1>{this.props.id}</h1>
-                }
-
                 <header className="row">
                     <div>
                         <a className="brand" href="/adminhome">
@@ -77,54 +73,13 @@ export default class ReportList extends Component {
                     <div className="row2">
                         <div className="">
                             <div className="row center">
-                                <div className="scrollbox">
-                                    <ul>
-                                        <h2>Pending Reports</h2>
+
+                            <h3>Pending Reports</h3>
+                            <div className="scrollbox3">
+                            <ul className="ul-first">
+                                        
                                         {listItems}
-                                        {/*<li>
-                                            <Link to="/admintest">
-                                                <h3>Abeda Sultana </h3>
-                                                Khilgaon 204/A Road-10 House-2
-                                                <br></br>
-                                                01712345678<br></br>
-                                                Tk 560
-                                                <h4>UNPAID</h4>
-                                            </Link>
-                                        </li>
-
-                                        <li>
-                                            <Link to="/admintest">
-                                                <h3>Abeda Sultana </h3>
-                                                Khilgaon 204/A Road-10 House-2
-                                                <br></br>
-                                                01712345678<br></br>
-                                                Tk 560
-                                                <h4>UNPAID</h4>
-                                            </Link>
-                                        </li>
-
-                                        <li>
-                                            <Link to="/admintest">
-                                                <h3>Abeda Sultana </h3>
-                                                Khilgaon 204/A Road-10 House-2
-                                                <br></br>
-                                                01712345678<br></br>
-                                                Tk 560
-                                                <h4>UNPAID</h4>
-                                            </Link>
-                                        </li>
-
-                                        <li>
-                                            <Link to="/admintest">
-                                                <h3>Abeda Sultana </h3>
-                                                Khilgaon 204/A Road-10 House-2
-                                                <br></br>
-                                                01712345678<br></br>
-                                                Tk 560
-                                                <h4>UNPAID</h4>
-                                            </Link>
-                                        </li>
-                                        */}
+                                        
                                     </ul>
                                 </div>
                             </div>
