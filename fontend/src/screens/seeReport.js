@@ -78,16 +78,12 @@ export default class SampleCollector extends Component {
                         <h2> Test Report </h2>
 
                         <div id="container">
-                            <br></br>Patient ID : {this.state.id}
                             <br></br>Patient Name : {this.state.name}
                             <br></br>Patient Age : {this.state.age}
-                            <br></br>Patient Gender : {this.state.gender}
-                            <br></br>Date : {this.state.date}
                             <br></br>Reported Test: {this.state.testname}
-                            <br></br><br></br>Result/Comments : {this.state.details}
 
-                            <br></br><br></br>Image (If any): <br></br>
-                            <img src="/image/lab.jpg" alt="null"></img>
+                            <br></br><br></br>
+                            <a href="https://drive.google.com/file/d/16ydAvrZ5lAYdcCAkj4j_ygulse_l1vqP/view?usp=sharing" target="_blank" download><h6>View / Download</h6>  </a>
                            
                             <br></br>
                             <br></br>
