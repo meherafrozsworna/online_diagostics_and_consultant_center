@@ -6,13 +6,13 @@ import axios from 'axios';
 export default class AdminHome extends Component {
     constructor(props) {
         super(props);
-        this.addTestList = this.addTestList.bind(this);
+        //this.addTestList = this.addTestList.bind(this);
 
         this.state = {
             testList: [],
         };
     }
-
+    /*
     addTestList(item, index) {
         console.log('In add collector function ' + item);
         const id = item;
@@ -35,7 +35,7 @@ export default class AdminHome extends Component {
                 console.log(error);
             });
     }
-
+*/
     componentDidMount() {
         axios
             .get('http://localhost:5000/admin/testFormList', {
@@ -45,9 +45,9 @@ export default class AdminHome extends Component {
             })
             .then((response) => {
                 console.log(response.data);
-                const idlist = response.data;
-
-                idlist.forEach(this.addTestList);
+                this.setState({
+                    testList: response.data,
+                });
 
                 //this.setState({});
                 console.log('test collectors : ');
@@ -97,14 +97,14 @@ export default class AdminHome extends Component {
                         <a className="brand2" href="/adminhome">
                             {' '}
                             Patients
-                            {'  '} 
-                            </a>
+                            {'  '}
+                        </a>
                     </div>
-                                   </header>
+                </header>
                 <main className="profile">
                     <div className="row2">
                         <div className="column">
-                            <br></br>                   
+                            <br></br>
                             <div class="row center">
                                 <Link to="/adddoctor" className="btn3">
                                     Add/Remove Doctor
