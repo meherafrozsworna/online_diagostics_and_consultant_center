@@ -79,7 +79,8 @@ export default class AdminHome extends Component {
                 <main className="profile">
                     <div className="row2">
                         <div className="column">
-                            <br></br>
+                        Test collection notifications: 0<br></br>
+                            Appointment Notification: 0<br></br>
                             <div class="row center">
                                 <Link to="/adddoctor" className="btn3">
                                     Add/Remove Doctor
@@ -91,7 +92,7 @@ export default class AdminHome extends Component {
                                 </Link>
                                 </div>
                                 <div class="row center">
-                                <Link to="/fileupload" className="btn3">
+                                <Link to="/reportList" className="btn3">
                                     Add New Report
                                 </Link>
                             </div>
@@ -107,7 +108,7 @@ export default class AdminHome extends Component {
                                 <div className="scrollbox">
                                 <ul>
 
-                                <h2>Appointment Requests</h2>
+                                <h2  style={{marginLeft:"40px"}}>Appointment Requests</h2>
                                          <li>
                                         <Link to="/">
                                         <h3>Abeda Sultana </h3>
