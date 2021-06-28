@@ -53,7 +53,7 @@ export default class PatientHomeScreen extends Component {
 
                 <header className="row">
                     <div>
-                        <a className="brand" href="/">
+                        <a className="brand" href="/patienthome/:id">
                             Home
                         </a>
                     </div>
