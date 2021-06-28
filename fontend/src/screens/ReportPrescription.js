@@ -88,10 +88,6 @@ export default class PatientHomeScreen extends Component {
                                         <li>Blood Group :  {this.state.bloodGroup}</li>
                                     </ul>
                                 </div>
-
-                                <div className="detail-box2">
-                                    <a href="/history"> Patient History</a>
-                                </div>
                             </div>
                         </div>
                         <div className="column2">
