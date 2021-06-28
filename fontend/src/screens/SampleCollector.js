@@ -6,6 +6,7 @@ import axios from 'axios';
 export default class SampleCollector extends Component {
     constructor(props) {
         super(props);
+        this.completeButton = this.completeButton.bind(this);
 
         this.state = {
             name: '',
@@ -19,25 +20,6 @@ export default class SampleCollector extends Component {
         };
     }
 
-    /*addDoctorsList(item, index) {
-        console.log('In add collector function ' + item);
-        const id = item;
-        axios
-            .get('http://localhost:5000/sampleCollector/testform/' + id)
-            .then((response) => {
-                console.log(response.data);
-                this.setState((ps) => ({
-                    testList: [...ps.testList, response.data],
-                }));
-
-                console.log(this.state.testList);
-            })
-            .catch(function (error) {
-                console.log('In function : ');
-                console.log(error);
-            });
-    }
-*/
     componentDidMount() {
         axios
             .get('http://localhost:5000/sampleCollector/screen', {
@@ -90,8 +72,60 @@ export default class SampleCollector extends Component {
         document.getElementById('paid').innerHTML = 'PAID';
     }
 
+    completeButton = (d) => {
+        console.log('comeplete test : ' + d._id);
+        // const object = {
+        //     _id: _id,
+        // };
+        //deleteTest
+        axios
+            .post('http://localhost:5000/sampleCollector/deleteTest', d, {
+                headers: {
+                    'x-access-token': localStorage.getItem('token'),
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch(function (error) {
+                console.log('error');
+                console.log(error);
+            });
+
+        axios
+            .post('http://localhost:5000/admin/addReportList', d)
+            .then((response) => {})
+            .catch(function (error) {
+                console.log('error');
+                console.log(error);
+            });
+
+        axios
+            .get('http://localhost:5000/sampleCollector/alltheList', {
+                headers: {
+                    'x-access-token': localStorage.getItem('token'),
+                },
+            })
+            .then((response) => {
+                console.log('BBBBBBBBBBB');
+                console.log(response.data);
+                this.setState({
+                    testList: response.data,
+                });
+                /*let idList = response.data;
+                console.log(idList);
+                idList.forEach(this.addDoctorsList);
+                */
+            })
+            .catch(function (error) {
+                console.log('error');
+                console.log(error);
+            });
+    };
+
     render() {
         //const data = localStorage.getItem('data');
+
         const listItems = this.state.testList.map((d) => (
             <li>
                 <h3>{d.patientName}</h3>
@@ -100,7 +134,10 @@ export default class SampleCollector extends Component {
                 <br></br>
                 Tk 500
                 <h4>UNPAID</h4>
-                <button className="smallbtn" onClick="change_text()">
+                <button
+                    className="smallbtn"
+                    onClick={() => this.completeButton(d)}
+                >
                     Completed
                 </button>
             </li>
@@ -168,7 +205,10 @@ export default class SampleCollector extends Component {
                             <div className="row center">
                                 <div className="scrollbox_sample">
                                     <ul>
-                                        <h2 style={{marginLeft:"40px"}}> Pending Sample Collections</h2>
+                                        <h2 style={{ marginLeft: '40px' }}>
+                                            {' '}
+                                            Pending Sample Collections
+                                        </h2>
                                         {listItems}
                                     </ul>
                                 </div>

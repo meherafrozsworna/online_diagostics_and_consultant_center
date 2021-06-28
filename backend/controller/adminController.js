@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const Admin = require('../model/admin');
-const Patient=require('../model/patient');
-const Report = require("../model/report");
+const Patient = require('../model/patient');
+const Report = require('../model/report');
 const mongoose = require('mongoose');
 const express = require('express');
 const jwt = require('jsonwebtoken');
@@ -28,47 +28,47 @@ const verifyJWT = async (req, res, next) => {
     }
 };
 
-router.get('/sampleCollectorList', verifyJWT,async(req, res) => {
+router.get('/sampleCollectorList', verifyJWT, async (req, res) => {
     const testList = req.admin.sampleCollectorList;
-    let test_temp=[];
-    for (let i = 0; i < testList.length; i++){
-      const test=await Testform.findById(testList[i]);
-      test_temp.push(test);
+    let test_temp = [];
+    for (let i = 0; i < testList.length; i++) {
+        const test = await Testform.findById(testList[i]);
+        test_temp.push(test);
     }
     console.log(test_temp);
     res.json(test_temp);
 });
 
-router.get('/testFormList', verifyJWT,async(req, res) => {
+router.get('/testFormList', verifyJWT, async (req, res) => {
     console.log(req.admin);
     const testList = req.admin.testList;
-    let test_temp=[];
-    for (let i = 0; i < testList.length; i++){
-      const test=await Testform.findById(testList[i]);
-      test_temp.push(test);
+    let test_temp = [];
+    for (let i = 0; i < testList.length; i++) {
+        const test = await Testform.findById(testList[i]);
+        test_temp.push(test);
     }
     console.log(test_temp);
     res.json(test_temp);
 });
 
-router.get('/doctorList', verifyJWT, async(req, res) => {
+router.get('/doctorList', verifyJWT, async (req, res) => {
     const doctorList = req.admin.doctorList;
-    let test_temp=[];
-    for (let i = 0; i < doctorList.length; i++){
-      const test=await Report.findById(doctorList[i]);
-      test_temp.push(test);
+    let test_temp = [];
+    for (let i = 0; i < doctorList.length; i++) {
+        const test = await Report.findById(doctorList[i]);
+        test_temp.push(test);
     }
     console.log(test_temp);
     res.json(test_temp);
 });
 
-router.get('/reportList',verifyJWT,async(req,res)=>{
+router.get('/reportList', verifyJWT, async (req, res) => {
     const reportList = req.admin.reportList;
     console.log(reportList);
-    let test_temp=[];
-    for (let i = 0; i < reportList.length; i++){
-      const test=await Report.findById(reportList[i]);
-      test_temp.push(test);
+    let test_temp = [];
+    for (let i = 0; i < reportList.length; i++) {
+        const test = await Testform.findById(reportList[i]);
+        test_temp.push(test);
     }
     console.log(test_temp);
     res.json(test_temp);
@@ -211,37 +211,35 @@ router.post('/deleteReportList', async (req, res) => {
     res.send('Done');
 });
 
-router.post("/addReport", async(req, res) =>{
+router.post('/addReport', async (req, res) => {
     report = new Report({
-        name:req.body.name,
-        age:req.body.age,
-        phone:req.body.phone,
-        date:req.body.date,
-        testName:req.body.testName,
-        details:req.body.details
-        });
-        report.save(err => {
-            if (err) return res.json({ success: false, error: err });
-            return res.json({ success: true });
-        });
-
+        name: req.body.name,
+        age: req.body.age,
+        phone: req.body.phone,
+        date: req.body.date,
+        testName: req.body.testName,
+        details: req.body.details,
+    });
+    report.save((err) => {
+        if (err) return res.json({ success: false, error: err });
+        return res.json({ success: true });
+    });
 });
-router.post('/:email/addtheReportToPatientProfile',async(req, res) =>{
+router.post('/:email/addtheReportToPatientProfile', async (req, res) => {
     let patient = await Patient.find({
         email: req.params.email,
     });
     console.log(patient);
-    let rep=[...patient[0].report,req.body.id];
+    let rep = [...patient[0].report, req.body.id];
     console.log(rep);
 
-     patient = await Patient.findByIdAndUpdate(
+    patient = await Patient.findByIdAndUpdate(
         patient[0]._id,
         {
-             report: rep,
+            report: rep,
         },
         { new: true }
     );
-res.send(patient);
-
+    res.send(patient);
 });
 module.exports = router;

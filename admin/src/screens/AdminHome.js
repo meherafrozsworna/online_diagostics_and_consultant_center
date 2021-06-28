@@ -116,7 +116,7 @@ export default class AdminHome extends Component {
                                 </Link>
                             </div>
                             <div class="row center">
-                                <Link to="/fileupload" className="btn3">
+                                <Link to="/reportList" className="btn3">
                                     Add New Report
                                 </Link>
                             </div>
