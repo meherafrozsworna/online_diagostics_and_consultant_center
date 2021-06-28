@@ -1010,13 +1010,36 @@ font-size: 18px;
 
 
     /* CHOOSE DOC */
+    .grid-container1 {
+      display: grid;
+
+      grid-template-columns: auto auto auto;
+  padding-left: 50px;
+  padding-top: 30px;;
+  background-color:  #f9f0ff;
+
+      grid-row-gap: 12px;
+      grid-column-gap: 12px;
+    }
+    .grid-item {
+      text-align: center;
+    }
 
     .card {
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-      max-width: 300px;
-      margin: auto;
+     width: 250px;
+      margin: 10px 10px;
       text-align: center;
-      position: absolute;
+      position: relative;
+      clear:left;
+      float: left;
+    
+    }
+
+    .card:hover {
+      box-shadow: 0 24px 28px 0 rgba(0, 0, 0, 0.2);
+      width: 300px;
+    
     }
     
     .title {
