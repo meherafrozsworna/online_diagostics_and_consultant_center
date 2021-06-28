@@ -106,7 +106,7 @@ export default class AdminHome extends Component {
                         <div className="column2">
                             <div className="row center">
                                 <div className="scrollbox">
-                                <ul>
+                                <ul style={{listStyle:"none"}}>
 
                                 <h2  style={{marginLeft:"40px"}}>Appointment Requests</h2>
                                          <li>
@@ -117,6 +117,7 @@ export default class AdminHome extends Component {
                                         <h4>UNPAID</h4>
                                         <h4>Approved</h4>
                                         </Link>
+                                        <br></br>
                                         </li>
 
                                         <li>
@@ -127,6 +128,7 @@ export default class AdminHome extends Component {
                                         <h4>UNPAID</h4>
                                         <h4>Approved</h4>
                                         </Link>
+                                        <br></br>
                                         </li>
 
                                         <li>
@@ -137,6 +139,7 @@ export default class AdminHome extends Component {
                                         <h4>UNPAID</h4>
                                         <h4>Approved</h4>
                                         </Link>
+                                        <br></br>
                                         </li>
                                     </ul>
                                 </div>
