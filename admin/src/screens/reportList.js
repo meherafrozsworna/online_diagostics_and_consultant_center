@@ -33,7 +33,7 @@ export default class ReportList extends Component {
     render() {
         const listItems = this.state.reportList.map((d) => (
             <li>
-                <Link to={'/fileupload/' + d._id}>
+                <Link to={'/fileupload/' + d.patientId}>
                     {
                         //<h3>Name : {d.patientName} </h3>
                     }
@@ -73,14 +73,9 @@ export default class ReportList extends Component {
                     <div className="row2">
                         <div className="">
                             <div className="row center">
-
-                            <h6>Pending Reports</h6>
-                            <div className="scrollbox3">
-                            <ul className="ul-first">
-                                        
-                                        {listItems}
-                                        
-                                    </ul>
+                                <h6>Pending Reports</h6>
+                                <div className="scrollbox3">
+                                    <ul className="ul-first">{listItems}</ul>
                                 </div>
                             </div>
                         </div>
