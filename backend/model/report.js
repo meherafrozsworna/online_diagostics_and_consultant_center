@@ -4,15 +4,7 @@ const Schema = mongoose.Schema;
 
 const reportSchema = new Schema({
     patientId: mongoose.Schema.Types.ObjectId,
-    /*
-  name: { type: String},
-  email:{type:String},
-  age: { type: Number },
-  phone : {type: Number},
-  date: { type: String},
-  testName:{type : [String]},
-  details : {type : [String]} ,  
-  */
+    report_name:{type:String},
     fileStorage: { type: String },
 });
 

@@ -170,6 +170,17 @@ router.post('/testform/submit', verifyJWT, async (req, res) => {
         return res.json(testform);
     });
 });
+router.get('/reportList', verifyJWT, async (req, res) => {
+    const reportList = req.Patient.report;
+    console.log(reportList);
+    let test_temp = [];
+    for (let i = 0; i < reportList.length; i++) {
+        const test = await Report.findById(reportList[i]);
+        test_temp.push(test);
+    }
+    console.log(test_temp);
+    res.json(test_temp);
+});
 //egula amader na
 router.get('/patients/:id/discharge', function (req, res) {
     const id = { id: req.params.id };
