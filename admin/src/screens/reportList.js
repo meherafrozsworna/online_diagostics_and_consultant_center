@@ -74,7 +74,7 @@ export default class ReportList extends Component {
                         <div className="">
                             <div className="row center">
 
-                            <h3>Pending Reports</h3>
+                            <h6>Pending Reports</h6>
                             <div className="scrollbox3">
                             <ul className="ul-first">
                                         
