@@ -57,9 +57,9 @@ export default class SampleCollector extends Component {
                             {' '}
                             Sample Collection |{' '}
                         </a>
-                        <a className="brand2" href="/adminhome">
+                        <a className="brand2" href="/">
                             {' '}
-                            Feedback{' '}
+                            Log Out{' '}
                         </a>
                     </div>
                 </header>
