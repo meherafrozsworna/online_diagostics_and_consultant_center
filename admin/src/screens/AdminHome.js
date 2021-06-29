@@ -94,9 +94,9 @@ export default class AdminHome extends Component {
                             {' '}
                             Sample Collection |{' '}
                         </a>
-                        <a className="brand2" href="/adminhome">
+                        <a className="brand2" href="/">
                             {' '}
-                            Patients
+                            Log OUt
                             {'  '}
                         </a>
                     </div>
