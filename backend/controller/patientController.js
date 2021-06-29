@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const Doctor = require('../model/doctor');
 const Patient = require('../model/patient');
 const TestForm = require('../model/testform');
-const Report=require('../model/report');
+const Report = require('../model/report');
 //const {Patient, validate} = require('../model/patient');
 //const Joi = require('@hapi/joi');
 const mongoose = require('mongoose');
@@ -32,7 +32,7 @@ const verifyJWT = async (req, res, next) => {
     }
 };
 
-router.get('/isUserAuth', verifyJWT, async(req, res) => {
+router.get('/isUserAuth', verifyJWT, async (req, res) => {
     res.send('you are authenticated');
 });
 
@@ -171,8 +171,11 @@ router.post('/testform/submit', verifyJWT, async (req, res) => {
     });
 });
 router.get('/reportList', verifyJWT, async (req, res) => {
-    const reportList = req.Patient.report;
-    console.log(reportList);
+    console.log('\n\nBBBBBBBBBBBBB\n\n');
+    console.log(req.patient.report);
+
+    const reportList = req.patient.report;
+
     let test_temp = [];
     for (let i = 0; i < reportList.length; i++) {
         const test = await Report.findById(reportList[i]);
@@ -219,11 +222,9 @@ router.get('/specialization/:at', async (req, res) => {
 
     res.send(doctor);
 });
-router.get('/:id/showReport',async (req, res) => {
-    
+router.get('/:id/showReport', async (req, res) => {
     const report = await Report.findById(req.params.id);
     res.send(report);
-    
 });
 //eta thik korte hobe.......
 router.get('/takeAppointment/:name', async (req, res) => {
