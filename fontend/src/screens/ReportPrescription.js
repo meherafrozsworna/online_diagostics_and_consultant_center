@@ -16,16 +16,22 @@ export default class PatientHomeScreen extends Component {
             email: '',
             address: '',
             bloodGroup: '',
+            reportList: [],
         };
     }
 
     async componentDidMount() {
         //this.getTodos();
         //console.log('BBBBBBBBBBB');
-        let data = await axios
-            .get('http://localhost:5000/patient/' + this.props.match.params.id)
+        axios
+            .get('http://localhost:5000/patient/home', {
+                headers: {
+                    'x-access-token': localStorage.getItem('token'),
+                },
+            })
             .then((response) => {
                 //let obj = await response.data;
+                console.log('AAAAAA');
                 console.log(response.data);
                 this.setState({
                     name: response.data.name,
@@ -39,12 +45,42 @@ export default class PatientHomeScreen extends Component {
                 });
             })
             .catch(function (error) {
+                console.log('error');
+                console.log(error);
+            });
+        axios
+            .get('http://localhost:5000/patient/reportList', {
+                headers: {
+                    'x-access-token': localStorage.getItem('token'),
+                },
+            })
+            .then((response) => {
+                //let obj = await response.data;
+                console.log(response.data);
+                this.setState({
+                    reportList: response.data,
+                });
+            })
+            .catch(function (error) {
                 console.log(error);
             });
     }
 
     render() {
-        const data = localStorage.getItem('data');
+        const listItems = this.state.reportList.map((d) => (
+            <li>
+                <a href="/seereport" target="_blank">
+                    <h3>
+                        {d.patientName}
+                        <br></br>
+                        {d.testList}
+                        <br></br>
+                        06-30-2021{' '}
+                    </h3>
+                </a>
+            </li>
+        ));
+
         return (
             <div className="profile">
                 {
@@ -70,22 +106,25 @@ export default class PatientHomeScreen extends Component {
                                     ></img>
                                 </div>
                                 <div className="detail-box3">
-                                <a href="/editprofile"> My Profile </a> |
-                                            <a href="/editprofile"font-color="#9a65a5">
-                                                {' '}
-                                                Edit
-                                            </a>
+                                    <a href="/editprofile"> My Profile </a> |
+                                    <a href="/editprofile" font-color="#9a65a5">
+                                        {' '}
+                                        Edit
+                                    </a>
                                 </div>
 
                                 <div className="detail-box2">
                                     <ul className="ul-first">
-                                        <li>Name :  {this.state.name}</li>
-                                        <li>Gender :  {this.state.gender}</li>
-                                        <li>Age :  {this.state.age}</li>
-                                        <li>Phone:  {this.state.phone}</li>
-                                        <li>Email :  {this.state.email}</li>
-                                        <li>Address :  {this.state.address}</li>
-                                        <li>Blood Group :  {this.state.bloodGroup}</li>
+                                        <li>Name : {this.state.name}</li>
+                                        <li>Gender : {this.state.gender}</li>
+                                        <li>Age : {this.state.age}</li>
+                                        <li>Phone: {this.state.phone}</li>
+                                        <li>Email : {this.state.email}</li>
+                                        <li>Address : {this.state.address}</li>
+                                        <li>
+                                            Blood Group :{' '}
+                                            {this.state.bloodGroup}
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -93,34 +132,42 @@ export default class PatientHomeScreen extends Component {
                         <div className="column2">
                             <div className="scrollbox22">
                                 <ul>
-                                <h2> Reports</h2>
-
-                                        <li>
+                                    <h2> Reports</h2>
+                                    {listItems}
+                                    {/*
+                                    <li>
                                         <a href="/seereport" target="_blank">
-                                        <h3>Haemoglobin Report of Abeda Sultana<br></br>
-                                        05-12-2020 </h3>
+                                            <h3>
+                                                Haemoglobin Report of Abeda
+                                                Sultana<br></br>
+                                                05-12-2020{' '}
+                                            </h3>
                                         </a>
-                                        </li>
+                                    </li>
 
-                                        <li>
+                                    <li>
                                         <a href="/seereport" target="_blank">
-                                        <h3>Haemoglobin Report of Abeda Sultana<br></br>
-                                        05-12-2020 </h3>
+                                            <h3>
+                                                Haemoglobin Report of Abeda
+                                                Sultana<br></br>
+                                                05-12-2020{' '}
+                                            </h3>
                                         </a>
-                                        </li>
+                                    </li>
 
-
-                                        <li>
+                                    <li>
                                         <a href="/seereport" target="_blank">
-                                        <h3>Haemoglobin Report of Abeda Sultana<br></br>
-                                        05-12-2020 </h3>
+                                            <h3>
+                                                Haemoglobin Report of Abeda
+                                                Sultana<br></br>
+                                                05-12-2020{' '}
+                                            </h3>
                                         </a>
-                                        </li>
-
-                                    </ul>
-                                </div>
+                                    </li> 
+                                    */}
+                                </ul>
+                            </div>
                         </div>
-
 
                         <div className="column3">
                             <br></br>
@@ -128,42 +175,48 @@ export default class PatientHomeScreen extends Component {
                                 <ul>
                                     <h2> Prescriptions</h2>
 
-                                        <li>
+                                    <li>
                                         <a href="/seepres" target="_blank">
-                                        <h3>Dr. Afzal Prescription<br></br>
-                                        Cardiology<br></br>
-                                        05-12-2020<br></br> </h3>
+                                            <h3>
+                                                Dr. Afzal Prescription<br></br>
+                                                Cardiology<br></br>
+                                                05-12-2020<br></br>{' '}
+                                            </h3>
                                         </a>
-                                        </li>
+                                    </li>
 
-                                        <li>
+                                    <li>
                                         <a href="/seepres" target="_blank">
-                                        <h3>Dr. Afzal Prescription<br></br>
-                                        Cardiology<br></br>
-                                        05-12-2020<br></br> </h3>
+                                            <h3>
+                                                Dr. Afzal Prescription<br></br>
+                                                Cardiology<br></br>
+                                                05-12-2020<br></br>{' '}
+                                            </h3>
                                         </a>
-                                        </li>
+                                    </li>
 
-                                        <li>
+                                    <li>
                                         <a href="/seepres" target="_blank">
-                                        <h3>Dr. Afzal Prescription<br></br>
-                                        Cardiology<br></br>
-                                        05-12-2020<br></br> </h3>
+                                            <h3>
+                                                Dr. Afzal Prescription<br></br>
+                                                Cardiology<br></br>
+                                                05-12-2020<br></br>{' '}
+                                            </h3>
                                         </a>
-                                        </li>
+                                    </li>
 
-                                        <li>
+                                    <li>
                                         <a href="/seepres" target="_blank">
-                                        <h3>Dr. Afzal Prescription<br></br>
-                                        Cardiology<br></br>
-                                        05-12-2020<br></br> </h3>
+                                            <h3>
+                                                Dr. Afzal Prescription<br></br>
+                                                Cardiology<br></br>
+                                                05-12-2020<br></br>{' '}
+                                            </h3>
                                         </a>
-                                        </li>
-                                       
-                                    </ul>
-                                </div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-
                     </div>
                 </main>
             </div>

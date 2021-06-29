@@ -17,12 +17,35 @@ var storage = multer.diskStorage({
     },
 });
 var upload = multer({ storage: storage }).single('file');
+
+router.post('/addReport', upload, async (req, res) => {
+    console.log('AAAAAAAAAAAAAAAAAA');
+    //console.log(req.body.patientId);
+
+    let report = new Report();
+    if (req.file) {
+        console.log('Dukse :  ' + req.file.path);
+        report.fileStorage = req.file.path;
+        //report.patientName = 'Adiba';
+        report.save((err) => {
+            if (err) {
+                console.log('error ' + err);
+                return res.json({ success: false, error: err });
+            }
+            return res.json(report);
+        });
+    }
+});
+
+/*
 router.post('/addReport', upload, async (req, res) => {
     console.log('AAAAAAAAAAAAAAAAAA');
     //
     //console.log(req.body.patientId);
 
-    report = new Report();
+    report = new Report({
+        patientId: req.body.patientId,
+    });
     if (req.file) {
         console.log('Dukse :  ' + req.file.path);
         report.fileStorage = req.file.path;
@@ -32,6 +55,7 @@ router.post('/addReport', upload, async (req, res) => {
         return res.json(report);
     });
 });
+*/
 router.post('/:id/setThepatientId', async (req, res) => {
     console.log('setThepatientId');
     console.log(req.param.id);

@@ -80,6 +80,7 @@ export default class TestForm extends Component {
             .then((res) => {
                 console.log(res.data);
                 const id = res.data._id;
+                console.log(id);
 
                 axios
                     .post(
