@@ -69,9 +69,10 @@ export default class PatientHomeScreen extends Component {
     render() {
         const listItems = this.state.reportList.map((d) => (
             <li>
-                <a href="/seereport" target="_blank">
+                <a href={'/seereport/' + d._id} target="_blank">
                     <h3>
-                        {d.patientName}<br></br>
+                        {d.patientName}
+                        <br></br>
                         06-30-2021 <br></br>
                     </h3>
                     {d.testList.map((item, i) => (

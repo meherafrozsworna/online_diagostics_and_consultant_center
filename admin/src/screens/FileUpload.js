@@ -94,7 +94,7 @@ export default class TestForm extends Component {
             })
             .catch((err) => console.log(err));
 
-        //window.location = '/adminhome';
+        window.location = '/adminhome';
     }
 
     render() {

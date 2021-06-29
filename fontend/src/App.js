@@ -23,8 +23,6 @@ import seeReport from './screens/seeReport';
 
 import editProfile from './screens/editProfile';
 
-
-
 function App() {
     console.log(localStorage.getItem('name'));
     return (
@@ -47,7 +45,7 @@ function App() {
             <Route path="/choosefield" component={ChooseField}></Route>
             <Route path="/choosedoctor" component={ChooseDoctor}></Route>
 
-            <Route path="/seereport" component={seeReport}></Route>
+            <Route path="/seereport/:id" component={seeReport}></Route>
             <Route path="/seepres" component={seePres}></Route>
             <Route path="/makepres" component={makePres}></Route>
             <Route path="/editprofile" component={editProfile}></Route>

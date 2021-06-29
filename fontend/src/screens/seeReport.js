@@ -7,56 +7,33 @@ export default class SampleCollector extends Component {
     constructor(props) {
         super(props);
 
-        //this.onChangeUsername = this.onChangeUsername.bind(this);
-        //this.onChangeDescription = this.onChangeDescription.bind(this);
-
         this.state = {
             name: '',
-            age: null,
-            gender: '',
-            testname: '',
-            details: '',
-            date: null,
-            id: '',
+            testList: [],
         };
     }
 
     componentDidMount() {
         axios
-            .get(
-                'http://localhost:5000/patient/testform/' +
-                    this.props.match.params.id
-            )
+            .get('http://localhost:5000/report/' + this.props.match.params.id)
             .then((response) => {
+                console.log(response.data[0]);
+                console.log(response.data[0].testList);
                 this.setState({
-                    name: response.data.patientName,
-                    age: response.data.age,
-                    gender: response.data.gender,
-                    testname: response.data.testname,
-                    details: response.data.details,
-                    date: response.data.date,
-                    id: response.data._id,
+                    name: response.data[0].patientName,
+                    testList: response.data[0].testList,
                 });
+                console.log('AAAAAAAAAAAAAAAA');
+                console.log(this.state.name);
+                console.log(this.state.testList);
             })
             .catch(function (error) {
-                console.log(error);
-            });
-
-        axios
-            .get('http://localhost:5000/users/')
-            .then((response) => {
-                if (response.data.length > 0) {
-                    this.setState({
-                        users: response.data.map((user) => user.username),
-                    });
-                }
-            })
-            .catch((error) => {
                 console.log(error);
             });
     }
 
     render() {
+        const listItems = this.state.testList.map((d) => <li> {d}</li>);
         return (
             <div className="grid-container">
                 <header className="row">
@@ -74,8 +51,7 @@ export default class SampleCollector extends Component {
 
                         <div id="container">
                             <br></br>Patient Name : {this.state.name}
-                            <br></br>Patient Age : {this.state.age}
-                            <br></br>Reported Test: {this.state.testname}
+                            <br></br>Reported Test: {listItems}
                             <br></br>
                             <br></br>
                             <a
