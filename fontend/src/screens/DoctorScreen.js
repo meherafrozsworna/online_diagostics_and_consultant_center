@@ -65,7 +65,7 @@ export default class DoctorScreen extends Component {
                             {' '}
                             + Add Prescription{' '}{' '}{' '}
                         </a>
-                        <a className="brand2" href="/makepres">
+                        <a className="brand2" href="/">
                             Log out{' '}
                             
                         </a>
