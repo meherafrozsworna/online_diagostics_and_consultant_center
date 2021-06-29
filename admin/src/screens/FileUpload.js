@@ -14,7 +14,36 @@ export default class TestForm extends Component {
 
         this.state = {
             selectedFile: null,
+            pId: null,
+            patientName: null,
+            testList: [],
         };
+    }
+
+    componentDidMount() {
+        const object = {
+            formid: this.props.match.params.formid,
+        };
+
+        axios
+            .post('http://localhost:5000/admin/test_by_Id', object, {
+                headers: {
+                    'x-access-token': localStorage.getItem('admintoken'),
+                },
+            })
+            .then((response) => {
+                //console.log(response.data);
+                this.setState({
+                    pId: response.data.patientId,
+                    patientName: response.data.patientName,
+                    testList: response.data.testName,
+                });
+                //console.log(this.state.form.patientName);
+            })
+            .catch(function (error) {
+                console.log('error');
+                console.log(error);
+            });
     }
 
     onChangeFileHandler = (event) => {
@@ -40,13 +69,16 @@ export default class TestForm extends Component {
 
         console.log(this.props.match.params.id);
         const object = {
-            patientId: this.props.match.params.id,
+            patientId: this.props.match.params.patientid,
+            tests: this.state.testList,
+            patientName: this.state.patientName,
         };
 
+        //   /fileupload/:formid/patient/:patientid
         axios
             .post('http://localhost:5000/report/addReport', data, {
                 body: {
-                    patientId: this.props.match.params.id,
+                    patientId: this.props.match.params.patientid,
                 },
             })
             .then((res) => {
@@ -88,6 +120,48 @@ export default class TestForm extends Component {
                                 information of the tested patient.
                             </p>
                             <form id="survey-form" onSubmit={this.onSubmit}>
+                                <div class="rows">
+                                    <div class="input">
+                                        <input
+                                            type="text"
+                                            placeholder="Report Name"
+                                            id="name"
+                                            className="text-input"
+                                            value={
+                                                ' FORM ID :  ' + this.state.pId
+                                            }
+                                        />
+                                    </div>
+                                </div>
+                                <div class="rows">
+                                    <div class="input">
+                                        <input
+                                            type="text"
+                                            placeholder="Report Name"
+                                            id="name"
+                                            className="text-input"
+                                            value={
+                                                ' PATIENT NAME :  ' +
+                                                this.state.patientName
+                                            }
+                                        />
+                                    </div>
+                                </div>
+                                <div class="rows">
+                                    <div class="input">
+                                        <input
+                                            type="text"
+                                            placeholder="Report Name"
+                                            id="name"
+                                            className="text-input"
+                                            value={
+                                                ' TESTS  :  ' +
+                                                this.state.testList
+                                            }
+                                        />
+                                    </div>
+                                </div>
+
                                 <div class="rows">
                                     <div class="box__input">
                                         <br></br>

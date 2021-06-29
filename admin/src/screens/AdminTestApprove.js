@@ -10,6 +10,21 @@ export default class SampleCollector extends Component {
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
+            //id: '',
+
+            name: '',
+            number: null,
+            age: '',
+            gender: '',
+            location: '',
+            address: '',
+            prefGender: '',
+            prefTime: '',
+            checkedTestNames: [],
+            refDoctor: '',
+            instructions: '',
+            date: '',
+            payment: '',
             id: '',
             sampleCollector: [],
         };
@@ -81,7 +96,7 @@ export default class SampleCollector extends Component {
     }
 
     render() {
-        //const listItems = this.state.checkedTestNames.map((d) => <li>{d}</li>);
+        const tests = this.state.checkedTestNames.map((d) => <li>{d}</li>);
         const listItems = this.state.sampleCollector.map((d) => (
             <option value={d._id}>{d.name}</option>
         ));
@@ -113,7 +128,7 @@ export default class SampleCollector extends Component {
                             <br></br>Preferred Gender of Sample Collector :{' '}
                             {this.state.prefGender}
                             <br></br>Referring Doctor : {this.state.refDoctor}
-                            <br></br>Required Tests :<ol>{listItems}</ol>
+                            <br></br>Required Tests :<ol>{tests}</ol>
                             <br></br>Payment Amount : 500 Tk
                             <br></br>Payment Method : {this.state.payment}
                             <br></br>Payment Status : Unpaid

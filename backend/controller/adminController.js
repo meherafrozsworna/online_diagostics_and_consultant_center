@@ -73,6 +73,12 @@ router.get('/reportList', verifyJWT, async (req, res) => {
     console.log(test_temp);
     res.json(test_temp);
 });
+
+
+router.post('/test_by_Id', verifyJWT, async (req, res) => {
+    const test = await Testform.findById(req.body.formid);
+    res.json(test);
+});
 router.post('/add', (req, res) => {
     let admin = new Admin();
     admin.email = 'healthway123@gmail.com';

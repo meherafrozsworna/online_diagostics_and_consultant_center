@@ -57,34 +57,34 @@ export default class SampleCollector extends Component {
     }
 
     render() {
-
         return (
             <div className="grid-container">
-            <header className="row">
-                <div>
-                    <a className="brand" href="/patienthome/:id">
-                        Home
-                    </a>
-                </div>
-            </header>
+                <header className="row">
+                    <div>
+                        <a className="brand" href="/patienthome/:id">
+                            Home
+                        </a>
+                    </div>
+                </header>
 
-                <main
-                    className="lab"
-                    style={{ fontSize: 21 }}
-                >
+                <main className="lab" style={{ fontSize: 21 }}>
                     <br></br>
                     <div className="row center">
-
                         <h2> Test Report </h2>
 
                         <div id="container">
                             <br></br>Patient Name : {this.state.name}
                             <br></br>Patient Age : {this.state.age}
                             <br></br>Reported Test: {this.state.testname}
-
-                            <br></br><br></br>
-                            <a href="https://drive.google.com/file/d/16ydAvrZ5lAYdcCAkj4j_ygulse_l1vqP/view?usp=sharing" target="_blank" download><h6>View / Download</h6>  </a>
-                           
+                            <br></br>
+                            <br></br>
+                            <a
+                                href="https://drive.google.com/file/d/16ydAvrZ5lAYdcCAkj4j_ygulse_l1vqP/view"
+                                target="_blank"
+                                download
+                            >
+                                <h6>View / Download</h6>{' '}
+                            </a>
                             <br></br>
                             <br></br>
                             <br></br>

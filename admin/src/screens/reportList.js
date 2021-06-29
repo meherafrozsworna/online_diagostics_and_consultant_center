@@ -32,12 +32,15 @@ export default class ReportList extends Component {
 
     render() {
         const listItems = this.state.reportList.map((d) => (
+            //   "/fileupload/:formid/patient/:patientid"
             <li>
-                <Link to={'/fileupload/' + d.patientId}>
+                <Link to={'/fileupload/' +d._id + '/patient/' + d.patientId}>
                     {
                         //<h3>Name : {d.patientName} </h3>
                     }
-                    Email: {d.email}
+                    Form Id  : {d._id}
+                    <br></br>
+                    Patient Name : {d.patientName}
                     <br></br>
                     Phone Number : 0{d.phoneNumber}
                     <br></br>
