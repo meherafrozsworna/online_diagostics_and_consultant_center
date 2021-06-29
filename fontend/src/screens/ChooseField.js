@@ -57,6 +57,9 @@ export default class PatientHomeScreen extends Component {
                             Home
                         </a>
                     </div>
+                     <div>
+                      <Link to="/">Log Out{'  '}</Link>
+                    </div>
                 </header>
                 <main className="lab">
                     <div className="rows">
