@@ -70,17 +70,13 @@ export default class TestForm extends Component {
         console.log(this.props.match.params.id);
         const object = {
             patientId: this.props.match.params.patientid,
-            tests: this.state.testList,
+            testList: this.state.testList,
             patientName: this.state.patientName,
         };
 
         //   /fileupload/:formid/patient/:patientid
         axios
-            .post('http://localhost:5000/report/addReport', data, {
-                body: {
-                    patientId: this.props.match.params.patientid,
-                },
-            })
+            .post('http://localhost:5000/report/addReport', data)
             .then((res) => {
                 console.log(res.data);
                 const id = res.data._id;

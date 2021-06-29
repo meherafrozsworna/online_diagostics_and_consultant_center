@@ -19,13 +19,12 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage }).single('file');
 router.post('/addReport', upload, async (req, res) => {
     console.log('AAAAAAAAAAAAAAAAAA');
-    console.log(req.body.patientId);
+    //
+    //console.log(req.body.patientId);
 
-    report = new Report({
-        patientId: req.body.patientId,
-    });
+    report = new Report();
     if (req.file) {
-        console.log('Dukse :  ');
+        console.log('Dukse :  ' + req.file.path);
         report.fileStorage = req.file.path;
     }
     report.save((err) => {
@@ -33,12 +32,17 @@ router.post('/addReport', upload, async (req, res) => {
         return res.json(report);
     });
 });
-router.post('/:id/setThepatientId',async (req, res) => {
+router.post('/:id/setThepatientId', async (req, res) => {
+    console.log('setThepatientId');
+    console.log(req.param.id);
+    console.log(req.body.patientName);
+    console.log(req.body.testList);
     const report = await Report.findByIdAndUpdate(
         req.params.id,
         {
-           patientId:req.body.patientId,
-           report_name:req.body.report_name,
+            patientId: req.body.patientId,
+            patientName: req.body.patientName,
+            testList: req.body.testList,
         },
         { new: true }
     );
@@ -54,12 +58,10 @@ router.post('/:id/setThepatientId',async (req, res) => {
             .status(404)
             .send('The report with the given ID was not found.');
 
-    res.send("done");
-
-    
+    res.send('done');
 });
 router.post('/:id/filelocation', async (req, res) => {
-    let report= await Report.find({
+    let report = await Report.find({
         _id: req.params.id,
     });
     console.log(report);
