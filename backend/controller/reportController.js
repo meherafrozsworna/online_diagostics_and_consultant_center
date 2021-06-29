@@ -38,6 +38,14 @@ router.post('/:id/setThepatientId',async (req, res) => {
         req.params.id,
         {
            patientId:req.body.patientId,
+           report_name:req.body.report_name,
+        },
+        { new: true }
+    );
+    let patient = await Patient.findByIdAndUpdate(
+        req.body.patientId,
+        {
+            $push: { report: req.params.id },
         },
         { new: true }
     );
@@ -45,13 +53,23 @@ router.post('/:id/setThepatientId',async (req, res) => {
         return res
             .status(404)
             .send('The report with the given ID was not found.');
+
     res.send("done");
+
     
 });
-router.get('/:id/filelocation', async (req, res) => {
-    let report = await Report.find({
-        id: req.params.id,
+router.post('/:id/filelocation', async (req, res) => {
+    let report= await Report.find({
+        _id: req.params.id,
     });
+    console.log(report);
+    let patient = await Patient.findByIdAndUpdate(
+        report.patientId,
+        {
+            $push: { report: report._id },
+        },
+        { new: true }
+    );
     res.json(report);
 });
 
