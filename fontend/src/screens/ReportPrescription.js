@@ -71,12 +71,12 @@ export default class PatientHomeScreen extends Component {
             <li>
                 <a href="/seereport" target="_blank">
                     <h3>
-                        {d.patientName}
-                        <br></br>
-                        {d.testList}
-                        <br></br>
-                        06-30-2021{' '}
+                        {d.patientName}<br></br>
+                        06-30-2021 <br></br>
                     </h3>
+                    {d.testList.map((item, i) => (
+                        <li key={i}> {item}</li>
+                    ))}
                 </a>
             </li>
         ));
