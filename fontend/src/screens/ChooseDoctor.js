@@ -18,6 +18,9 @@ export default class ChooseDoctor extends Component {
                             Home
                         </a>
                     </div>
+                     <div>
+                        <Link to="/">Log Out{'  '}</Link>
+                    </div>
                 </header>
 
                 <main >
