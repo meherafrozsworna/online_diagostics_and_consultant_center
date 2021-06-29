@@ -114,7 +114,7 @@ export default class AdminHome extends Component {
                         </a>
                         <a className="brand2" href="/">
                             {' '}
-                            Log OUt
+                            Log Out
                             {'  '}
                         </a>
                     </div>
