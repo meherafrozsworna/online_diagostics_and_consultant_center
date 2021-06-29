@@ -84,18 +84,11 @@ router.post('/:id/setThepatientId', async (req, res) => {
 
     res.send('done');
 });
-router.post('/:id/filelocation', async (req, res) => {
+router.get('/:id', async (req, res) => {
     let report = await Report.find({
         _id: req.params.id,
     });
     console.log(report);
-    let patient = await Patient.findByIdAndUpdate(
-        report.patientId,
-        {
-            $push: { report: report._id },
-        },
-        { new: true }
-    );
     res.json(report);
 });
 
