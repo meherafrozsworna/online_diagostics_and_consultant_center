@@ -96,6 +96,9 @@ export default class SigninScreen extends Component {
                             Home
                         </a>
                     </div>
+            <div>
+                        <Link to="/">Log Out{'  '}</Link>
+                    </div>
                 </header>
                 <main className="lab">
                     <div>
