@@ -169,8 +169,8 @@ export default class PatientHomeScreen extends Component {
                                 </li>
 
                                 <li> 
-                                <a href="javascript:void(0);" id="notificationLink">{' '}
-                            Feedback{' '}</a>
+                                <a href="/" id="notificationLink">{' '}
+                            Log Out{' '}</a>
                                 </li>
 
                         </ul>
