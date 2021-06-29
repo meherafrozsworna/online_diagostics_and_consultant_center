@@ -121,6 +121,9 @@ export default class SampleCollector extends Component {
                             Home
                         </a>
                     </div>
+                            <div>
+                    <Link to="/">Log Out{'  '}</Link>
+                </div>
                 </header>
                 <main
                     className="profile"
