@@ -153,13 +153,9 @@ export default class SampleCollector extends Component {
                         </a>
                     </div>
                     <div className="row center">
-                        <a className="brand2" href="/signin">
+                        <a className="brand2" href="/">
                             {' '}
-                            Sample Collection |{' '}
-                        </a>
-                        <a className="brand2" href="/signin">
-                            {' '}
-                            Feedback{' '}
+                            Log OUt{' '}
                         </a>
                     </div>
                 </header>
