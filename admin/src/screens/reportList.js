@@ -30,15 +30,27 @@ export default class ReportList extends Component {
             });
     }
 
+    removeButton = (d) => {
+        axios
+            .post('http://localhost:5000/admin/deleteReportList', d)
+            .then((res) => {
+                console.log(res.data);
+            })
+            .catch((err) => console.log(err));
+        this.setState({
+            reportList: this.state.reportList.filter((el) => el._id !== d._id),
+        });
+    };
+
     render() {
         const listItems = this.state.reportList.map((d) => (
             //   "/fileupload/:formid/patient/:patientid"
             <li>
-                <Link to={'/fileupload/' +d._id + '/patient/' + d.patientId}>
+                <Link to={'/fileupload/' + d._id + '/patient/' + d.patientId}>
                     {
                         //<h3>Name : {d.patientName} </h3>
                     }
-                    Form Id  : {d._id}
+                    Form Id : {d._id}
                     <br></br>
                     Patient Name : {d.patientName}
                     <br></br>
@@ -46,6 +58,12 @@ export default class ReportList extends Component {
                     <br></br>
                     <h4>Status : PAID</h4>
                 </Link>
+                <button
+                    className="smallbtn"
+                    onClick={() => this.removeButton(d)}
+                >
+                    Remove
+                </button>
             </li>
         ));
         return (

@@ -59,6 +59,18 @@ export default class AdminHome extends Component {
             });
     }
 
+    removeButton = (d) => {
+        axios
+            .post('http://localhost:5000/admin/deletePendingTest', d)
+            .then((res) => {
+                console.log(res.data);
+            })
+            .catch((err) => console.log(err));
+        this.setState({
+            testList: this.state.testList.filter((el) => el._id !== d._id),
+        });
+    };
+
     render() {
         const listItems = this.state.testList.map((d) => (
             <li>
@@ -71,6 +83,12 @@ export default class AdminHome extends Component {
                     Amount : 500 Tk
                     <h4>Status : UNPAID</h4>
                 </Link>
+                <button
+                    className="smallbtn"
+                    onClick={() => this.removeButton(d)}
+                >
+                    Remove
+                </button>
             </li>
         ));
         return (
@@ -130,9 +148,10 @@ export default class AdminHome extends Component {
                             <div className="row center">
                                 <div className="scrollbox">
                                     <ul>
-                                        <h2 style={{marginLeft:"40px"}}>Sample Collection Requests</h2>
+                                        <h2 style={{ marginLeft: '40px' }}>
+                                            Sample Collection Requests
+                                        </h2>
                                         {listItems}
-                                        
                                     </ul>
                                 </div>
                             </div>

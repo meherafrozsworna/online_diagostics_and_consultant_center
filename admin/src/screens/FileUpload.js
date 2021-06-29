@@ -38,7 +38,8 @@ export default class TestForm extends Component {
                     patientName: response.data.patientName,
                     testList: response.data.testName,
                 });
-                //console.log(this.state.form.patientName);
+                console.log('this.state.patientName');
+                console.log(this.state.patientName);
             })
             .catch(function (error) {
                 console.log('error');

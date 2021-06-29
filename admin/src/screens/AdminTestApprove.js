@@ -92,6 +92,13 @@ export default class SampleCollector extends Component {
             })
             .catch((err) => console.log(err));
 
+        /*axios
+            .post('http://localhost:5000/admin/deletePendingTest', testdata)
+            .then((res) => {
+                console.log(res.data);
+            })
+            .catch((err) => console.log(err));
+        */
         window.location = '/adminhome';
     }
 
@@ -112,10 +119,9 @@ export default class SampleCollector extends Component {
                             Home
                         </a>
                     </div>
-                   <div>
+                    <div>
                         <Link to="/">Log Out{'  '}</Link>
                     </div>
-
                 </header>
                 <main className="profile" style={{ fontSize: 21 }}>
                     <br></br>
