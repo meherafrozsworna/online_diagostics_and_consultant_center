@@ -18,13 +18,13 @@ export default class SampleCollector extends Component {
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            name: 'adiba',
-            email: 'adiba@gmail.com',
-            phone: '01992123456',
+            name: 'Dalia Tisha',
+            email: 'dalia@gmail.com',
+            phone: '01521259993',
             age: 23,
             gender: 'Female',
             address: 'Khilgaon Dhaka',
-            bloodgroup: 'B+',
+            bloodgroup: 'O+',
         };
     }
 

@@ -192,7 +192,17 @@ export default class PatientHomeScreen extends Component {
                                     <li>
                                         <a href="/seepres" target="_blank">
                                             <h3>
-                                                Dr. Afzal Prescription<br></br>
+                                                Dr. Mala Prescription<br></br>
+                                                Cardiology<br></br>
+                                                05-01-2021<br></br>{' '}
+                                            </h3>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/seepres" target="_blank">
+                                            <h3>
+                                                Dr. Nipa Prescription<br></br>
                                                 Cardiology<br></br>
                                                 05-12-2020<br></br>{' '}
                                             </h3>
@@ -202,19 +212,9 @@ export default class PatientHomeScreen extends Component {
                                     <li>
                                         <a href="/seepres" target="_blank">
                                             <h3>
-                                                Dr. Afzal Prescription<br></br>
+                                                Dr. Kabir Prescription<br></br>
                                                 Cardiology<br></br>
-                                                05-12-2020<br></br>{' '}
-                                            </h3>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="/seepres" target="_blank">
-                                            <h3>
-                                                Dr. Afzal Prescription<br></br>
-                                                Cardiology<br></br>
-                                                05-12-2020<br></br>{' '}
+                                                05-04-2021<br></br>{' '}
                                             </h3>
                                         </a>
                                     </li>

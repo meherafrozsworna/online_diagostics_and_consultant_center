@@ -119,7 +119,7 @@ export default class AdminHome extends Component {
                         </a>
                     </div>
                 </header>
-                <main className="profile">
+                <main className="lab">
                     <div className="row2">
                         <div className="column">
                             <br></br>

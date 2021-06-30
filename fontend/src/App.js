@@ -22,7 +22,7 @@ import makePres from './screens/makePrescription';
 import seeReport from './screens/seeReport';
 
 import editProfile from './screens/editProfile';
-
+import doctordetails from './screens/doctordetails';
 function App() {
     console.log(localStorage.getItem('name'));
     return (
@@ -49,6 +49,7 @@ function App() {
             <Route path="/seepres" component={seePres}></Route>
             <Route path="/makepres" component={makePres}></Route>
             <Route path="/editprofile" component={editProfile}></Route>
+            <Route path="/doctordetails" component={doctordetails}></Route>
         </BrowserRouter>
     );
 }

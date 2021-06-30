@@ -4,7 +4,6 @@ import axios from 'axios';
 
 //export default function PatientHomeScreen() {
 export default class AdminHome extends Component {
-
     /*
     constructor(props) {
         super(props);
@@ -72,26 +71,24 @@ export default class AdminHome extends Component {
                         <a className="brand2" href="/">
                             {' '}
                             Log Out
-                            {'  '} 
-                            </a>
+                            {'  '}
+                        </a>
                     </div>
-                                   </header>
-                <main className="profile">
+                </header>
+                <main className="lab">
                     <div className="row2">
                         <div className="column">
-                        Test collection notifications: 0<br></br>
-                            Appointment Notification: 0<br></br>
                             <div class="row center">
                                 <Link to="/adddoctor" className="btn3">
                                     Add/Remove Doctor
                                 </Link>
-                                </div>
-                                <div class="row center">
+                            </div>
+                            <div class="row center">
                                 <Link to="/addcollector" className="btn3">
                                     Add/Remove Sample Collector
                                 </Link>
-                                </div>
-                                <div class="row center">
+                            </div>
+                            <div class="row center">
                                 <Link to="/reportList" className="btn3">
                                     Add New Report
                                 </Link>
@@ -101,45 +98,45 @@ export default class AdminHome extends Component {
                                     Check Feedbacks
                                 </Link>
                             </div>
-                            
                         </div>
                         <div className="column2">
                             <div className="row center">
                                 <div className="scrollbox">
-                                <ul style={{listStyle:"none"}}>
-
-                                <h2  style={{marginLeft:"40px"}}>Appointment Requests</h2>
-                                         <li>
-                                        <Link to="/">
-                                        <h3>Abeda Sultana </h3>
-                                        Dr Afzal Hossain<br></br>
-                                        Tk 560
-                                        <h4>UNPAID</h4>
-                                        <h4>Approved</h4>
-                                        </Link>
-                                        <br></br>
+                                    <ul style={{ listStyle: 'none' }}>
+                                        <h2 style={{ marginLeft: '40px' }}>
+                                            Appointment Requests
+                                        </h2>
+                                        <li>
+                                            <Link to="/">
+                                                <h3>Abeda Sultana </h3>
+                                                Dr Afzal Hossain<br></br>
+                                                Tk 560
+                                                <h4>UNPAID</h4>
+                                                <h4>Approved</h4>
+                                            </Link>
+                                            <br></br>
                                         </li>
 
                                         <li>
-                                        <Link to="/">
-                                        <h3>Abeda Sultana </h3>
-                                        Dr Afzal Hossain<br></br>
-                                        Tk 560
-                                        <h4>UNPAID</h4>
-                                        <h4>Approved</h4>
-                                        </Link>
-                                        <br></br>
+                                            <Link to="/">
+                                                <h3>Abeda Sultana </h3>
+                                                Dr Afzal Hossain<br></br>
+                                                Tk 560
+                                                <h4>UNPAID</h4>
+                                                <h4>Approved</h4>
+                                            </Link>
+                                            <br></br>
                                         </li>
 
                                         <li>
-                                        <Link to="/">
-                                        <h3>Abeda Sultana </h3>
-                                        Dr Afzal Hossain<br></br>
-                                        Tk 560
-                                        <h4>UNPAID</h4>
-                                        <h4>Approved</h4>
-                                        </Link>
-                                        <br></br>
+                                            <Link to="/">
+                                                <h3>Abeda Sultana </h3>
+                                                Dr Afzal Hossain<br></br>
+                                                Tk 560
+                                                <h4>UNPAID</h4>
+                                                <h4>Approved</h4>
+                                            </Link>
+                                            <br></br>
                                         </li>
                                     </ul>
                                 </div>

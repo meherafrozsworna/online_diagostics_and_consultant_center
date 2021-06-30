@@ -129,6 +129,10 @@ export default class SampleCollector extends Component {
                 {d.address}
                 <br></br>0{d.phoneNumber}
                 <br></br>
+                TestList : 
+                <br></br>
+                {d.testName.map((item) => (<li>{item}</li>))}
+                <br></br>
                 Tk 500
                 <h4>UNPAID</h4>
                 <button
