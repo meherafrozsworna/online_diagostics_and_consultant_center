@@ -6,6 +6,9 @@ import axios from 'axios';
 export default class SampleCollector extends Component {
     constructor(props) {
         super(props);
+        this.state = { isToggleOn: false };
+
+        this.notif_function = this.notif_function.bind(this);
         this.completeButton = this.completeButton.bind(this);
 
         this.state = {
@@ -17,7 +20,15 @@ export default class SampleCollector extends Component {
             email: '',
             testListId: [],
             testList: [],
+            test_notif: 5,
         };
+    }
+
+    notif_function() {
+
+        this.setState(prevState => ({
+            isToggleOn: !prevState.isToggleOn
+        }))
     }
 
     componentDidMount() {
@@ -74,6 +85,10 @@ export default class SampleCollector extends Component {
 
     completeButton = (d) => {
         console.log('comeplete test : ' + d._id);
+        // const object = {
+        //     _id: _id,
+        // };
+        //deleteTest
         axios
             .post('http://localhost:5000/sampleCollector/deleteTest', d, {
                 headers: {
@@ -95,7 +110,7 @@ export default class SampleCollector extends Component {
                 console.log('error');
                 console.log(error);
             });
-        /*
+
         axios
             .get('http://localhost:5000/sampleCollector/alltheList', {
                 headers: {
@@ -108,16 +123,15 @@ export default class SampleCollector extends Component {
                 this.setState({
                     testList: response.data,
                 });
-                
+                /*let idList = response.data;
+                console.log(idList);
+                idList.forEach(this.addDoctorsList);
+                */
             })
             .catch(function (error) {
                 console.log('error');
                 console.log(error);
             });
-            */
-        this.setState({
-            testList: this.state.testList.filter((el) => el._id !== d._id),
-        });
     };
 
     render() {
@@ -146,19 +160,40 @@ export default class SampleCollector extends Component {
                     //<h1>{this.props.id}</h1>
                 }
 
-                <header className="row">
+<header className="row">
                     <div>
-                        <a className="brand" href="/">
-                            Home
+                        <a className="brand" href="/samplecollector">
+                            {' '} {' '} Home
                         </a>
                     </div>
                     <div className="row center">
-                        <a className="brand2" href="/">
-                            {' '}
-                            Log OUt{' '}
-                        </a>
+
+                        <ul id="nav">
+
+                            <li id="notification_li">
+                                <a href="javascript:void(0);" id="notificationLink" onClick={this.notif_function}>Sample Collection</a>
+
+                                <span id="notification_count" className={this.state.isToggleOn || this.state.testList.length == 0 ? 'hidden' : ''} >{this.state.testList.length}</span>
+                                <div id="notificationContainer" className={this.state.isToggleOn ? '' : 'hidden'} >
+                                    <div id="notificationTitle" >Sample Collections</div>
+                                    <div id="notificationsBody" class="notifications">
+                                        <ul>
+                                            <li> <h5>{this.state.testList.length} Pending Samples to Collect</h5>  </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <a href="/" id="notificationLink">{' '}
+                                    Log Out{' '}</a>
+                            </li>
+
+                        </ul>
                     </div>
                 </header>
+
                 <main className="profile">
                     <div className="row2">
                         <div className="column">
