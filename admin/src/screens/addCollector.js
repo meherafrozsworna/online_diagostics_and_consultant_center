@@ -53,10 +53,6 @@ export default class SampleCollector extends Component {
                         </a>
                     </div>
                     <div className="row center">
-                        <a className="brand2" href="/adminhome">
-                            {' '}
-                            Sample Collection |{' '}
-                        </a>
                         <a className="brand2" href="/">
                             {' '}
                             Log Out{' '}
@@ -76,62 +72,6 @@ export default class SampleCollector extends Component {
                         <div className="scrollbox3">
                             <ul className="ul-first">
                                 {listItems}
-                                {/*<li>
-                                    Name : Azad <br></br>
-                                    Phone number : 000 <br></br>
-                                    <button
-                                        className="smallbtn"
-                                        onClick="removeCollector()"
-                                    >
-                                        Remove
-                                    </button>
-                                    <br></br>
-                                    <br></br>
-                                    <br></br>
-                                </li>
-
-                                <li>
-                                    Name : Alim <br></br>
-                                    Phone number : 000 <br></br>
-                                    <button
-                                        className="smallbtn"
-                                        onClick="removeCollector()"
-                                    >
-                                        Remove
-                                    </button>
-                                    <br></br>
-                                    <br></br>
-                                    <br></br>
-                                </li>
-
-                                <li>
-                                    Name : Alim <br></br>
-                                    Phone number : 000 <br></br>
-                                    <button
-                                        className="smallbtn"
-                                        onClick="removeCollector()"
-                                    >
-                                        Remove
-                                    </button>
-                                    <br></br>
-                                    <br></br>
-                                    <br></br>
-                                </li>
-
-                                <li>
-                                    Name : Alim <br></br>
-                                    Phone number : 000 <br></br>
-                                    <button
-                                        className="smallbtn"
-                                        onClick="removeCollector()"
-                                    >
-                                        Remove
-                                    </button>
-                                    <br></br>
-                                    <br></br>
-                                    <br></br>
-                                </li>
-                                */}
                             </ul>
                         </div>
                     </div>
