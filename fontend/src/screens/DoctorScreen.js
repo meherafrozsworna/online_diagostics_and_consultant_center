@@ -5,22 +5,27 @@ import axios from 'axios';
 //export default function PatientHomeScreen() {
 export default class DoctorScreen extends Component {
 
-    /*
     constructor(props) {
         super(props);
+        //this.addTestList = this.addTestList.bind(this);
 
+        this.state = { isToggleOn: false };
+
+        this.notif_function = this.notif_function.bind(this);
         this.state = {
-            name: '',
-            password: '',
-            gender: '',
-            age: 0,
-            phone: 0,
-            email: '',
-            address: '',
-            bloodGroup: '',
+            appoint_notif: 6,
         };
     }
 
+
+    notif_function() {
+
+        this.setState(prevState => ({
+            isToggleOn: !prevState.isToggleOn
+        }))
+    }
+
+    /*
     async componentDidMount() {
         //this.getTodos();
         //console.log('BBBBBBBBBBB');
@@ -54,21 +59,37 @@ export default class DoctorScreen extends Component {
                     //<h1>{this.props.id}</h1>
                 }
 
-                <header className="row">
+<header className="row">
                     <div>
-                        <a className="brand" href="/">
-                            Home
+                        <a className="brand" href="/samplecollector">
+                            {' '} {' '} Home
                         </a>
                     </div>
                     <div className="row center">
-                        <a className="brand2" href="/makepres">
-                            {' '}
-                            + Add Prescription{' '}{' '}{' '}
-                        </a>
-                        <a className="brand2" href="/">
-                            Log out{' '}
-                            
-                        </a>
+
+                        <ul id="nav">
+
+                            <li id="notification_li">
+                                <a href="javascript:void(0);" id="notificationLink" onClick={this.notif_function}>Appointments</a>
+
+                                <span id="notification_count" className={this.state.isToggleOn || this.state.appoint_notif == 0 ? 'hidden' : ''} >{this.state.appoint_notif}</span>
+                                <div id="notificationContainer" className={this.state.isToggleOn ? '' : 'hidden'} >
+                                    <div id="notificationTitle" >Appointments</div>
+                                    <div id="notificationsBody" class="notifications">
+                                        <ul>
+                                            <li> <h5>{this.state.appoint_notif} Pending Appointment Bookings</h5>  </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <a href="/" id="notificationLink">{' '}
+                                    {' '}Log Out{' '}</a>
+                            </li>
+
+                        </ul>
                     </div>
                 </header>
 
