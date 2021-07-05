@@ -77,14 +77,6 @@ export default class ReportList extends Component {
                         </a>
                     </div>
                     <div className="row center">
-                        <a className="brand2" href="/adminhome_appointments">
-                            {' '}
-                            Appointments |{' '}
-                        </a>
-                        <a className="brand3" href="/adminhome">
-                            {' '}
-                            Sample Collection |{' '}
-                        </a>
                         <a className="brand2" href="/">
                             {' '}
                             Log Out
