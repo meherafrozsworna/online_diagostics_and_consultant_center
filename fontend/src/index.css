@@ -78,14 +78,17 @@ h2 {
 
 h3 {
   font-size: 1.8rem;
-  color: #4b2879;
+  color: #34175a;
 }
 
 h4 {
   font-size: 1.8rem;
   color: red;
 }
-
+h5 {
+  font-size: 1.7rem;
+  color: #34175a;
+}
 h6 {
   font-size: 2rem;
   width:80%;
@@ -381,6 +384,9 @@ main {
 .about{
   background-image: url('image/about.jpg');
   background-size: cover;
+  background-repeat: repeat-y;
+  align-items: center;
+  justify-content: center;
 }
 .lab{
   background-image: url('image/lab.jpg');
@@ -397,6 +403,8 @@ main {
 .admin{
   background-image: url('image/01.jpg');
   background-size: cover;
+  align-items: center;
+  justify-content: center;
 }
 .frontend{
 
@@ -1016,13 +1024,10 @@ font-size: 18px;
       grid-template-columns: auto auto auto;
   padding-left: 50px;
   padding-top: 30px;;
-  background-color:  #f9f0ff;
+  /*background-color:  #f9f0ff;*/
 
       grid-row-gap: 12px;
       grid-column-gap: 12px;
-    }
-    .grid-item {
-      text-align: center;
     }
 
     .card {
@@ -1033,13 +1038,38 @@ font-size: 18px;
       position: relative;
       clear:left;
       float: left;
+      opacity: 1;
+      background-color:  #f9f0ff;
     
     }
 
     .card:hover {
       box-shadow: 0 24px 28px 0 rgba(0, 0, 0, 0.2);
-      width: 300px;
+      width: 280px;
     
+    }
+
+    .card2 {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+     width: 380px;
+      margin: 40px 40px;
+      text-align: center;
+      position: relative;
+      background-color:  #f9f0ff;
+
+      clear:left;
+      float: left;
+    }.card3 {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      width: 400px;
+      height: 510px;
+      margin: 20px 20px;
+      text-align: center;
+      position: relative;
+      background-color:  #f9f0ff;
+
+      clear:left;
+      float: left;
     }
     
     .title {
