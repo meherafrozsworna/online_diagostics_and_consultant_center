@@ -45,6 +45,8 @@ export default class ReportList extends Component {
     render() {
         const listItems = this.state.reportList.map((d) => (
             //   "/fileupload/:formid/patient/:patientid"
+            console.log('kkkkkk'),
+            console.log(d.patientId),
             <li>
                 <Link to={'/fileupload/' + d._id + '/patient/' + d.patientId}>
                     {
@@ -75,14 +77,6 @@ export default class ReportList extends Component {
                         </a>
                     </div>
                     <div className="row center">
-                        <a className="brand2" href="/adminhome_appointments">
-                            {' '}
-                            Appointments |{' '}
-                        </a>
-                        <a className="brand3" href="/adminhome">
-                            {' '}
-                            Sample Collection |{' '}
-                        </a>
                         <a className="brand2" href="/">
                             {' '}
                             Log Out

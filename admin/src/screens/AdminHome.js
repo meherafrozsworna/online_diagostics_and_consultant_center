@@ -8,10 +8,34 @@ export default class AdminHome extends Component {
         super(props);
         //this.addTestList = this.addTestList.bind(this);
 
+        this.state = { isToggleOn: false };
+        this.state = { isToggle2On: false };
+
+        this.notif_function = this.notif_function.bind(this);
+        this.notif_function2 = this.notif_function2.bind(this);
+
         this.state = {
             testList: [],
+            appoint_notif: 7,
+            test_notif: 5,
         };
     }
+
+
+    notif_function() {
+
+        this.setState(prevState => ({
+            isToggleOn: !prevState.isToggleOn
+        }))
+    }
+
+    notif_function2() {
+
+        this.setState(prevState => ({
+            isToggle2On: !prevState.isToggle2On
+        }))
+    }
+
     /*
     addTestList(item, index) {
         console.log('In add collector function ' + item);
@@ -100,23 +124,50 @@ export default class AdminHome extends Component {
                 <header className="row">
                     <div>
                         <a className="brand" href="/adminhome">
-                            Home
+                            {' '} {' '} Home
                         </a>
                     </div>
                     <div className="row center">
-                        <a className="brand2" href="/adminhome_appointments">
-                            {' '}
-                            Appointments |{' '}
-                        </a>
-                        <a className="brand3" href="/adminhome">
-                            {' '}
-                            Sample Collection |{' '}
-                        </a>
-                        <a className="brand2" href="/">
-                            {' '}
-                            Log Out
-                            {'  '}
-                        </a>
+
+                        <ul id="nav">
+
+
+                            <li id="notification_li">
+                                <a href="javascript:void(0);" id="notificationLink" onClick={this.notif_function2}>Appointments{' '}</a>
+
+                                <span id="notification_count" className={this.state.isToggle2On || this.state.appoint_notif == 0 ? 'hidden' : ''} >{this.state.appoint_notif}</span>
+                                <div id="notificationContainer" className={this.state.isToggle2On ? '' : 'hidden'} >
+                                    <div id="notificationTitle" >Appointments</div>
+                                    <div id="notificationsBody" class="notifications">
+                                    <ul>
+                                        <li> <h5>{this.state.appoint_notif} Pending Appointment Bookings</h5>  </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li id="notification_li">
+                                <a href="javascript:void(0);" id="notificationLink" onClick={this.notif_function}>{' '}|{' '}Sample Collection</a>
+
+                                <span id="notification_count" className={this.state.isToggleOn || this.state.test_notif == 0 ? 'hidden' : ''} >{this.state.test_notif}</span>
+                                <div id="notificationContainer" className={this.state.isToggleOn ? '' : 'hidden'} >
+                                    <div id="notificationTitle" >Sample Collections</div>
+                                    <div id="notificationsBody" class="notifications">
+                                        <ul>
+                                            <li> <h5>{this.state.test_notif} Pending Reports to add</h5>  </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <a href="/" id="notificationLink">{' '}
+                                    {' '}|{' '}Log Out{' '}</a>
+                            </li>
+
+                        </ul>
                     </div>
                 </header>
                 <main className="lab">
@@ -139,8 +190,8 @@ export default class AdminHome extends Component {
                                 </Link>
                             </div>
                             <div class="row center">
-                                <Link to="/" className="btn3">
-                                    Check Feedbacks
+                                <Link to="/adminhome_appointments" className="btn3">
+                                    Appointments
                                 </Link>
                             </div>
                         </div>

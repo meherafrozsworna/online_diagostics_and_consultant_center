@@ -31,12 +31,16 @@ body {
   background-repeat: repeat;
   background-size: cover;
   height: 100%;
+
+  z-index: 0;
+
 }
 header {
   grid-area: header;
   background-color: #8180dd;
   color: #ffffff;
   opacity: 0.85;
+  z-index: 99; 
 }
 main {
   grid-area: main;
@@ -71,6 +75,8 @@ h2 {
   font-weight: bolder;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
       sans-serif;
+
+      z-index: 2;
 }
 
 h6 {
@@ -99,6 +105,11 @@ h6 {
 h4 {
   font-size: 1.8rem;
   color: red;
+}
+
+h5 {
+  font-size: 1.7rem;
+  color: #34175a;
 }
 
 button {
@@ -775,3 +786,95 @@ margin-bottom: 40px;
 .dropdown-check-list.visible .items {
   display: block;
 }
+
+
+
+/*  NOTIFICATIONS */
+
+.hidden { display:none; }
+
+#nav{list-style:none;margin: 0px;padding: 0px;}
+#nav li {
+float: left;
+margin-right: 15px;
+font-family: Arial;
+font-size: 18px;
+}
+#nav li a{color:#ffffff;text-decoration:none}
+#nav li a:hover{color:#e1bdff;text-decoration:none}
+
+#notification_li
+			{
+			position:relative;
+      z-index: 20;
+			}
+			#notificationContainer 
+			{
+			background-color: #ffffff;
+			border: 1px solid rgba(100, 100, 100, .4);
+			-webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+			overflow: visible;
+			position: absolute;
+			top: 33px;
+			margin-left: -170px;
+			width: 400px;
+      height: 200px;
+      opacity: 1;
+			z-index: 999 !important;
+			}
+			/* Popup Arrow */
+			#notificationContainer:before {
+			content: '';
+			display: block;
+			position: absolute;
+			width: 0;
+			height: 0;
+			border: 10px solid black;
+			border-color: transparent transparent white;
+			margin-top: -20px;
+			margin-left: 188px;
+      opacity: 1;
+      z-index:99 !important;
+			}
+			#notificationTitle
+			{
+			font-weight: bold;
+			padding: 8px;
+			font-size: 17px;
+			background-color: #ffffff;
+			position: fixed;
+			z-index: 1000;
+			width: 384px;
+			border-bottom: 1px solid #dddddd;
+      color: black;
+			}
+			#notificationsBody
+			{
+			padding: 33px 0px 0px 0px ;
+			min-height:300px;
+			}
+			#notificationFooter
+			{
+			background-color: #d6abf8;
+			text-align: center;
+			font-weight: bold;
+			padding: 8px;
+			font-size: 16px;
+			border-top: 1px solid #dddddd;
+			}
+
+
+		#notification_count 
+		{
+		padding: 3px 7px 3px 7px;
+		background: #cc0000;
+		color: #ffffff;
+		font-weight: bold;
+		margin-left: -12px;
+		border-radius: 9px;
+		-moz-border-radius: 9px; 
+		-webkit-border-radius: 9px;
+		position: absolute;
+		margin-top: 12px;
+		font-size: 18px;
+		}
