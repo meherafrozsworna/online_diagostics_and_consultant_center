@@ -17,12 +17,17 @@ import CollectorSignin from './screens/CollectorSignin';
 
 import ChooseField from './screens/ChooseField';
 import ChooseDoctor from './screens/ChooseDoctor';
+import DoctorDetails from './screens/doctordetails';
 import seePres from './screens/seePrescription';
 import makePres from './screens/makePrescription';
 import seeReport from './screens/seeReport';
 
 import editProfile from './screens/editProfile';
-import doctordetails from './screens/doctordetails';
+import appointlist from './screens/appointList';
+import docViewPatient from './screens/docViewPatient';
+
+
+
 function App() {
     console.log(localStorage.getItem('name'));
     return (
@@ -37,6 +42,7 @@ function App() {
             <Route path="/testform" component={TestForm}></Route>
             <Route path="/reportpres" component={ReportPrescription}></Route>
             <Route path="/doctor" component={DoctorScreen}></Route>
+            
             <Route path="/" component={HomeScreen} exact></Route>
 
             <Route path="/signindoctor" component={DoctorSignin}></Route>
@@ -44,12 +50,14 @@ function App() {
 
             <Route path="/choosefield" component={ChooseField}></Route>
             <Route path="/choosedoctor" component={ChooseDoctor}></Route>
+            <Route path="/doctordetails" component={DoctorDetails}></Route>
 
-            <Route path="/seereport/:id" component={seeReport}></Route>
+            <Route path="/seereport" component={seeReport}></Route>
             <Route path="/seepres" component={seePres}></Route>
             <Route path="/makepres" component={makePres}></Route>
             <Route path="/editprofile" component={editProfile}></Route>
-            <Route path="/doctordetails" component={doctordetails}></Route>
+            <Route path="/appointlist" component={appointlist}></Route>
+            <Route path="/docViewPatient" component={docViewPatient}></Route>
         </BrowserRouter>
     );
 }
