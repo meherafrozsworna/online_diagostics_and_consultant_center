@@ -4,11 +4,7 @@ import axios from 'axios';
 
 //export default function PatientHomeScreen() {
 export default class AdminHome extends Component {
-<<<<<<< HEAD
-    /*
-=======
 
->>>>>>> 64a60f7d6cbc900a91b1c527102333c4e3f50d0b
     constructor(props) {
         super(props);
         //this.addTestList = this.addTestList.bind(this);
@@ -21,7 +17,7 @@ export default class AdminHome extends Component {
 
         this.state = {
             testList: [],
-            appoint_notif: 7,
+            appoint_notif: 4,
             test_notif: 5,
         };
     }
@@ -76,7 +72,7 @@ export default class AdminHome extends Component {
                     //<h1>{this.props.id}</h1>
                 }
 
-<header className="row">
+                <header className="row">
                     <div>
                         <a className="brand" href="/adminhome">
                             {' '} {' '} Home
@@ -95,7 +91,7 @@ export default class AdminHome extends Component {
                                     <div id="notificationTitle" >Appointments</div>
                                     <div id="notificationsBody" class="notifications">
                                         <ul>
-                                        <li> <h5>{this.state.appoint_notif} Pending Appointment Bookings</h5>  </li>
+                                            <li> <h5>{this.state.appoint_notif} Pending Appointment Bookings</h5>  </li>
 
                                         </ul>
                                     </div>
@@ -150,43 +146,39 @@ export default class AdminHome extends Component {
                                     Sample Collections
                                 </Link>
                             </div>
+
                         </div>
                         <div className="column2">
                             <div className="row center">
                                 <div className="scrollbox">
-                                    <ul style={{ listStyle: 'none' }}>
-                                        <h2 style={{ marginLeft: '40px' }}>
-                                            Appointment Requests
-                                        </h2>
+                                    <ul style={{ listStyle: "none" }}>
+
+                                        <h2 style={{ marginLeft: "40px" }}>Appointment Requests</h2>
                                         <li>
-                                            <Link to="/">
+                                            <Link to="/addZoomLink">
                                                 <h3>Abeda Sultana </h3>
                                                 Dr Afzal Hossain<br></br>
                                                 Tk 560
                                                 <h4>UNPAID</h4>
                                                 <h4>Approved</h4>
+                                                <button className="smallbtn">
+                                                Add Appointment Link
+                                            </button>
                                             </Link>
+                                            
                                             <br></br>
                                         </li>
 
                                         <li>
-                                            <Link to="/">
+                                        <Link to="/addZoomLink">
                                                 <h3>Abeda Sultana </h3>
                                                 Dr Afzal Hossain<br></br>
                                                 Tk 560
                                                 <h4>UNPAID</h4>
                                                 <h4>Approved</h4>
-                                            </Link>
-                                            <br></br>
-                                        </li>
-
-                                        <li>
-                                            <Link to="/">
-                                                <h3>Abeda Sultana </h3>
-                                                Dr Afzal Hossain<br></br>
-                                                Tk 560
-                                                <h4>UNPAID</h4>
-                                                <h4>Approved</h4>
+                                                <button className="smallbtn">
+                                                Add Appointment Link
+                                            </button>
                                             </Link>
                                             <br></br>
                                         </li>
