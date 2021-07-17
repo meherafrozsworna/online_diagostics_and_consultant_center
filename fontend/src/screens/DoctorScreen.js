@@ -129,27 +129,22 @@ export default class DoctorScreen extends Component {
                                 <ul>
                                 <h2> Upcoming Appointments</h2>
                                          <li>
-                                        <h3>Abeda Sultana</h3>
+                                         <Link to="/docViewPatient"> <h3>Abeda Sultana</h3> </Link>
                                         <p style={{color:"red"}} >19-06-21 8PM</p>
                                         </li>
 
                                         <li>
-                                        <h3>Abeda Sultana</h3>
+                                        <Link to="/docViewPatient"> <h3>Abeda Sultana</h3> </Link>
                                         <p style={{color:"red"}} >19-06-21 8PM</p>
                                         </li>
 
                                         <li>
-                                        <h3>Abeda Sultana</h3>
+                                        <Link to="/docViewPatient"> <h3>Abeda Sultana</h3> </Link>
                                         <p style={{color:"red"}} >19-06-21 8PM</p>
                                         </li>
 
                                         <li>
-                                        <h3>Abeda Sultana</h3>
-                                        <p style={{color:"red"}} >19-06-21 8PM</p>
-                                        </li>  
-
-                                        <li>
-                                        <h3>Abeda Sultana</h3>
+                                        <Link to="/docViewPatient"> <h3>Abeda Sultana</h3> </Link>
                                         <p style={{color:"red"}} >19-06-21 8PM</p>
                                         </li>                                       
                                     </ul>
@@ -162,21 +157,21 @@ export default class DoctorScreen extends Component {
                                 <ul>
                                 <h2>Pending Your Approval</h2>
                                         <li>
-                                        <h3>Abeda Sultana</h3>
+                                        <Link to="/docViewPatient"> <h3>Abeda Sultana</h3> </Link>
                                         <p style={{color:"red"}} >19-06-21 8PM</p>
                                         <a style={{color:"green"}} href="/">Approve </a>|
                                         <a style={{color:"red"}} href="/">  Reject </a>
                                         </li> <br></br>
 
                                         <li>
-                                        <h3>Abeda Sultana</h3>
+                                        <Link to="/docViewPatient"> <h3>Abeda Sultana</h3> </Link>
                                         <p style={{color:"red"}} >19-06-21 8PM</p>
                                         <a style={{color:"green"}} href="/">Approve </a>|
                                         <a style={{color:"red"}} href="/">  Reject </a>
                                         </li> <br></br>
 
                                         <li>
-                                        <h3>Abeda Sultana</h3>
+                                        <Link to="/docViewPatient"> <h3>Abeda Sultana</h3> </Link>
                                         <p style={{color:"red"}} >19-06-21 8PM</p>
                                         <a style={{color:"green"}} href="/">Approve </a>|
                                         <a style={{color:"red"}} href="/">  Reject </a>

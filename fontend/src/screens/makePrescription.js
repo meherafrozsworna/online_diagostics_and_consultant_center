@@ -131,9 +131,6 @@ export default class TestForm extends Component {
                             Home
                         </a>
                     </div>
-                     <div>
-                        <Link to="/">Log Out{'  '}</Link>
-                    </div>
                 </header>
 
                 <main className="testform">
@@ -258,6 +255,20 @@ export default class TestForm extends Component {
                                             value={this.state.suggestions}
                                             onChange={this.onChangeSuggestions}
                                         />
+                                    </div>
+                                </div>
+
+                                <div class="rows">
+                                    <br></br>Or Add A Scanned Prescription File:<br></br>
+                                    <div class="box__input">
+                                        <br></br>
+                                        <input
+                                            type="file"
+                                            name="file"
+                                            //onChange={this.onChangeFileHandler}
+                                        />
+                                        <br></br>
+                                        <br></br>
                                     </div>
                                 </div>
 

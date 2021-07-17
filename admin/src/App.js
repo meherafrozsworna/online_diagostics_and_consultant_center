@@ -12,6 +12,8 @@ import ReportList from './screens/reportList';
 import fileUpload from './screens/FileUpload';
 import adminHome2 from './screens/adminHomeAppointments';
 
+import addZoomLink from './screens/addZoomLink';
+
 function App() {
     console.log(localStorage.getItem('name'));
     return (
@@ -28,12 +30,14 @@ function App() {
             <Route path="/adddoctor" component={addDoctor}></Route>
             <Route path="/registerdoctor" component={registerDoctor}></Route>
 
-            <Route path="/fileupload/:formid/patient/:patientid" component={fileUpload}></Route>
+            <Route path="/fileupload/:id" component={fileUpload}></Route>
             <Route
                 path="/adminhome_appointments"
                 component={adminHome2}
             ></Route>
             <Route path="/reportList" component={ReportList}></Route>
+
+            <Route path="/addZoomLink" component={addZoomLink}></Route>
         </BrowserRouter>
     );
 }
