@@ -19,7 +19,7 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage }).single('file');
 
 router.post('/addReport', upload, async (req, res) => {
-    console.log('AAAAAAAAAAAAAAAAAA');
+   // console.log('AAAAAAAAAAAAAAAAAA');
     //console.log(req.body.patientId);
 
     let report = new Report();
@@ -37,30 +37,7 @@ router.post('/addReport', upload, async (req, res) => {
     }
 });
 
-/*
-router.post('/addReport', upload, async (req, res) => {
-    console.log('AAAAAAAAAAAAAAAAAA');
-    //
-    //console.log(req.body.patientId);
-
-    report = new Report({
-        patientId: req.body.patientId,
-    });
-    if (req.file) {
-        console.log('Dukse :  ' + req.file.path);
-        report.fileStorage = req.file.path;
-    }
-    report.save((err) => {
-        if (err) return res.json({ success: false, error: err });
-        return res.json(report);
-    });
-});
-*/
 router.post('/:id/setThepatientId', async (req, res) => {
-    console.log('setThepatientId');
-    console.log(req.param.id);
-    console.log(req.body.patientName);
-    console.log(req.body.testList);
     const report = await Report.findByIdAndUpdate(
         req.params.id,
         {

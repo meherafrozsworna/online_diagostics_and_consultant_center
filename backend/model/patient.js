@@ -14,11 +14,12 @@ const patientSchema = new Schema({
     historyId: mongoose.Schema.Types.ObjectId,
     bloodGroup:{ type: String, required: true },
     appointmentDetails : [{
-        doctorId: ObjectId,
-        link : String,
-        date : Date,
+        doctorId:{type: mongoose.Schema.Types.ObjectId},
+        link :{type :String},
+        date : {type : String}
     }],
     report: [mongoose.Schema.Types.ObjectId],
+    prescription:[mongoose.Schema.Types.ObjectId]
 })
 const Patient = mongoose.model('Patient', patientSchema);
 

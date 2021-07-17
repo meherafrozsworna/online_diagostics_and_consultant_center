@@ -3,18 +3,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const appointmentSchema = new Schema({
-  patientId: { type: ObjectId, required: true },
-  doctorId: { type: ObjectId, required: true },
-  date: { type: Date, required: true },
-  type: { type: String, required: true },
-  payment : {
-    amount : Double,
-    type :String,
-    status : Boolean,
-},
+  patientId: [mongoose.Schema.Types.ObjectId],
+  doctorId: [mongoose.Schema.Types.ObjectId],
+  date: { type: String},
+  payment : {type : Number}, 
   
 });
 
-const Appointment = mongoose.model('Appointment', exerciseSchema);
+const Appointment = mongoose.model('Appointment', appointmentSchema);
 
 module.exports = Appointment;

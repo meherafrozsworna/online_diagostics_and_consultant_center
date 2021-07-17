@@ -4,23 +4,11 @@ const Schema = mongoose.Schema;
 
 
 const prescriptionSchema = new Schema({
-    appointmentId: mongoose.Schema.Types.ObjectId,
-    doctorId: { type: ObjectId, required: true },
-    patientId : { type: ObjectId, required: true },
-    doctorName: { type: String, required: true },
-    patientName: { type: String, required: true },
-    patientAge: { type: String, required: true },
-    patientGender: { type: String, required: true },
-    date : {type: String, required: true },
-    testList: [String] ,
-    medicineList : [{
-        name : String,
-        schedule :String,
-        amount : String,
-        duration : String,
-    }],
-    suggestionList : [String],
-    comments : [String],
+    patientId: mongoose.Schema.Types.ObjectId,
+    patientName: { type: String },
+    suggestionList: [String],
+    mediciniList:[String],
+    fileStorage: { type: String },
     
 });
 

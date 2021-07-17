@@ -7,6 +7,8 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const SampleCollector = require('../model/sampleCollector');
 const Testform = require('../model/testform');
+const Appointment = require('../model/appointment');
+const Doctor = require('../model/doctor');
 const router = express.Router();
 const verifyJWT = async (req, res, next) => {
     const token = req.headers['x-access-token'];
@@ -27,7 +29,18 @@ const verifyJWT = async (req, res, next) => {
         });
     }
 };
-
+//list show er jonne
+router.get('/appointmentList',verifyJWT,async(req, res) => {
+    const testList = req.admin.appointmentList;
+    console.log(testList);
+    let test_temp = [];
+    for (let i = 0; i < testList.length; i++) {
+        const test = await Appointment.findById(testList[i]);
+        test_temp.push(test);
+    }
+  
+    res.json(test_temp);
+});
 router.get('/sampleCollectorList', verifyJWT, async (req, res) => {
     const testList = req.admin.sampleCollectorList;
     let test_temp = [];
@@ -35,7 +48,7 @@ router.get('/sampleCollectorList', verifyJWT, async (req, res) => {
         const test = await Testform.findById(testList[i]);
         test_temp.push(test);
     }
-    console.log(test_temp);
+  
     res.json(test_temp);
 });
 
@@ -47,7 +60,7 @@ router.get('/testFormList', verifyJWT, async (req, res) => {
         const test = await Testform.findById(testList[i]);
         test_temp.push(test);
     }
-    console.log(test_temp);
+  
     res.json(test_temp);
 });
 
@@ -215,7 +228,20 @@ router.post('/deleteReportList', async (req, res) => {
     }
     res.send('Done');
 });
-
+//ekta book appointment e call korle etao call hobe
+router.post('/addAppoinmentList', async (req, res) => {
+    let admins = await Admin.find({});
+    for (let i = 0; i < admins.length; i++) {
+        const admin_temp = await Admin.findByIdAndUpdate(
+            admins[i]._id,
+            {
+                $push: { appointmentList: req.body._id },
+            },
+            { new: true }
+        );
+    }
+    res.send('Done');
+});
 router.post('/addReport', async (req, res) => {
     report = new Report({
         name: req.body.name,
@@ -246,5 +272,30 @@ router.post('/:email/addtheReportToPatientProfile', async (req, res) => {
         { new: true }
     );
     res.send(patient);
+});
+//doctor er id req body te ashbe sheta diye oi patient er appointment ta khuje ber kore oita te zoom link dibo doctor tar
+router.post('/sendZoomlink',async (req, res) =>{
+let appointment = await Appointment.findById(req.body._id);
+let doctor =await Doctor.findById(appointment.doctorId);
+console.log( appointment.patientId[0]);
+ const patient =await Patient.findByIdAndUpdate(
+     
+    appointment.patientId[0],
+    {
+        appointmentDetails:{
+            doctorId : appointment.doctorId[0],
+            link : doctor.zoomlink,
+            date : appointment.date
+           
+        }
+    },
+    { new: true }
+    );
+    if (!patient)
+            return res
+            .status(404)
+            .send('The patient with the given ID was not found.');
+   res.send("done");
+
 });
 module.exports = router;

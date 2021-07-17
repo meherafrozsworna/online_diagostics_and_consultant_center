@@ -23,6 +23,7 @@ const historyRouter=require('./controller/historyController');
 const reportRouter=require('./controller/reportController');
 const sampleCollectorRouter=require('./controller/sampleCollectorController');
 const adminRouter=require('./controller/adminController');
+const prescriptionRouter=require('./controller/prescriptionController');
 
 app.use('/admin', adminRouter);
 app.use('/patient', patientRouter);
@@ -31,6 +32,7 @@ app.use('/history',historyRouter);
 app.use('/report',reportRouter);
 app.use('/sampleCollector',sampleCollectorRouter);
 app.use('/admin',adminRouter);
+app.use('/prescription',prescriptionRouter);
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
 });

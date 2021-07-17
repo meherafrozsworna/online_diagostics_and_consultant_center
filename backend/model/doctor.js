@@ -20,11 +20,12 @@ const doctorSchema = new Schema({
     appointmentList: [
         {
             patientId: mongoose.Schema.Types.ObjectId,
-            date: Date,
+            date: String,
         },
     ],
     phone: { type: [Number], required: true },
     email: { type: String, required: true },
+    zoomlink : {String} 
 });
 
 const Doctor = mongoose.model('Doctor', doctorSchema);
