@@ -131,6 +131,9 @@ export default class TestForm extends Component {
                             Home
                         </a>
                     </div>
+                    <div>
+                        <Link to="/">Log Out{'  '}</Link>
+                    </div>
                 </header>
 
                 <main className="testform">
@@ -169,97 +172,7 @@ export default class TestForm extends Component {
                                 </div>
 
                                 <div class="rows">
-                                    <div class="input">
-                                        <input
-                                            type="phone"
-                                            placeholder="Phone number"
-                                            id="phone"
-                                            className="text-input"
-                                            required
-                                            value={this.state.number}
-                                            onChange={this.onChangeNumber}
-                                        />
-                                    </div>
-                                </div>
-                                
-                                <div class="rows">
-                                    <div class="input">
-                                        <input
-                                            type="number"
-                                            placeholder="Age of Patient"
-                                            min="1"
-                                            max="100"
-                                            id="number"
-                                            class="text-input"
-                                            required
-                                            value={this.state.age}
-                                            onChange={this.onChangeAge}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div class="rows">
-                                    <div
-                                        classNme="input"
-                                        onChange={this.onChangeGender}
-                                    >
-                                        <select id="dropdown">
-                                            <option>Gender</option>
-                                            <option value="male">Male</option>
-                                            <option value="female">
-                                                Female
-                                            </option>
-                                            <option value="transgender">
-                                                Transgender
-                                            </option>
-                                            <option value="other">Other</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="rows">
-                                    <div class="input">
-                                        <input
-                                            type="text"
-                                            placeholder="Diagnosis"
-                                            id="details"
-                                            className="text-input"
-                                            value={this.state.diagnosis}
-                                            onChange={this.onChangeDiagnosis}
-                                        />
-                                    </div>
-                                </div>
-                               
-
-                                <div class="rows">
-                                    <div class="input">
-                                        <input
-                                            type="text"
-                                            placeholder="Medicines"
-                                            id="details"
-                                            className="text-input"
-                                            value={this.state.medicines}
-                                            onChange={this.onChangeMedicines}
-                                        />
-                                    </div>
-                                </div>
-                                
-                                
-                                <div class="rows">
-                                    <div class="input">
-                                        <input
-                                            type="text"
-                                            placeholder="Suggestions/Comments"
-                                            id="details"
-                                            className="text-input"
-                                            value={this.state.suggestions}
-                                            onChange={this.onChangeSuggestions}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div class="rows">
-                                    <br></br>Or Add A Scanned Prescription File:<br></br>
+                                    <br></br>Add A Scanned Prescription File:<br></br>
                                     <div class="box__input">
                                         <br></br>
                                         <input
