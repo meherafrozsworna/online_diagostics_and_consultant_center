@@ -126,7 +126,7 @@ export default class PatientHomeScreen extends Component {
                         </div>
                         <div className="column2">
                             <div className="scrollbox22">
-                                <ul>
+                                <ul style={{listStyle:'none'}}>
                                     <h2> Reports</h2>
                                     {listItems}
                                 </ul>
@@ -136,7 +136,7 @@ export default class PatientHomeScreen extends Component {
                         <div className="column3">
                             <br></br>
                             <div className="scrollbox22">
-                                <ul>
+                                <ul style={{listStyle:'none'}}>
                                     <h2> Prescriptions</h2>
 
                                     <li>
