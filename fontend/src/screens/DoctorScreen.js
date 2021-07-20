@@ -4,12 +4,18 @@ import axios from 'axios';
 
 //export default function PatientHomeScreen() {
 export default class DoctorScreen extends Component {
-
     constructor(props) {
         super(props);
         //this.addTestList = this.addTestList.bind(this);
 
-        this.state = { isToggleOn: false };
+        this.state = {
+            isToggleOn: false,
+            name: '',
+            phone: '',
+            email: '',
+            specialization: '',
+            degree: '',
+        };
 
         this.notif_function = this.notif_function.bind(this);
         this.state = {
@@ -17,39 +23,36 @@ export default class DoctorScreen extends Component {
         };
     }
 
-
     notif_function() {
-
-        this.setState(prevState => ({
-            isToggleOn: !prevState.isToggleOn
-        }))
+        this.setState((prevState) => ({
+            isToggleOn: !prevState.isToggleOn,
+        }));
     }
 
-    /*
     async componentDidMount() {
-        //this.getTodos();
-        //console.log('BBBBBBBBBBB');
-        let data = await axios
-            .get('http://localhost:5000/patient/' + this.props.match.params.id)
+        axios
+            .get('http://localhost:5000/doctor/home', {
+                headers: {
+                    'x-access-token': localStorage.getItem('token'),
+                },
+            })
             .then((response) => {
                 //let obj = await response.data;
+                console.log('AAAAAA');
                 console.log(response.data);
                 this.setState({
                     name: response.data.name,
-                    password: response.data.password,
-                    gender: response.data.gender,
-                    age: response.data.age,
                     phone: response.data.phone,
                     email: response.data.email,
-                    address: response.data.address,
-                    bloodGroup: response.data.bloodGroup,
+                    specialization: response.data.specialization,
+                    degree: response.data.degree,
                 });
             })
             .catch(function (error) {
+                console.log('error');
                 console.log(error);
             });
     }
-    */
 
     render() {
         //const data = localStorage.getItem('data');
@@ -59,36 +62,67 @@ export default class DoctorScreen extends Component {
                     //<h1>{this.props.id}</h1>
                 }
 
-<header className="row">
+                <header className="row">
                     <div>
                         <a className="brand" href="/samplecollector">
-                            {' '} {' '} Home
+                            {' '}
+                            Home
                         </a>
                     </div>
                     <div className="row center">
-
                         <ul id="nav">
-
                             <li id="notification_li">
-                                <a href="javascript:void(0);" id="notificationLink" onClick={this.notif_function}>Appointments</a>
+                                <a
+                                    href="javascript:void(0);"
+                                    id="notificationLink"
+                                    onClick={this.notif_function}
+                                >
+                                    Appointments
+                                </a>
 
-                                <span id="notification_count" className={this.state.isToggleOn || this.state.appoint_notif == 0 ? 'hidden' : ''} >{this.state.appoint_notif}</span>
-                                <div id="notificationContainer" className={this.state.isToggleOn ? '' : 'hidden'} >
-                                    <div id="notificationTitle" >Appointments</div>
-                                    <div id="notificationsBody" class="notifications">
+                                <span
+                                    id="notification_count"
+                                    className={
+                                        this.state.isToggleOn ||
+                                        this.state.appoint_notif == 0
+                                            ? 'hidden'
+                                            : ''
+                                    }
+                                >
+                                    {this.state.appoint_notif}
+                                </span>
+                                <div
+                                    id="notificationContainer"
+                                    className={
+                                        this.state.isToggleOn ? '' : 'hidden'
+                                    }
+                                >
+                                    <div id="notificationTitle">
+                                        Appointments
+                                    </div>
+                                    <div
+                                        id="notificationsBody"
+                                        class="notifications"
+                                    >
                                         <ul>
-                                            <li> <h5>{this.state.appoint_notif} Pending Appointment Bookings</h5>  </li>
-
+                                            <li>
+                                                {' '}
+                                                <h5>
+                                                    {this.state.appoint_notif}{' '}
+                                                    Pending Appointment Bookings
+                                                </h5>{' '}
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
                             </li>
 
                             <li>
-                                <a href="/" id="notificationLink">{' '}
-                                    {' '}Log Out{' '}</a>
+                                <a href="/" id="notificationLink">
+                                    {' '}
+                                    Log Out{' '}
+                                </a>
                             </li>
-
                         </ul>
                     </div>
                 </header>
@@ -97,7 +131,6 @@ export default class DoctorScreen extends Component {
                     <div className="row2">
                         <div className="column">
                             <div className="detail-box">
-                                  
                                 <div className="user-image">
                                     <img
                                         src="https://data.whicdn.com/images/345295536/original.jpg"
@@ -105,8 +138,15 @@ export default class DoctorScreen extends Component {
                                     ></img>
                                 </div>
                                 <div className="detail-box3">
-                                    <a href="/samplecollector"> Doctor Profile </a> |
-                                    <a href="/samplecollector" font-color="#9a65a5">
+                                    <a href="/samplecollector">
+                                        {' '}
+                                        Doctor Profile{' '}
+                                    </a>{' '}
+                                    |
+                                    <a
+                                        href="/samplecollector"
+                                        font-color="#9a65a5"
+                                    >
                                         {' '}
                                         Edit
                                     </a>
@@ -114,69 +154,151 @@ export default class DoctorScreen extends Component {
 
                                 <div className="detail-box2">
                                     <ul className="ul-first">
-                                        <li>Name : {localStorage.getItem('name')}</li>
-                                        <li>Position : {localStorage.getItem('name')}</li>
-                                        <li>Institution : {localStorage.getItem('age')}</li>
-                                        <li>Phone : {localStorage.getItem('phone')}</li>
+                                        <li>
+                                            Name :{' '}
+                                            {this.state.name}
+                                        </li>
+                                        <li>
+                                            Email :{' '}
+                                            {this.state.email}
+                                        </li>
+                                        <li>
+                                            Degree :{' '}
+                                            {this.state.degree}
+                                        </li>
+                                        <li>
+                                            Specialization :{' '}
+                                            {this.state.specialization}
+                                        </li>
+                                        <li>
+                                            Phone :{' '}
+                                            {this.state.phone}
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div className="column2">
-                            
-                            
                             <div className="scrollbox22">
                                 <ul>
-                                <h2> Upcoming Appointments</h2>
-                                         <li>
-                                         <Link to="/docViewPatient"> <h3>Abeda Sultana</h3> </Link>
-                                        <p style={{color:"red"}} >19-06-21 8PM</p>
+                                    <h2> Upcoming Appointments</h2>
+                                    <li>
+                                        <Link to="/docViewPatient">
+                                            {' '}
+                                            <h3>Abeda Sultana</h3>{' '}
+                                        </Link>
+                                        <p style={{ color: 'red' }}>
+                                            19-06-21 8PM
+                                        </p>
+                                    </li>
+
+                                    <li>
+                                        <Link to="/docViewPatient">
+                                            {' '}
+                                            <h3>Abeda Sultana</h3>{' '}
+                                        </Link>
+                                        <p style={{ color: 'red' }}>
+                                            19-06-21 8PM
+                                        </p>
+                                    </li>
+
+                                    <li>
+                                        <Link to="/docViewPatient">
+                                            {' '}
+                                            <h3>Abeda Sultana</h3>{' '}
+                                        </Link>
+                                        <p style={{ color: 'red' }}>
+                                            19-06-21 8PM
+                                        </p>
+                                    </li>
+
+                                    <li>
+                                        <Link to="/docViewPatient">
+                                            {' '}
+                                            <h3>Abeda Sultana</h3>{' '}
+                                        </Link>
+                                        <p style={{ color: 'red' }}>
+                                            19-06-21 8PM
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div className="column3">
+                                <div className="scrollbox22">
+                                    <ul>
+                                        <h2>Pending Your Approval</h2>
+                                        <li>
+                                            <Link to="/docViewPatient">
+                                                {' '}
+                                                <h3>Abeda Sultana</h3>{' '}
+                                            </Link>
+                                            <p style={{ color: 'red' }}>
+                                                19-06-21 8PM
+                                            </p>
+                                            <a
+                                                style={{ color: 'green' }}
+                                                href="/"
+                                            >
+                                                Approve{' '}
+                                            </a>
+                                            |
+                                            <a
+                                                style={{ color: 'red' }}
+                                                href="/"
+                                            >
+                                                {' '}
+                                                Reject{' '}
+                                            </a>
+                                        </li>{' '}
+                                        <br></br>
+                                        <li>
+                                            <Link to="/docViewPatient">
+                                                {' '}
+                                                <h3>Abeda Sultana</h3>{' '}
+                                            </Link>
+                                            <p style={{ color: 'red' }}>
+                                                19-06-21 8PM
+                                            </p>
+                                            <a
+                                                style={{ color: 'green' }}
+                                                href="/"
+                                            >
+                                                Approve{' '}
+                                            </a>
+                                            |
+                                            <a
+                                                style={{ color: 'red' }}
+                                                href="/"
+                                            >
+                                                {' '}
+                                                Reject{' '}
+                                            </a>
+                                        </li>{' '}
+                                        <br></br>
+                                        <li>
+                                            <Link to="/docViewPatient">
+                                                {' '}
+                                                <h3>Abeda Sultana</h3>{' '}
+                                            </Link>
+                                            <p style={{ color: 'red' }}>
+                                                19-06-21 8PM
+                                            </p>
+                                            <a
+                                                style={{ color: 'green' }}
+                                                href="/"
+                                            >
+                                                Approve{' '}
+                                            </a>
+                                            |
+                                            <a
+                                                style={{ color: 'red' }}
+                                                href="/"
+                                            >
+                                                {' '}
+                                                Reject{' '}
+                                            </a>
                                         </li>
-
-                                        <li>
-                                        <Link to="/docViewPatient"> <h3>Abeda Sultana</h3> </Link>
-                                        <p style={{color:"red"}} >19-06-21 8PM</p>
-                                        </li>
-
-                                        <li>
-                                        <Link to="/docViewPatient"> <h3>Abeda Sultana</h3> </Link>
-                                        <p style={{color:"red"}} >19-06-21 8PM</p>
-                                        </li>
-
-                                        <li>
-                                        <Link to="/docViewPatient"> <h3>Abeda Sultana</h3> </Link>
-                                        <p style={{color:"red"}} >19-06-21 8PM</p>
-                                        </li>                                       
-                                    </ul>
-                                </div>
-
-
-                        <div className="column3">
-                            
-                            <div className="scrollbox22">
-                                <ul>
-                                <h2>Pending Your Approval</h2>
-                                        <li>
-                                        <Link to="/docViewPatient"> <h3>Abeda Sultana</h3> </Link>
-                                        <p style={{color:"red"}} >19-06-21 8PM</p>
-                                        <a style={{color:"green"}} href="/">Approve </a>|
-                                        <a style={{color:"red"}} href="/">  Reject </a>
-                                        </li> <br></br>
-
-                                        <li>
-                                        <Link to="/docViewPatient"> <h3>Abeda Sultana</h3> </Link>
-                                        <p style={{color:"red"}} >19-06-21 8PM</p>
-                                        <a style={{color:"green"}} href="/">Approve </a>|
-                                        <a style={{color:"red"}} href="/">  Reject </a>
-                                        </li> <br></br>
-
-                                        <li>
-                                        <Link to="/docViewPatient"> <h3>Abeda Sultana</h3> </Link>
-                                        <p style={{color:"red"}} >19-06-21 8PM</p>
-                                        <a style={{color:"green"}} href="/">Approve </a>|
-                                        <a style={{color:"red"}} href="/">  Reject </a>
-                                        </li> 
-                                       
                                     </ul>
                                 </div>
                             </div>

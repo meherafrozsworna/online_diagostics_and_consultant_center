@@ -103,7 +103,7 @@ export default class SigninScreen extends Component {
             password: this.state.password,
             gender: this.state.gender,
             degree: this.state.degree,
-            currentInstitution: this.state.institution,
+            currentInstitution: this.state.currentInstitution,
             specialization: this.state.specialization,
             phone: this.state.phone,
             email: this.state.email,

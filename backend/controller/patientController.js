@@ -3,7 +3,7 @@ const Doctor = require('../model/doctor');
 const Patient = require('../model/patient');
 const TestForm = require('../model/testform');
 const Report = require('../model/report');
-const Appointment=require('../model/appointment');
+const Appointment = require('../model/appointment');
 //const {Patient, validate} = require('../model/patient');
 //const Joi = require('@hapi/joi');
 const mongoose = require('mongoose');
@@ -91,7 +91,7 @@ router.post('/login', async (req, res) => {
     let patient = await Patient.findOne({ email: req.body.email });
     if (!patient)
         return res.status(400).send({ auth: false, message: 'Invalid Email' });
-   
+
     const validPassword = await bcrypt.compare(
         req.body.password,
         patient.password
@@ -132,8 +132,6 @@ router.put('/edit', verifyJWT, async (req, res) => {
 
     res.send(patient);
 });
-
-
 
 router.post('/testform/submit', verifyJWT, async (req, res) => {
     let testform = new TestForm();
@@ -201,27 +199,25 @@ router.get('/:id/showReport', async (req, res) => {
     res.send(report);
 });
 //new Added
-router.put('/addAppointment/:name',verifyJWT, async(req,res)=>{
-    const doctor1 = await Doctor.find({
-        name: req.params.name,
-    });
+router.put('/addAppointment/:id', verifyJWT, async (req, res) => {
+    const doctor1 = await Doctor.findById(req.params.id);
     console.log(doctor1[0]._id);
-    for (let i = 0; i <doctor1[0].schedule.length; i++){
-        if(doctor1[0].schedule[i].date==req.body.date){
-            console.log("dhukse");
-            doctor1[0].schedule[i].limitation= doctor1[0].schedule[i].limitation-1;
-           let appointment={
-                "patiendId":req.patient._id,
-                "date":req.body.date
-            }
+
+    /*for (let i = 0; i < doctor1[0].schedule.length; i++) {
+        if (doctor1[0].schedule[i].date == req.body.date) {
+            console.log('dhukse');
+            doctor1[0].schedule[i].limitation =
+                doctor1[0].schedule[i].limitation - 1;
+            let appointment = {
+                patiendId: req.patient._id,
+                date: req.body.date,
+            };
             const doctor = await Doctor.findByIdAndUpdate(
                 doctor1[0]._id,
                 {
-                    
-                    schedule:{
-                        date:doctor1[0].schedule[i].date,
-                        limitation:doctor1[0].schedule[i].limitation
-                       
+                    schedule: {
+                        date: doctor1[0].schedule[i].date,
+                        limitation: doctor1[0].schedule[i].limitation,
                     },
                     $push: { appointmentList: appointment },
                 },
@@ -231,23 +227,50 @@ router.put('/addAppointment/:name',verifyJWT, async(req,res)=>{
                 return res
                     .status(404)
                     .send('The doctor with the given ID was not found.');
+            let appointment1 = new Appointment();
+            appointment1.patientId = req.patient._id;
+            appointment1.doctorId = doctor1[0]._id;
+            appointment1.date = req.body.date;
+            appointment1.payment = '1000';
+
+            appointment1.save((err) => {
+                if (err) return res.json({ success: false, error: err });
+            });
+
+            console.log(doctor1[0].schedule[i].date);
+        }
+    }
+    */
+
+    let appointment = {
+        patiendId: req.patient._id,
+        date: req.body.date,
+    };
+    const doctor = await Doctor.findByIdAndUpdate(
+        doctor1[0]._id,
+        {
+            schedule: {
+                date: doctor1[0].schedule[i].date,
+                limitation: doctor1[0].schedule[i].limitation,
+            },
+            $push: { appointmentList: appointment },
+        },
+        { new: true }
+    );
+    if (!doctor)
+        return res
+            .status(404)
+            .send('The doctor with the given ID was not found.');
     let appointment1 = new Appointment();
-    appointment1.patientId= req.patient._id;
-    appointment1.doctorId=  doctor1[0]._id;
-    appointment1.date=req.body.date;
-    appointment1.payment="1000";
+    appointment1.patientId = req.patient._id;
+    appointment1.doctorId = doctor1[0]._id;
+    appointment1.date = req.body.date;
+    appointment1.payment = '1000';
 
     appointment1.save((err) => {
         if (err) return res.json({ success: false, error: err });
-        
     });
-        
-             
-            console.log(doctor1[0].schedule[i].date);
-        }
 
-    }
-    
     res.send(doctor1[0]);
 });
 

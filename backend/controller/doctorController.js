@@ -45,34 +45,32 @@ router.post('/add', async (req, res) => {
     doctor.degree = req.body.degree;
     doctor.specialization = req.body.specialization;
     doctor.currentInstitution = req.body.currentInstitution;
-    doctor.appointmentList=[];
+    doctor.appointmentList = [];
     doctor.save((err) => {
         if (err) return res.json({ success: false, error: err });
         return res.json(doctor);
     });
-
 });
 router.post('/login', async (req, res) => {
     let doctor = await Doctor.findOne({ email: req.body.email });
-        if (!doctor)
-            return res.status(400).send({ auth: false, message: 'Invalid Email' });
-        console.log(req.body.password);
-        const validPassword = await bcrypt.compare(
-            req.body.password,
-            doctor.password
-        );
-        if (validPassword) {
-            const token = jwt.sign({ doctor }, 'jwtSecrete', {
-                expiresIn: 300000,
-            });
-            res.send({ auth: true, token: token, result: doctor });
-        } else {
-            return res.status(400).send({
-                auth: false,
-                message: 'wrong username/password combination',
-            });
-        }
-    
+    if (!doctor)
+        return res.status(400).send({ auth: false, message: 'Invalid Email' });
+    console.log(req.body.password);
+    const validPassword = await bcrypt.compare(
+        req.body.password,
+        doctor.password
+    );
+    if (validPassword) {
+        const token = jwt.sign({ doctor }, 'jwtSecrete', {
+            expiresIn: 300000,
+        });
+        res.send({ auth: true, token: token, result: doctor });
+    } else {
+        return res.status(400).send({
+            auth: false,
+            message: 'wrong username/password combination',
+        });
+    }
 });
 
 router.put('/edit', verifyJWT, async (req, res) => {
@@ -102,7 +100,17 @@ router.put('/edit', verifyJWT, async (req, res) => {
     res.send(doctor);
 });
 
-/*
+router.get('/home', verifyJWT, (req, res) => {
+    if (!req.doctor)
+        return res
+            .status(404)
+            .send('The doctor with the given ID was not found.');
+
+    console.log('In server home');
+    console.log(req.doctor);
+    res.send(req.doctor);
+});
+
 router.get('/:id', async (req, res) => {
     const doctor = await Doctor.findById(req.params.id);
     if (!doctor)
@@ -112,8 +120,8 @@ router.get('/:id', async (req, res) => {
 
     res.send(doctor);
 });
-*/
-router.get('/showAppointmentList',verifyJWT,async(req, res) => {
+
+router.get('/showAppointmentList', verifyJWT, async (req, res) => {
     const testList = req.doctor.appointmentList;
     console.log(req.doctor);
     console.log(testList);
@@ -122,7 +130,7 @@ router.get('/showAppointmentList',verifyJWT,async(req, res) => {
         const test = await Appointment.findById(testList[i]);
         test_temp.push(test);
     }
-  
+
     res.json(testList);
 });
 router.get('/:name', async (req, res) => {
@@ -140,9 +148,11 @@ router.get('/:name', async (req, res) => {
 
 router.get('/specialization/:at', async (req, res) => {
     console.log(req.params.at);
+    console.log('Specialization');
     const doctor = await Doctor.find({
         specialization: req.params.at,
     });
+    console.log(doctor);
     if (!doctor)
         return res
             .status(404)
@@ -150,15 +160,14 @@ router.get('/specialization/:at', async (req, res) => {
 
     res.send(doctor);
 });
-router.put('/showSchedule', verifyJWT, async(req,res)=>{
-    const doctor=await Doctor.findById(req.doctor._id); 
-     res.send(doctor.schedule);
-
+router.put('/showSchedule', verifyJWT, async (req, res) => {
+    const doctor = await Doctor.findById(req.doctor._id);
+    res.send(doctor.schedule);
 });
 
 router.put('/addAppointment', verifyJWT, async (req, res) => {
-    const doctor = await Doctor.findByIdAndUpdate( 
-        req.doctor._id, 
+    const doctor = await Doctor.findByIdAndUpdate(
+        req.doctor._id,
         {
             $push: { appointmentList: req.body.appointment },
         },

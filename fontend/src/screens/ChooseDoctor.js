@@ -4,7 +4,66 @@ import axios from 'axios';
 
 //export default function PatientHomeScreen() {
 export default class ChooseDoctor extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            doctorList: [],
+        };
+    }
+
+    async componentDidMount() {
+        console.log('MMMMMMMMMMMMMMM  ' + this.props.match.params.field);
+        axios
+            .get(
+                'http://localhost:5000/doctor/specialization/' +
+                    this.props.match.params.field
+            )
+            .then((response) => {
+                //let obj = await response.data;
+                console.log('AAAAAA');
+                console.log(response.data);
+                this.setState({
+                    doctorList: response.data,
+                });
+            })
+            .catch(function (error) {
+                console.log('error');
+                console.log(error);
+            });
+    }
+
     render() {
+        const listItems = this.state.doctorList.map((d) => (
+            <div class="grid-item">
+                <div class="card">
+                    {d.gender.localeCompare('Female') == 0 ? (
+                        <img
+                            src="https://st2.depositphotos.com/3889193/8319/i/600/depositphotos_83195332-stock-photo-smiling-female-doctor-holding-medical.jpg"
+                            alt={d.name}
+                            style={{ width: '100%' }}
+                        />
+                    ) : (
+                        <img
+                            src="http://hellojivan.com/assets/websites/assets/img/doctors/doctor-thumb-02.jpg"
+                            alt={d.name}
+                            style={{ width: '100%' }}
+                        />
+                    )}
+                    <h3>{d.name.toUpperCase()}</h3>
+                    <p class="title">
+                        {d.currentInstitution} <br></br>
+                        {d.degree}
+                    </p>
+                    <p>
+                        {' '}
+                        <h2>Sun-Thurs: 6pm-9pm</h2>
+                    </p>
+                    <Link to={"/doctordetails/"+d._id} className="book_btn">
+                        Book Appointment
+                    </Link>
+                </div>
+            </div>
+        ));
         return (
             <div className="profile2">
                 <header className="row">
@@ -20,7 +79,8 @@ export default class ChooseDoctor extends Component {
 
                 <main>
                     <div className="grid-container1">
-                        <div class="grid-item">
+                        {listItems}
+                        {/*<div class="grid-item">
                             <div class="card">
                                 <img
                                     src="http://hellojivan.com/assets/websites/assets/img/doctors/doctor-thumb-02.jpg"
@@ -129,6 +189,7 @@ export default class ChooseDoctor extends Component {
                                 </Link>
                             </div>
                         </div>
+        */}
                     </div>
                 </main>
             </div>

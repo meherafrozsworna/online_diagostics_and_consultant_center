@@ -66,21 +66,21 @@ export default class PatientHomeScreen extends Component {
                     <div className="row center">
                     <ul className="fields">
                         <h1>Choose A Field</h1>
-                        <li> <Link to="/choosedoctor"><h6>General Practice</h6>  </Link> </li>
-                        <li> <Link to="/choosedoctor"><h6>Cardiology</h6> </Link></li>
-                        <li> <Link to="/choosedoctor"><h6>Gynecology</h6> </Link></li>
-                        <li> <Link to="/choosedoctor"><h6>Nephrology</h6></Link> </li>
-                        <li><Link to="/choosedoctor"> <h6>Radiology</h6></Link> </li>
-                        <li> <Link to="/choosedoctor"><h6>Diabetics</h6> </Link></li>
-                        <li> <Link to="/choosedoctor"><h6>Skin And VD</h6> </Link></li>
-                        <li> <Link to="/choosedoctor"><h6>Eye</h6></Link> </li>
-                        <li><Link to="/choosedoctor"> <h6>Ear, Nose, Throat (ENT)</h6> </Link></li>
-                        <li><Link to="/choosedoctor"> <h6>Gastroenterology</h6></Link> </li>
-                        <li><Link to="/choosedoctor"> <h6>Respiratory Medicine</h6> </Link></li>
-                        <li><Link to="/choosedoctor"> <h6>General Surgery</h6> </Link></li>
-                        <li> <Link to="/choosedoctor"><h6>Cosmetic Surgery</h6> </Link></li>
-                        <li> <Link to="/choosedoctor"><h6>Psychiatry</h6> </Link></li>
-                        <li><Link to="/choosedoctor"> <h6>Hormone And Endocrinology</h6> </Link></li>
+                        <li> <Link to="/choosedoctor/Medicine" ><h6>Medicine</h6>  </Link> </li>
+                        <li> <Link to="/choosedoctor/Cardiology"><h6>Cardiology</h6> </Link></li>
+                        <li> <Link to="/choosedoctor/Gynecology"><h6>Gynecology</h6> </Link></li>
+                        <li> <Link to="/choosedoctor/Nephrology"><h6>Nephrology</h6></Link> </li>
+                        <li><Link to="/choosedoctor/Radiology"> <h6>Radiology</h6></Link> </li>
+                        <li> <Link to="/choosedoctor/Diabetics"><h6>Diabetics</h6> </Link></li>
+                        <li> <Link to="/choosedoctor/Skin_And_VD"><h6>Skin And VD</h6> </Link></li>
+                        <li> <Link to="/choosedoctor/Eye"><h6>Eye</h6></Link> </li>
+                        <li><Link to="/choosedoctor/ENT"> <h6>Ear, Nose, Throat (ENT)</h6> </Link></li>
+                        <li><Link to="/choosedoctor/Gastroenterology"> <h6>Gastroenterology</h6></Link> </li>
+                        <li><Link to="/choosedoctor/Respiratory"> <h6>Respiratory Medicine</h6> </Link></li>
+                        <li><Link to="/choosedoctor/Surgery"> <h6>General Surgery</h6> </Link></li>
+                        <li> <Link to="/choosedoctor/Cosmetic_Surgery"><h6>Cosmetic Surgery</h6> </Link></li>
+                        <li> <Link to="/choosedoctor/Psychiatry"><h6>Psychiatry</h6> </Link></li>
+                        <li><Link to="/choosedoctor/Hormone_And_Endocrinology"> <h6>Hormone And Endocrinology</h6> </Link></li>
 
 
                     </ul>

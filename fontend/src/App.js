@@ -26,8 +26,6 @@ import editProfile from './screens/editProfile';
 import appointlist from './screens/appointList';
 import docViewPatient from './screens/docViewPatient';
 
-
-
 function App() {
     console.log(localStorage.getItem('name'));
     return (
@@ -42,15 +40,15 @@ function App() {
             <Route path="/testform" component={TestForm}></Route>
             <Route path="/reportpres" component={ReportPrescription}></Route>
             <Route path="/doctor" component={DoctorScreen}></Route>
-            
+
             <Route path="/" component={HomeScreen} exact></Route>
 
             <Route path="/signindoctor" component={DoctorSignin}></Route>
             <Route path="/signincollector" component={CollectorSignin}></Route>
 
             <Route path="/choosefield" component={ChooseField}></Route>
-            <Route path="/choosedoctor" component={ChooseDoctor}></Route>
-            <Route path="/doctordetails" component={DoctorDetails}></Route>
+            <Route path="/choosedoctor/:field" component={ChooseDoctor}></Route>
+            <Route path="/doctordetails/:id" component={DoctorDetails}></Route>
 
             <Route path="/seereport" component={seeReport}></Route>
             <Route path="/seepres" component={seePres}></Route>

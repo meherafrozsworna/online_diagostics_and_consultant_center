@@ -4,11 +4,6 @@ import axios from 'axios';
 
 //export default function PatientHomeScreen() {
 export default class AdminHome extends Component {
-<<<<<<< HEAD
-    /*
-=======
-
->>>>>>> 86401405506dd33020018ae70966f908c09bc6aa
     constructor(props) {
         super(props);
         //this.addTestList = this.addTestList.bind(this);

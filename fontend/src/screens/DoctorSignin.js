@@ -30,42 +30,24 @@ export default class SigninScreen extends Component {
     async onSubmit(e) {
         e.preventDefault();
 
-        const patient = {
+        const doctor = {
             email: this.state.email,
             password: this.state.password,
         };
 
-        console.log(patient);
+        console.log(doctor);
 
-        axios
-            .post('http://localhost:5000/patient/login', patient)
-            .then((res) => {
-                console.log(res.data);
-                this.setState({
-                    status: true,
-                    id: res.data._id,
-                });
-                console.log(this.state.id);
-                /*
-                name: '',
-            password: '',
-            gender: '',
-            age: 0,
-            phone: 0,
-            email: '',
-            address: '',
-            bloodGroup: '',
-                */
-                localStorage.setItem('name', res.data.name);
-                localStorage.setItem('password', res.data.password);
-                localStorage.setItem('gender', res.data.gender);
-                localStorage.setItem('age', res.data.age);
-                localStorage.setItem('phone', res.data.phone);
-                localStorage.setItem('email', res.data.email);
-                localStorage.setItem('address', res.data.address);
-                localStorage.setItem('bloodGroup', res.data.bloodGroup);
-                window.location = '/patienthome/' + this.state.id;
-            });
+        axios.post('http://localhost:5000/doctor/login', doctor).then((res) => {
+            console.log(res.data);
+            if (res.data.auth) {
+                this.setState({ login: true });
+                localStorage.setItem('token', res.data.token);
+            } else {
+                this.setState({ login: false });
+            }
+
+            window.location = '/doctor';
+        });
     }
 
     render() {
@@ -124,8 +106,11 @@ export default class SigninScreen extends Component {
                         </form>
                     </div>
                 </main>
-                 <footer>
-                <div class="row center"> <br></br>Copyight by Healthway 2021 </div>
+                <footer>
+                    <div class="row center">
+                        {' '}
+                        <br></br>Copyight by Healthway 2021{' '}
+                    </div>
                 </footer>
             </div>
         );

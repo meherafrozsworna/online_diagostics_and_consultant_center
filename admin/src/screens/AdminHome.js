@@ -21,19 +21,16 @@ export default class AdminHome extends Component {
         };
     }
 
-
     notif_function() {
-
-        this.setState(prevState => ({
-            isToggleOn: !prevState.isToggleOn
-        }))
+        this.setState((prevState) => ({
+            isToggleOn: !prevState.isToggleOn,
+        }));
     }
 
     notif_function2() {
-
-        this.setState(prevState => ({
-            isToggle2On: !prevState.isToggle2On
-        }))
+        this.setState((prevState) => ({
+            isToggle2On: !prevState.isToggle2On,
+        }));
     }
 
     /*
@@ -124,49 +121,111 @@ export default class AdminHome extends Component {
                 <header className="row">
                     <div>
                         <a className="brand" href="/adminhome">
-                            {' '} {' '} Home
+                            {' '}
+                            Home
                         </a>
                     </div>
                     <div className="row center">
-
                         <ul id="nav">
-
-
                             <li id="notification_li">
-                                <a href="javascript:void(0);" id="notificationLink" onClick={this.notif_function2}>Appointments{' '}</a>
+                                <a
+                                    href="javascript:void(0);"
+                                    id="notificationLink"
+                                    onClick={this.notif_function2}
+                                >
+                                    Appointments{' '}
+                                </a>
 
-                                <span id="notification_count" className={this.state.isToggle2On || this.state.appoint_notif == 0 ? 'hidden' : ''} >{this.state.appoint_notif}</span>
-                                <div id="notificationContainer" className={this.state.isToggle2On ? '' : 'hidden'} >
-                                    <div id="notificationTitle" >Appointments</div>
-                                    <div id="notificationsBody" class="notifications">
-                                    <ul>
-                                        <li> <h5>{this.state.appoint_notif} Pending Appointment Bookings</h5>  </li>
-
+                                <span
+                                    id="notification_count"
+                                    className={
+                                        this.state.isToggle2On ||
+                                        this.state.appoint_notif == 0
+                                            ? 'hidden'
+                                            : ''
+                                    }
+                                >
+                                    {this.state.appoint_notif}
+                                </span>
+                                <div
+                                    id="notificationContainer"
+                                    className={
+                                        this.state.isToggle2On ? '' : 'hidden'
+                                    }
+                                >
+                                    <div id="notificationTitle">
+                                        Appointments
+                                    </div>
+                                    <div
+                                        id="notificationsBody"
+                                        class="notifications"
+                                    >
+                                        <ul>
+                                            <li>
+                                                {' '}
+                                                <h5>
+                                                    {this.state.appoint_notif}{' '}
+                                                    Pending Appointment Bookings
+                                                </h5>{' '}
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
                             </li>
 
                             <li id="notification_li">
-                                <a href="javascript:void(0);" id="notificationLink" onClick={this.notif_function}>{' '}|{' '}Sample Collection</a>
+                                <a
+                                    href="javascript:void(0);"
+                                    id="notificationLink"
+                                    onClick={this.notif_function}
+                                >
+                                    {' '}
+                                    | Sample Collection
+                                </a>
 
-                                <span id="notification_count" className={this.state.isToggleOn || this.state.test_notif == 0 ? 'hidden' : ''} >{this.state.test_notif}</span>
-                                <div id="notificationContainer" className={this.state.isToggleOn ? '' : 'hidden'} >
-                                    <div id="notificationTitle" >Sample Collections</div>
-                                    <div id="notificationsBody" class="notifications">
+                                <span
+                                    id="notification_count"
+                                    className={
+                                        this.state.isToggleOn ||
+                                        this.state.test_notif == 0
+                                            ? 'hidden'
+                                            : ''
+                                    }
+                                >
+                                    {this.state.test_notif}
+                                </span>
+                                <div
+                                    id="notificationContainer"
+                                    className={
+                                        this.state.isToggleOn ? '' : 'hidden'
+                                    }
+                                >
+                                    <div id="notificationTitle">
+                                        Sample Collections
+                                    </div>
+                                    <div
+                                        id="notificationsBody"
+                                        class="notifications"
+                                    >
                                         <ul>
-                                            <li> <h5>{this.state.test_notif} Pending Reports to add</h5>  </li>
-
+                                            <li>
+                                                {' '}
+                                                <h5>
+                                                    {this.state.test_notif}{' '}
+                                                    Pending Reports to add
+                                                </h5>{' '}
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
                             </li>
 
                             <li>
-                                <a href="/" id="notificationLink">{' '}
-                                    {' '}|{' '}Log Out{' '}</a>
+                                <a href="/" id="notificationLink">
+                                    {' '}
+                                    | Log Out{' '}
+                                </a>
                             </li>
-
                         </ul>
                     </div>
                 </header>
@@ -190,7 +249,10 @@ export default class AdminHome extends Component {
                                 </Link>
                             </div>
                             <div class="row center">
-                                <Link to="/adminhome_appointments" className="btn3">
+                                <Link
+                                    to="/adminhome_appointments"
+                                    className="btn3"
+                                >
                                     Appointments
                                 </Link>
                             </div>
