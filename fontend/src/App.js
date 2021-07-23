@@ -25,6 +25,7 @@ import seeReport from './screens/seeReport';
 import editProfile from './screens/editProfile';
 import appointlist from './screens/appointList';
 import docViewPatient from './screens/docViewPatient';
+import docEditProfile from './screens/docEditProfile';
 
 function App() {
     console.log(localStorage.getItem('name'));
@@ -56,6 +57,7 @@ function App() {
             <Route path="/editprofile" component={editProfile}></Route>
             <Route path="/appointlist" component={appointlist}></Route>
             <Route path="/docViewPatient" component={docViewPatient}></Route>
+            <Route path="/doceditprofile" component={docEditProfile}></Route>
         </BrowserRouter>
     );
 }
