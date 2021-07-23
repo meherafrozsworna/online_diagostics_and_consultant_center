@@ -111,8 +111,8 @@ export default class DoctorScreen extends Component {
                                     ></img>
                                 </div>
                                 <div className="detail-box3">
-                                    <a href="/samplecollector"> Doctor Profile </a> |
-                                    <a href="/samplecollector" font-color="#9a65a5">
+                                    <a href="/doceditprofile"> Doctor Profile </a> |
+                                    <a href="/doceditprofile" font-color="#9a65a5">
                                         {' '}
                                         Edit
                                     </a>
