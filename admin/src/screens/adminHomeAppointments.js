@@ -15,56 +15,61 @@ export default class AdminHome extends Component {
         this.notif_function2 = this.notif_function2.bind(this);
 
         this.state = {
-            testList: [],
+            appointmentList: [],
             appoint_notif: 4,
             test_notif: 5,
         };
     }
 
-
     notif_function() {
-
-        this.setState(prevState => ({
-            isToggleOn: !prevState.isToggleOn
-        }))
+        this.setState((prevState) => ({
+            isToggleOn: !prevState.isToggleOn,
+        }));
     }
 
     notif_function2() {
-
-        this.setState(prevState => ({
-            isToggle2On: !prevState.isToggle2On
-        }))
+        this.setState((prevState) => ({
+            isToggle2On: !prevState.isToggle2On,
+        }));
     }
 
-
-    /*
-    async componentDidMount() {
-        //this.getTodos();
-        //console.log('BBBBBBBBBBB');
-        let data = await axios
-            .get('http://localhost:5000/patient/' + this.props.match.params.id)
+    componentDidMount() {
+        axios
+            .get('http://localhost:5000/admin/appointmentList', {
+                headers: {
+                    'x-access-token': localStorage.getItem('admintoken'),
+                },
+            })
             .then((response) => {
-                //let obj = await response.data;
                 console.log(response.data);
                 this.setState({
-                    name: response.data.name,
-                    password: response.data.password,
-                    gender: response.data.gender,
-                    age: response.data.age,
-                    phone: response.data.phone,
-                    email: response.data.email,
-                    address: response.data.address,
-                    bloodGroup: response.data.bloodGroup,
+                    appointmentList: response.data,
                 });
+
+                //this.setState({});
+                console.log('appointmentList: ');
+                console.log(this.state.appointmentList);
             })
             .catch(function (error) {
+                console.log('error');
                 console.log(error);
             });
     }
-    */
 
     render() {
-        //const data = localStorage.getItem('data');
+        const listItems = this.state.appointmentList.map((d) => (
+            <li>
+                <Link to={"/addZoomLink/"+d._id}>
+                    Patient Name :{d.patientName} <br></br>
+                    Doctor Name : {d.doctorName.toUpperCase()}<br></br>
+                    Amount : Tk 560
+                    <h4>UNPAID</h4>
+                    <button className="smallbtn">Add Appointment Link</button>
+                </Link>
+
+                <br></br>
+            </li>
+        ));
         return (
             <div className="profile">
                 {
@@ -74,49 +79,111 @@ export default class AdminHome extends Component {
                 <header className="row">
                     <div>
                         <a className="brand" href="/adminhome">
-                            {' '} {' '} Home
+                            {' '}
+                            Home
                         </a>
                     </div>
                     <div className="row center">
-
                         <ul id="nav">
-
-
                             <li id="notification_li">
-                                <a href="javascript:void(0);" id="notificationLink" onClick={this.notif_function2}>Appointments{' '}</a>
+                                <a
+                                    href="javascript:void(0);"
+                                    id="notificationLink"
+                                    onClick={this.notif_function2}
+                                >
+                                    Appointments{' '}
+                                </a>
 
-                                <span id="notification_count" className={this.state.isToggle2On || this.state.appoint_notif == 0 ? 'hidden' : ''} >{this.state.appoint_notif}</span>
-                                <div id="notificationContainer" className={this.state.isToggle2On ? '' : 'hidden'} >
-                                    <div id="notificationTitle" >Appointments</div>
-                                    <div id="notificationsBody" class="notifications">
+                                <span
+                                    id="notification_count"
+                                    className={
+                                        this.state.isToggle2On ||
+                                        this.state.appoint_notif == 0
+                                            ? 'hidden'
+                                            : ''
+                                    }
+                                >
+                                    {this.state.appoint_notif}
+                                </span>
+                                <div
+                                    id="notificationContainer"
+                                    className={
+                                        this.state.isToggle2On ? '' : 'hidden'
+                                    }
+                                >
+                                    <div id="notificationTitle">
+                                        Appointments
+                                    </div>
+                                    <div
+                                        id="notificationsBody"
+                                        class="notifications"
+                                    >
                                         <ul>
-                                            <li> <h5>{this.state.appoint_notif} Pending Appointment Bookings</h5>  </li>
-
+                                            <li>
+                                                {' '}
+                                                <h5>
+                                                    {this.state.appoint_notif}{' '}
+                                                    Pending Appointment Bookings
+                                                </h5>{' '}
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
                             </li>
 
                             <li id="notification_li">
-                                <a href="javascript:void(0);" id="notificationLink" onClick={this.notif_function}>{' '}|{' '}Sample Collection</a>
+                                <a
+                                    href="javascript:void(0);"
+                                    id="notificationLink"
+                                    onClick={this.notif_function}
+                                >
+                                    {' '}
+                                    | Sample Collection
+                                </a>
 
-                                <span id="notification_count" className={this.state.isToggleOn || this.state.test_notif == 0 ? 'hidden' : ''} >{this.state.test_notif}</span>
-                                <div id="notificationContainer" className={this.state.isToggleOn ? '' : 'hidden'} >
-                                    <div id="notificationTitle" >Sample Collections</div>
-                                    <div id="notificationsBody" class="notifications">
+                                <span
+                                    id="notification_count"
+                                    className={
+                                        this.state.isToggleOn ||
+                                        this.state.test_notif == 0
+                                            ? 'hidden'
+                                            : ''
+                                    }
+                                >
+                                    {this.state.test_notif}
+                                </span>
+                                <div
+                                    id="notificationContainer"
+                                    className={
+                                        this.state.isToggleOn ? '' : 'hidden'
+                                    }
+                                >
+                                    <div id="notificationTitle">
+                                        Sample Collections
+                                    </div>
+                                    <div
+                                        id="notificationsBody"
+                                        class="notifications"
+                                    >
                                         <ul>
-                                            <li> <h5>{this.state.test_notif} Pending Reports to add</h5>  </li>
-
+                                            <li>
+                                                {' '}
+                                                <h5>
+                                                    {this.state.test_notif}{' '}
+                                                    Pending Reports to add
+                                                </h5>{' '}
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
                             </li>
 
                             <li>
-                                <a href="/" id="notificationLink">{' '}
-                                    {' '}|{' '}Log Out{' '}</a>
+                                <a href="/" id="notificationLink">
+                                    {' '}
+                                    | Log Out{' '}
+                                </a>
                             </li>
-
                         </ul>
                     </div>
                 </header>
@@ -145,14 +212,30 @@ export default class AdminHome extends Component {
                                     Sample Collections
                                 </Link>
                             </div>
-
                         </div>
                         <div className="column2">
                             <div className="row center">
                                 <div className="scrollbox">
-                                    <ul style={{ listStyle: "none" }}>
+                                    <ul style={{ listStyle: 'none' }}>
+                                        <h2 style={{ marginLeft: '40px' }}>
+                                            Appointment Requests
+                                        </h2>
+                                        {listItems}
+                                        {/*<li>
+                                            <Link to="/addZoomLink">
+                                                <h3>Abeda Sultana </h3>
+                                                Dr Afzal Hossain<br></br>
+                                                Tk 560
+                                                <h4>UNPAID</h4>
+                                                <h4>Approved</h4>
+                                                <button className="smallbtn">
+                                                    Add Appointment Link
+                                                </button>
+                                            </Link>
 
-                                        <h2 style={{ marginLeft: "40px" }}>Appointment Requests</h2>
+                                            <br></br>
+                                        </li>
+
                                         <li>
                                             <Link to="/addZoomLink">
                                                 <h3>Abeda Sultana </h3>
@@ -161,26 +244,12 @@ export default class AdminHome extends Component {
                                                 <h4>UNPAID</h4>
                                                 <h4>Approved</h4>
                                                 <button className="smallbtn">
-                                                Add Appointment Link
-                                            </button>
-                                            </Link>
-                                            
-                                            <br></br>
-                                        </li>
-
-                                        <li>
-                                        <Link to="/addZoomLink">
-                                                <h3>Abeda Sultana </h3>
-                                                Dr Afzal Hossain<br></br>
-                                                Tk 560
-                                                <h4>UNPAID</h4>
-                                                <h4>Approved</h4>
-                                                <button className="smallbtn">
-                                                Add Appointment Link
-                                            </button>
+                                                    Add Appointment Link
+                                                </button>
                                             </Link>
                                             <br></br>
                                         </li>
+                                */}
                                     </ul>
                                 </div>
                             </div>

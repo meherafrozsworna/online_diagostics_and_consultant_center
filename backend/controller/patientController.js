@@ -199,79 +199,38 @@ router.get('/:id/showReport', async (req, res) => {
     res.send(report);
 });
 //new Added
-router.put('/addAppointment/:id', verifyJWT, async (req, res) => {
+router.post('/addAppointment/:id', verifyJWT, async (req, res) => {
     const doctor1 = await Doctor.findById(req.params.id);
-    console.log(doctor1[0]._id);
-
-    /*for (let i = 0; i < doctor1[0].schedule.length; i++) {
-        if (doctor1[0].schedule[i].date == req.body.date) {
-            console.log('dhukse');
-            doctor1[0].schedule[i].limitation =
-                doctor1[0].schedule[i].limitation - 1;
-            let appointment = {
-                patiendId: req.patient._id,
-                date: req.body.date,
-            };
-            const doctor = await Doctor.findByIdAndUpdate(
-                doctor1[0]._id,
-                {
-                    schedule: {
-                        date: doctor1[0].schedule[i].date,
-                        limitation: doctor1[0].schedule[i].limitation,
-                    },
-                    $push: { appointmentList: appointment },
-                },
-                { new: true }
-            );
-            if (!doctor)
-                return res
-                    .status(404)
-                    .send('The doctor with the given ID was not found.');
-            let appointment1 = new Appointment();
-            appointment1.patientId = req.patient._id;
-            appointment1.doctorId = doctor1[0]._id;
-            appointment1.date = req.body.date;
-            appointment1.payment = '1000';
-
-            appointment1.save((err) => {
-                if (err) return res.json({ success: false, error: err });
-            });
-
-            console.log(doctor1[0].schedule[i].date);
-        }
-    }
-    */
+    console.log(doctor1._id);
 
     let appointment = {
         patiendId: req.patient._id,
         date: req.body.date,
     };
     const doctor = await Doctor.findByIdAndUpdate(
-        doctor1[0]._id,
+        doctor1._id,
         {
-            schedule: {
-                date: doctor1[0].schedule[i].date,
-                limitation: doctor1[0].schedule[i].limitation,
-            },
             $push: { appointmentList: appointment },
         },
         { new: true }
     );
+
     if (!doctor)
         return res
             .status(404)
             .send('The doctor with the given ID was not found.');
     let appointment1 = new Appointment();
     appointment1.patientId = req.patient._id;
-    appointment1.doctorId = doctor1[0]._id;
-    appointment1.date = req.body.date;
+    appointment1.doctorId = doctor1._id;
+    (appointment1.doctorName = doctor1.name),
+        (appointment1.patientName = req.patient.name),
+        (appointment1.date = req.body.date);
     appointment1.payment = '1000';
 
     appointment1.save((err) => {
         if (err) return res.json({ success: false, error: err });
     });
-
-    res.send(doctor1[0]);
+    res.send(appointment1);
 });
 
 //eta validation er jonne add korsilam

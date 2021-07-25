@@ -48,6 +48,8 @@ router.post('/add', async (req, res) => {
     doctor.appointmentList = [];
     doctor.save((err) => {
         if (err) return res.json({ success: false, error: err });
+        console.log('AAAAAAAAAAA');
+        console.log(doctor);
         return res.json(doctor);
     });
 });
@@ -80,23 +82,27 @@ router.put('/edit', verifyJWT, async (req, res) => {
         req.doctor._id,
         {
             name: req.body.name,
-            password: await bcrypt.hash(req.body.password, salt),
+            //password: await bcrypt.hash(req.body.password, salt),
             gender: req.body.gender,
-            degree: req.body.gender,
+            degree: req.body.degree,
             currentInstitution: req.body.currentInstitution,
             specialization: req.body.specialization,
             schedule: req.body.schedule,
-            appointmentList: req.body.appointmentList,
+            //appointmentList: req.body.appointmentList,
             phone: req.body.phone,
             email: req.body.email,
+            zoomlink: req.body.zoomlink,
         },
         { new: true }
     );
-    if (!doctor)
+    if (!doctor) {
+        console.log('No doctor');
         return res
             .status(404)
             .send('The doctor with the given ID was not found.');
+    }
 
+    console.log('YYYYYYYYYYYYY');
     res.send(doctor);
 });
 

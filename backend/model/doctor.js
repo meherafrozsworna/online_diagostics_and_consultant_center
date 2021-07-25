@@ -11,12 +11,14 @@ const doctorSchema = new Schema({
     degree: { type: String, required: true },
     currentInstitution: { type: String, required: false },
     specialization: { type: String, required: false },
-    schedule: [
+    /*schedule: [
         {
             date:String,
             limitation: Number,
         },
     ],
+    */
+    schedule:[String],
     appointmentList: [
         {
             patientId: mongoose.Schema.Types.ObjectId,

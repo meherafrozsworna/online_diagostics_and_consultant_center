@@ -37,7 +37,7 @@ function App() {
             ></Route>
             <Route path="/reportList" component={ReportList}></Route>
 
-            <Route path="/addZoomLink" component={addZoomLink}></Route>
+            <Route path="/addZoomLink/:id" component={addZoomLink}></Route>
         </BrowserRouter>
     );
 }

@@ -7,12 +7,15 @@ export default class ChooseDoctor extends Component {
     constructor(props) {
         super(props);
         this.BookAppointment = this.BookAppointment.bind(this);
+        this.onChangeSchedule = this.onChangeSchedule.bind(this);
         this.state = {
             name: '',
             currentInstitution: '',
             degree: '',
             specialization: '',
             gender: '',
+            schedule: [],
+            date: '',
         };
     }
 
@@ -21,7 +24,7 @@ export default class ChooseDoctor extends Component {
             .get('http://localhost:5000/doctor/' + this.props.match.params.id)
             .then((response) => {
                 //let obj = await response.data;
-                console.log('AAAAAA');
+                //console.log('AAAAAA');
                 console.log(response.data);
                 this.setState({
                     name: response.data.name,
@@ -29,6 +32,7 @@ export default class ChooseDoctor extends Component {
                     degree: response.data.degree,
                     specialization: response.data.specialization,
                     gender: response.data.gender,
+                    schedule: response.data.schedule,
                 });
             })
             .catch(function (error) {
@@ -37,24 +41,35 @@ export default class ChooseDoctor extends Component {
             });
     }
 
-    BookAppointment(e)
-    {
+    onChangeSchedule(e) {
+        this.setState({
+            date: e.target.value,
+        });
+    }
+    BookAppointment(e) {
         e.preventDefault();
-        /addAppointment/:id
+        // /addAppointment/:id
 
+        const data = {
+            date: this.state.date,
+        };
         axios
-            .put('http://localhost:5000/patient/addAppointment/'+
-             this.props.match.params.id, testdata, {
-                headers: {
-                    'x-access-token': localStorage.getItem('token'),
-                },
-            })
+            .post(
+                'http://localhost:5000/patient/addAppointment/' +
+                    this.props.match.params.id,
+                data,
+                {
+                    headers: {
+                        'x-access-token': localStorage.getItem('token'),
+                    },
+                }
+            )
             .then((res) => {
                 console.log(res.data);
 
                 axios
                     .post(
-                        'http://localhost:5000/admin/addPendingTest',
+                        'http://localhost:5000/admin/addAppoinmentList',
                         res.data
                     )
                     .then((response) => {
@@ -64,7 +79,11 @@ export default class ChooseDoctor extends Component {
 
         window.location = '/patienthome';
     }
+
     render() {
+        const listItems = this.state.schedule.map((d) => (
+            <option value={d}>{d}</option>
+        ));
         return (
             <div className="profile2">
                 <header className="row">
@@ -120,11 +139,12 @@ export default class ChooseDoctor extends Component {
                                     <div class="rows">
                                         <div
                                             classNme="input"
-                                            //onChange={this.onChangeGender}
+                                            onChange={this.onChangeSchedule}
                                         >
                                             <select id="dropdown">
                                                 <option>Time Slot</option>
-                                                <option value="a1">
+                                                {listItems}
+                                                {/*<option value="a1">
                                                     Thursday 1/7/21: 8pm-8:30pm
                                                 </option>
                                                 <option value="a2">
@@ -139,6 +159,7 @@ export default class ChooseDoctor extends Component {
                                                 <option value="a4">
                                                     Moday 1/7/21: 6:30pm-7pm
                                                 </option>
+                                    */}
                                             </select>
                                         </div>
                                     </div>
@@ -183,7 +204,7 @@ export default class ChooseDoctor extends Component {
                                         <button
                                             type="submit"
                                             className="book_btn"
-                                            onClick= "BookAppointment"
+                                            onClick={this.BookAppointment}
                                         >
                                             {' '}
                                             Book Appointment{' '}

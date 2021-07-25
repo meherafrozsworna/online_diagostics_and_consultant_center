@@ -109,6 +109,7 @@ export default class SigninScreen extends Component {
             email: this.state.email,
         };
 
+        console.log('AAAAAAAAAA');
         console.log(doctor);
 
         axios.post('http://localhost:5000/doctor/add', doctor).then((res) => {

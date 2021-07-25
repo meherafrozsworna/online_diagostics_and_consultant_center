@@ -230,6 +230,8 @@ router.post('/deleteReportList', async (req, res) => {
 });
 //ekta book appointment e call korle etao call hobe
 router.post('/addAppoinmentList', async (req, res) => {
+    console.log("XXXXXXXXXXXX");
+    console.log(req.body._id);
     let admins = await Admin.find({});
     for (let i = 0; i < admins.length; i++) {
         const admin_temp = await Admin.findByIdAndUpdate(
