@@ -20,8 +20,13 @@ export default class ChooseDoctor extends Component {
     }
 
     async componentDidMount() {
+        console.log("Aaaaaaaaa");
+        console.log("Id : "+ this.props.match.params.id);
+        const data = {
+            _id: this.props.match.params.id,
+        };
         axios
-            .get('http://localhost:5000/doctor/' + this.props.match.params.id)
+            .post('http://localhost:5000/doctor/getdoctor', data)
             .then((response) => {
                 //let obj = await response.data;
                 //console.log('AAAAAA');
@@ -122,9 +127,9 @@ export default class ChooseDoctor extends Component {
                                         Specialization At :
                                         {this.state.specialization}
                                         <br></br>
-                                        {this.state.currentInstitution}
+                                        Institution : {this.state.currentInstitution}
                                         <br></br>
-                                        {this.state.degree}
+                                        Degree : {this.state.degree}
                                     </p>
                                 </div>
                             </div>

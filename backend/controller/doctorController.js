@@ -117,7 +117,9 @@ router.get('/home', verifyJWT, (req, res) => {
     res.send(req.doctor);
 });
 
-router.get('/getdoctor', async (req, res) => {
+router.post('/getdoctor', async (req, res) => {
+    //var mongoose = require('mongoose');
+    //var id = mongoose.Types.ObjectId(req.body._id);
     const doctor = await Doctor.findById(req.body._id);
     if (!doctor)
         return res
