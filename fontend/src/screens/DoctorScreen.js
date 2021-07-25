@@ -17,6 +17,7 @@ export default class DoctorScreen extends Component {
             specialization: '',
             currentInstitution: '',
             degree: '',
+            appointmentList : []
         };
 
         this.notif_function = this.notif_function.bind(this);
@@ -50,11 +51,34 @@ export default class DoctorScreen extends Component {
                     degree: response.data.degree,
                     currentInstitution: response.data.currentInstitution,
                 });
+
+                console.log("MMMM");
+                axios
+                    .get('http://localhost:5000/doctor/showAppointmentList', {
+                        headers: {
+                            'x-access-token': localStorage.getItem('token'),
+                        },
+                    })
+                    .then((response) => {
+                        console.log('BBBBB');
+                        console.log(response.data);
+                        this.setState({
+                            appointmentList: response.data.appointmentList
+                        });
+                    })
+                    .catch(function (error) {
+                        console.log('error');
+                        console.log(error);
+                    });
+
             })
             .catch(function (error) {
                 console.log('error');
                 console.log(error);
             });
+
+
+            
     }
 
     render() {

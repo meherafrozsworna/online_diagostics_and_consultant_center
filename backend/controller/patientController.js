@@ -204,7 +204,8 @@ router.post('/addAppointment/:id', verifyJWT, async (req, res) => {
     console.log(doctor1._id);
 
     let appointment = {
-        patiendId: req.patient._id,
+        patientId: req.patient._id,
+        
         date: req.body.date,
     };
     const doctor = await Doctor.findByIdAndUpdate(

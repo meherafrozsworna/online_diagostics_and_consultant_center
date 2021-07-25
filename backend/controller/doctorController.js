@@ -116,7 +116,7 @@ router.get('/home', verifyJWT, (req, res) => {
     console.log(req.doctor);
     res.send(req.doctor);
 });
-
+/*
 router.get('/:id', async (req, res) => {
     const doctor = await Doctor.findById(req.params.id);
     if (!doctor)
@@ -126,7 +126,7 @@ router.get('/:id', async (req, res) => {
 
     res.send(doctor);
 });
-
+*/
 router.get('/showAppointmentList', verifyJWT, async (req, res) => {
     const testList = req.doctor.appointmentList;
     console.log(req.doctor);
