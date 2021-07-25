@@ -41,7 +41,10 @@ router.get('/appointmentList',verifyJWT,async(req, res) => {
   
     res.json(test_temp);
 });
-
+router.get('/getAppointment',async (req, res) => {
+    const appointment= await Appointment.findById(req.body.id);
+    res.send(appointment);
+});
 router.get('/sampleCollectorList', verifyJWT, async (req, res) => {
     const testList = req.admin.sampleCollectorList;
     let test_temp = [];
