@@ -7,39 +7,51 @@ export default class TestForm extends Component {
     constructor(props) {
         super(props);
 
-        this.onChangeFileHandler = this.onChangeFileHandler.bind(this);
+        //this.onChangeFileHandler = this.onChangeFileHandler.bind(this);
         //this.onClickUploadHandler = this.onClickUploadHandler.bind(this);
 
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            zoomLink: null,
+            zoomLink: '',
             pId: null,
-            patientName: null,
+            patientName: '',
+            dId: null,
+            dname: '',
             //testList: [],
         };
     }
 
     componentDidMount() {
-        const object = {
-            formid: this.props.match.params.formid,
+        const data = {
+            id: this.props.match.params,
         };
-
         axios
-            .post('http://localhost:5000/admin/test_by_Id', object, {
-                headers: {
-                    'x-access-token': localStorage.getItem('admintoken'),
-                },
-            })
+            .post('http://localhost:5000/admin/appointment' , data)
             .then((response) => {
-                //console.log(response.data);
+                console.log('BBBBBBBBBBBBB');
                 this.setState({
                     pId: response.data.patientId,
                     patientName: response.data.patientName,
-                    //testList: response.data.testName,
+                    dId: response.data.doctorId,
+                    dname: response.data.doctorName,
                 });
-                console.log('this.state.patientName');
-                console.log(this.state.patientName);
+
+                /*axios
+                    .get(
+                        'http://localhost:5000/doctor' + response.data.doctorId
+                    )
+                    .then((res) => {
+                        console.log('XXXXXXXXXXXXX');
+                        console.log(res.data.zoomlink);
+                        this.setState({
+                            zoomLink: res.data.zoomlink,
+                        });
+                    })
+                    .catch(function (error) {
+                        console.log('error');
+                        console.log(error);
+                    });*/
             })
             .catch(function (error) {
                 console.log('error');
@@ -47,21 +59,6 @@ export default class TestForm extends Component {
             });
     }
 
-    onChangeFileHandler = (event) => {
-        this.setState({
-            selectedFile: event.target.files[0],
-            //loaded: 0,
-        });
-    };
-
-    /*onClickUploadHandler = () => {
-        const data = new FormData();
-        data.append('file', this.state.selectedFile);
-        axios.post('http://localhost:5000/upload', data, {
-            // receive two    parameter endpoint url ,form data
-        });
-    };
-*/
     onSubmit(e) {
         e.preventDefault();
         console.log('File uploading ');
@@ -107,7 +104,7 @@ export default class TestForm extends Component {
                             Home
                         </a>
                     </div>
-            <div>
+                    <div>
                         <Link to="/">Log Out{'  '}</Link>
                     </div>
                 </header>
@@ -117,10 +114,10 @@ export default class TestForm extends Component {
                         <h1 id="title">Add Appointment Link</h1>
                         <div id="container">
                             <p id="description">
-                                Please fill up this form with the doctor's appointment Link for the patient.
+                                Please fill up this form with the doctor's
+                                appointment Link for the patient.
                             </p>
                             <form id="survey-form" onSubmit={this.onSubmit}>
-                               
                                 <div class="rows">
                                     <div class="input">
                                         <input
