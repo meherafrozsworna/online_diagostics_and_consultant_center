@@ -21,7 +21,7 @@ const doctorSchema = new Schema({
     schedule:[String],
     appointmentList: [
         {
-            patientId: mongoose.Schema.Types.ObjectId,
+            patientId: String,
             date: String,
         },
     ],

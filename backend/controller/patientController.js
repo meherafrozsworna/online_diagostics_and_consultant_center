@@ -199,12 +199,22 @@ router.get('/:id/showReport', async (req, res) => {
     res.send(report);
 });
 //new Added
+router.get('/getpatient', async (req, res) => {
+    const  patient = await Patient.findById(req.body._id);
+    if (!doctor)
+        return res
+            .status(404)
+            .send('The patient with the given ID was not found.');
+
+    res.send(patient);
+});
 router.post('/addAppointment/:id', verifyJWT, async (req, res) => {
     const doctor1 = await Doctor.findById(req.params.id);
     console.log(doctor1._id);
 
     let appointment = {
-        patiendId: req.patient._id,
+        patientId: req.patient._id,
+        patientName:req.patient.name,
         date: req.body.date,
     };
     const doctor = await Doctor.findByIdAndUpdate(
