@@ -117,8 +117,8 @@ router.get('/home', verifyJWT, (req, res) => {
     res.send(req.doctor);
 });
 
-router.get('/:id', async (req, res) => {
-    const doctor = await Doctor.findById(req.params.id);
+router.get('/getdoctor', async (req, res) => {
+    const doctor = await Doctor.findById(req.body._id);
     if (!doctor)
         return res
             .status(404)
