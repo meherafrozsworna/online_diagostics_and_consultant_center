@@ -17,6 +17,7 @@ export default class PatientHomeScreen extends Component {
             address: '',
             bloodGroup: '',
             reportList: [],
+            presList: [],
         };
     }
 
@@ -27,7 +28,7 @@ export default class PatientHomeScreen extends Component {
             _id: this.props.match.params.id,
         };
         axios
-            .post('http://localhost:5000/patient/getpatient',data)
+            .post('http://localhost:5000/patient/getpatient', data)
             .then((response) => {
                 //let obj = await response.data;
                 console.log('AAAAAA');
@@ -48,16 +49,25 @@ export default class PatientHomeScreen extends Component {
                 console.log(error);
             });
         axios
-            .get('http://localhost:5000/patient/reportList', {
-                headers: {
-                    'x-access-token': localStorage.getItem('token'),
-                },
-            })
+            .post('http://localhost:5000/patient/getReportList', data)
             .then((response) => {
                 //let obj = await response.data;
                 console.log(response.data);
                 this.setState({
                     reportList: response.data,
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        axios
+            .post('http://localhost:5000/patient/getPresList', data)
+            .then((response) => {
+                console.log('Prescription : ');
+                console.log(response.data);
+                this.setState({
+                    presList: response.data,
                 });
             })
             .catch(function (error) {
@@ -81,6 +91,20 @@ export default class PatientHomeScreen extends Component {
             </li>
         ));
 
+        const listItems2 = this.state.presList.map((d) => (
+            <li>
+                <a href="/seepres" target="_blank">
+                    <h3>
+                        Doctor Name : {d.doctorName}
+                        <br></br>
+                        Patient Name : {d.patientName}
+                        <br></br>
+                        Date : 28-07-2021
+                        <br></br>{' '}
+                    </h3>
+                </a>
+            </li>
+        ));
         return (
             <div className="profile">
                 <header className="row">
@@ -113,7 +137,7 @@ export default class PatientHomeScreen extends Component {
                                         <li>Name : {this.state.name}</li>
                                         <li>Gender : {this.state.gender}</li>
                                         <li>Age : {this.state.age}</li>
-                                        <li>Phone: {this.state.phone}</li>
+                                        <li>Phone: 0{this.state.phone}</li>
                                         <li>Email : {this.state.email}</li>
                                         <li>Address : {this.state.address}</li>
                                         <li>
@@ -138,7 +162,8 @@ export default class PatientHomeScreen extends Component {
                             <div className="scrollbox22">
                                 <ul style={{ listStyle: 'none' }}>
                                     <h2> Prescriptions</h2>
-
+                                    {listItems2}
+                                    {/*
                                     <li>
                                         <a href="/seepres" target="_blank">
                                             <h3>
@@ -168,6 +193,7 @@ export default class PatientHomeScreen extends Component {
                                             </h3>
                                         </a>
                                     </li>
+*/}
                                 </ul>
                             </div>
                         </div>

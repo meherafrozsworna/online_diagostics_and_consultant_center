@@ -70,9 +70,21 @@ export default class PatientHomeScreen extends Component {
         const listItems = this.state.appointmentList.map((d) => (
             <li>
                 <h3>
-                    {d.doctorName}<br></br>
-                    {d.date}<br></br><br></br>
-                    <button className="smallbtn"><a href={d.link}>Go To Zoom Link</a></button>
+                    {d.doctorName}
+                    <br></br>
+                    {d.date}
+                    <br></br>
+                    <br></br>
+                    <button className="smallbtn">
+                        <a
+                            href={d.link}
+                            target="_blank"
+                            style={{ color: 'white' }}
+                        >
+                            {/*<p style={{ color: 'white' }}>Go To Zoom Link</p>*/}
+                            Go To Zoom Link
+                        </a>
+                    </button>
                 </h3>
             </li>
         ));
@@ -135,7 +147,7 @@ export default class PatientHomeScreen extends Component {
                                         </h2>
                                         <br></br>
                                         {listItems}
-{/*
+                                        {/*
                                         <li>
                                             <h3>
                                                 Dr. Afzal Khan<br></br>

@@ -17,6 +17,7 @@ export default class PatientHomeScreen extends Component {
             address: '',
             bloodGroup: '',
             reportList: [],
+            presList: [],
         };
     }
 
@@ -64,6 +65,23 @@ export default class PatientHomeScreen extends Component {
             .catch(function (error) {
                 console.log(error);
             });
+
+        axios
+            .get('http://localhost:5000/patient/presList', {
+                headers: {
+                    'x-access-token': localStorage.getItem('token'),
+                },
+            })
+            .then((response) => {
+                console.log('Prescription : ');
+                console.log(response.data);
+                this.setState({
+                    presList: response.data,
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     render() {
@@ -82,6 +100,20 @@ export default class PatientHomeScreen extends Component {
             </li>
         ));
 
+        const listItems2 = this.state.presList.map((d) => (
+            <li>
+                <a href="/seepres" target="_blank">
+                    <h3>
+                        Doctor Name : {d.doctorName}
+                        <br></br>
+                        Patient Name : {d.patientName}
+                        <br></br>
+                        Date : 28-07-2021
+                        <br></br>{' '}
+                    </h3>
+                </a>
+            </li>
+        ));
         return (
             <div className="profile">
                 {
@@ -178,7 +210,8 @@ export default class PatientHomeScreen extends Component {
                             <div className="scrollbox22">
                                 <ul>
                                     <h2> Prescriptions</h2>
-
+                                    {listItems2}
+{/*
                                     <li>
                                         <a href="/seepres" target="_blank">
                                             <h3>
@@ -218,6 +251,7 @@ export default class PatientHomeScreen extends Component {
                                             </h3>
                                         </a>
                                     </li>
+*/}
                                 </ul>
                             </div>
                         </div>

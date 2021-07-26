@@ -162,7 +162,6 @@ router.post('/testform/submit', verifyJWT, async (req, res) => {
     });
 });
 router.get('/presList', verifyJWT, async (req, res) => {
-
     const presList = req.patient.prescription;
 
     let test_temp = [];
@@ -173,6 +172,20 @@ router.get('/presList', verifyJWT, async (req, res) => {
     console.log(test_temp);
     res.json(test_temp);
 });
+
+router.post('/getPresList', async (req, res) => {
+    const patient = await Patient.findById(req.body._id);
+    const presList = patient.prescription;
+
+    let test_temp = [];
+    for (let i = 0; i < presList.length; i++) {
+        const test = await Prescription.findById(presList[i]);
+        test_temp.push(test);
+    }
+    console.log(test_temp);
+    res.json(test_temp);
+});
+
 router.get('/reportList', verifyJWT, async (req, res) => {
     console.log('\n\nBBBBBBBBBBBBB\n\n');
     console.log(req.patient.report);
@@ -187,6 +200,20 @@ router.get('/reportList', verifyJWT, async (req, res) => {
     console.log(test_temp);
     res.json(test_temp);
 });
+
+router.post('/getReportList', async (req, res) => {
+    const patient = await Patient.findById(req.body._id);
+    const reportList = patient.report;
+
+    let test_temp = [];
+    for (let i = 0; i < reportList.length; i++) {
+        const test = await Report.findById(reportList[i]);
+        test_temp.push(test);
+    }
+    console.log(test_temp);
+    res.json(test_temp);
+});
+
 //egula amader na
 router.get('/:name', async (req, res) => {
     console.log(req.params.name);

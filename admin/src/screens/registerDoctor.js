@@ -202,69 +202,58 @@ export default class SigninScreen extends Component {
                             </div>
 
                             <div>
-                                <div 
-                                classNme="input2"
-                                //className="specialborder" 
-                                onChange={this.onChangeSpecialization} 
-                                placeholder="Specialization"
-                                
+                                <div
+                                    classNme="input2"
+                                    //className="specialborder"
+                                    onChange={this.onChangeSpecialization}
+                                    placeholder="Specialization"
                                 >
                                     <select id="dropdown2">
                                         <option value="current">
                                             Field of Specialization
                                         </option>
-                                        <option value="general">
-                                            General Practice
+                                        <option value="Medicine">
+                                            Medicine
                                         </option>
-                                        <option value="cardio">
+                                        <option value="Cardiology">
                                             Cardiology
                                         </option>
-                                        <option value="gyn">
-                                            Gynaecology
+                                        <option value="Gynecology">
+                                            Gynecology
                                         </option>
-                                        <option value="skin">
-                                            Skin And Sexual Diseases
-                                        </option>
-                                        <option value="neuro">
-                                            Neurology
-                                        </option>
-                                        <option value="uro">
-                                            Urology
-                                        </option>
-                                        <option value="shl">
-                                            Kidney
-                                        </option>
-                                        <option value="ahl">
-                                            Eye
-                                        </option>
-                                        <option value="bmch">
-                                            ENT
-                                        </option>
-                                        <option value="nimc">
-                                            Respiratory Medicine
-                                        </option>
-                                        <option value="nimc">
-                                            Surgery
-                                        </option>
-                                        <option value="cancer">
-                                            Plastic Surgery
-                                        </option>
-                                        <option value="nimc">
-                                            Nutritionist
-                                        </option>
-                                        <option value="nimc">
-                                            Hormone And Endocrine
-                                        </option>
-                                        <option value="nimc">
-                                            Psychiatry
-                                        </option>
-                                        <option value="nimc">
+                                        <option value="Nephrology">
                                             Nephrology
                                         </option>
-                                        <option value="other">
-                                            Other
+                                        <option value="Radiology">
+                                            Radiology
                                         </option>
+                                        <option value="Diabetics">
+                                            Diabetics
+                                        </option>
+                                        <option value="Skin_And_VD">
+                                            Skin And VD
+                                        </option>
+                                        <option value="Eye">Eye</option>
 
+                                        <option value="ENT">
+                                            Ear, Nose, Throat (ENT)
+                                        </option>
+                                        <option value="Gastroenterology">
+                                            Gastroenterology
+                                        </option>
+                                        <option value="Respiratory">
+                                            Respiratory
+                                        </option>
+                                        <option value="Surgery">Surgery</option>
+                                        <option value="Cosmetic_Surgery">
+                                            Cosmetic Surgery
+                                        </option>
+                                        <option value="Psychiatry">
+                                            Psychiatry
+                                        </option>
+                                        <option value="Hormone_And_Endocrinology">
+                                            Hormone And Endocrinology
+                                        </option>
                                     </select>
                                 </div>
                                 <br></br>
