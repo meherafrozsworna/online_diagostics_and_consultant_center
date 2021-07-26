@@ -17,7 +17,7 @@ export default class DoctorScreen extends Component {
             specialization: '',
             currentInstitution: '',
             degree: '',
-            appointmentList : []
+            appointmentList: [],
         };
 
         this.notif_function = this.notif_function.bind(this);
@@ -52,37 +52,49 @@ export default class DoctorScreen extends Component {
                     currentInstitution: response.data.currentInstitution,
                 });
 
-                console.log("MMMM");
+                console.log('MMMM');
                 axios
                     .get('http://localhost:5000/doctor/showAppointmentList', {
                         headers: {
                             'x-access-token': localStorage.getItem('token'),
                         },
                     })
-                    .then((response) => {
+                    .then((res) => {
                         console.log('BBBBB');
-                        console.log(response.data);
+                        console.log(res.data);
                         this.setState({
-                            appointmentList: response.data.appointmentList
+                            appointmentList: res.data,
                         });
+                        console.log('compoment did mount');
+                        console.log(this.state.appointmentList);
                     })
                     .catch(function (error) {
                         console.log('error');
                         console.log(error);
                     });
-
             })
             .catch(function (error) {
                 console.log('error');
                 console.log(error);
             });
-
-
-            
     }
 
     render() {
-        //const data = localStorage.getItem('data');
+        //const listItems = null;
+        console.log('CCCCCCCCC');
+        console.log(this.state.appointmentList);
+        const listItems = this.state.appointmentList.map((d) => (
+            <li>
+                <h3>d.patientName</h3>{' '}
+                <Link to={'/docViewPatient/' + d.patientId}>
+                    {' '}
+                    <h3>d.patientName</h3>{' '}
+                </Link>
+                <p style={{ color: 'red' }}>d.date</p>
+                <br></br>
+            </li>
+        ));
+
         return (
             <div className="profile">
                 {
@@ -189,7 +201,10 @@ export default class DoctorScreen extends Component {
                                     <ul className="ul-first">
                                         <li>Name : {this.state.name}</li>
                                         <li>Email : {this.state.email}</li>
-                                        <li>Institution : {this.state.currentInstitution}</li>
+                                        <li>
+                                            Institution :{' '}
+                                            {this.state.currentInstitution}
+                                        </li>
                                         <li>Degree : {this.state.degree}</li>
                                         <li>Phone : 0{this.state.phone}</li>
                                     </ul>
@@ -202,7 +217,8 @@ export default class DoctorScreen extends Component {
                                     <h2> Upcoming Appointments</h2>
                                     <br></br>
                                     <br></br>
-
+                                    {listItems}
+                                    {/*
                                     <li>
                                         <Link to="/docViewPatient">
                                             {' '}
@@ -246,6 +262,7 @@ export default class DoctorScreen extends Component {
                                         </p>
                                         <br></br>
                                     </li>
+                                */}
                                 </ul>
                             </div>
                         </div>

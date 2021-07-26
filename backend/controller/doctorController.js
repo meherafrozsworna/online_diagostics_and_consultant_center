@@ -130,7 +130,7 @@ router.post('/getdoctor', async (req, res) => {
 });
 
 router.get('/showAppointmentList', verifyJWT, async (req, res) => {
-    const testList = req.doctor.appointmentList;
+    /*const testList = req.doctor.appointmentList;
     console.log(req.doctor);
     console.log(testList);
     let test_temp = [];
@@ -138,6 +138,12 @@ router.get('/showAppointmentList', verifyJWT, async (req, res) => {
         const test = await Appointment.findById(testList[i]);
         test_temp.push(test);
     }
+
+    const data = {
+        testList: testList,
+    };
+    */
+    const testList = req.doctor.appointmentList;
 
     res.json(testList);
 });

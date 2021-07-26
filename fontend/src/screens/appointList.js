@@ -16,7 +16,7 @@ export default class PatientHomeScreen extends Component {
             email: '',
             address: '',
             bloodGroup: '',
-            reportList: [],
+            appointmentList: [],
         };
     }
 
@@ -49,7 +49,7 @@ export default class PatientHomeScreen extends Component {
                 console.log(error);
             });
         axios
-            .get('http://localhost:5000/patient/reportList', {
+            .get('http://localhost:5000/patient/getAppointmentDetails', {
                 headers: {
                     'x-access-token': localStorage.getItem('token'),
                 },
@@ -58,7 +58,7 @@ export default class PatientHomeScreen extends Component {
                 //let obj = await response.data;
                 console.log(response.data);
                 this.setState({
-                    reportList: response.data,
+                    appointmentList: response.data,
                 });
             })
             .catch(function (error) {
@@ -67,24 +67,19 @@ export default class PatientHomeScreen extends Component {
     }
 
     render() {
-        const listItems = this.state.reportList.map((d) => (
+        const listItems = this.state.appointmentList.map((d) => (
             <li>
-                <a href={'/seereport/' + d._id} target="_blank">
-                    <h3>
-                        {d.patientName}
-                        <br></br>
-                        06-30-2021 <br></br>
-                    </h3>
-                    {d.testList.map((item, i) => (
-                        <li key={i}> {item}</li>
-                    ))}
-                </a>
+                <h3>
+                    d.<br></br>
+                    Cardiology<br></br>
+                    05-12-2020 8:00 PM<br></br> Zoom Link:<br></br>
+                    <button className="smallbtn">Go to Link</button>
+                </h3>
             </li>
         ));
 
         return (
             <div className="profile">
-
                 <header className="row">
                     <div>
                         <a className="brand" href="/patienthome/:id">
@@ -145,19 +140,17 @@ export default class PatientHomeScreen extends Component {
                                             <h3>
                                                 Dr. Afzal Khan<br></br>
                                                 Cardiology<br></br>
-                                                05-12-2020 8:00 PM<br></br>{' '}
-                                                Zoom Link:<br></br>
+                                                05-12-2020 8:00 PM<br></br> Zoom
+                                                Link:<br></br>
                                                 <button className="smallbtn">
-                                                Go to Link
-                                            </button>
+                                                    Go to Link
+                                                </button>
                                             </h3>
-                                    </li>
-                                        
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </main>
             </div>

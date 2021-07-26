@@ -56,7 +56,10 @@ function App() {
             <Route path="/makepres" component={makePres}></Route>
             <Route path="/editprofile" component={editProfile}></Route>
             <Route path="/appointlist" component={appointlist}></Route>
-            <Route path="/docViewPatient" component={docViewPatient}></Route>
+            <Route
+                path="/docViewPatient/:patientId"
+                component={docViewPatient}
+            ></Route>
             <Route path="/doceditprofile" component={docEditProfile}></Route>
         </BrowserRouter>
     );
