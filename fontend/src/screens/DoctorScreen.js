@@ -32,7 +32,26 @@ export default class DoctorScreen extends Component {
         }));
     }
 
-    async componentDidMount() {
+  async   componentDidMount() {
+    axios
+    .get('http://localhost:5000/doctor/showAppointmentList', {
+        headers: {
+            'x-access-token': localStorage.getItem('token'),
+        },
+    })
+    .then((res) => {
+        console.log('BBBBB');
+        console.log(res.data);
+        this.setState({
+            appointmentList: res.data,
+        });
+        console.log('compoment did mount');
+        console.log(this.state.appointmentList);
+    })
+    .catch(function (error) {
+        console.log('error');
+        console.log(error);
+    });
         axios
             .get('http://localhost:5000/doctor/home', {
                 headers: {
@@ -51,39 +70,44 @@ export default class DoctorScreen extends Component {
                     degree: response.data.degree,
                     currentInstitution: response.data.currentInstitution,
                 });
-
-                console.log('MMMM');
-                axios
-                    .get('http://localhost:5000/doctor/showAppointmentList', {
-                        headers: {
-                            'x-access-token': localStorage.getItem('token'),
-                        },
-                    })
-                    .then((res) => {
-                        console.log('BBBBB');
-                        console.log(res.data);
-                        this.setState({
-                            appointmentList: res.data,
-                        });
-                        console.log('compoment did mount');
-                        console.log(this.state.appointmentList);
-                    })
-                    .catch(function (error) {
-                        console.log('error');
-                        console.log(error);
-                    });
             })
             .catch(function (error) {
                 console.log('error');
                 console.log(error);
             });
+                console.log('MMMM');
+              
+           
+           
     }
 
     render() {
-        //const listItems = null;
+       // const listItems = null;
         console.log('CCCCCCCCC');
         console.log(this.state.appointmentList);
-        const listItems = this.state.appointmentList.map((d) => (
+        if (this.state.appointmentList) {
+            var listItems = this.state.appointmentList.map((d) => (
+                <li>      
+                        <h3>
+                            {d.patientName}
+                            <br></br>
+                            06-30-2021 <br></br>
+                        </h3>      
+                </li>
+            ));
+            
+          }
+       /* var listItems = this.state.appointmentList.map((d) => (
+            <li>      
+                    <h3>
+                        {d.patientName}
+                        <br></br>
+                        06-30-2021 <br></br>
+                    </h3>      
+            </li>
+        ));
+        
+  /*     const listItems = this.state.appointmentList.map((d) => (
             <li>
                 <h3>d.patientName</h3>{' '}
                 <Link to={'/docViewPatient/' + d.patientId}>
@@ -93,7 +117,7 @@ export default class DoctorScreen extends Component {
                 <p style={{ color: 'red' }}>d.date</p>
                 <br></br>
             </li>
-        ));
+        ));*/
 
         return (
             <div className="profile">
@@ -217,7 +241,8 @@ export default class DoctorScreen extends Component {
                                     <h2> Upcoming Appointments</h2>
                                     <br></br>
                                     <br></br>
-                                    {listItems}
+                                  
+                                 {listItems}
                                     {/*
                                     <li>
                                         <Link to="/docViewPatient">
