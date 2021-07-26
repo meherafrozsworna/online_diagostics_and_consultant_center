@@ -203,6 +203,10 @@ router.get('/:id/showReport', async (req, res) => {
     const report = await Report.findById(req.params.id);
     res.send(report);
 });
+router.get('/:id/showPresription', async (req, res) => {
+    const prescription = await Report.findById(req.params.id);
+    res.send(prescription);
+});
 //new Added
 router.post('/getpatient', async (req, res) => {
     const patient = await Patient.findById(req.body._id);
