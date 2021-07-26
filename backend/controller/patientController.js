@@ -213,13 +213,7 @@ router.post('/getpatient', async (req, res) => {
 
     res.send(patient);
 });
-router.get('/viewAppointmentDetails',verifyJWT,async (req, res) => {
-    console.log("dhukseee");
-    console.log(req);
-    res.send(req.patient.appointmentDetails);
 
-
-});
 router.post('/addAppointment/:id', verifyJWT, async (req, res) => {
     const doctor1 = await Doctor.findById(req.params.id);
     console.log(doctor1._id);
