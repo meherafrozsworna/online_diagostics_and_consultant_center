@@ -70,10 +70,9 @@ export default class PatientHomeScreen extends Component {
         const listItems = this.state.appointmentList.map((d) => (
             <li>
                 <h3>
-                    d.<br></br>
-                    Cardiology<br></br>
-                    05-12-2020 8:00 PM<br></br> Zoom Link:<br></br>
-                    <button className="smallbtn">Go to Link</button>
+                    {d.doctorName}<br></br>
+                    {d.date}<br></br><br></br>
+                    <button className="smallbtn"><a href={d.link}>Go To Zoom Link</a></button>
                 </h3>
             </li>
         ));
@@ -135,7 +134,8 @@ export default class PatientHomeScreen extends Component {
                                             Pending Appointments
                                         </h2>
                                         <br></br>
-
+                                        {listItems}
+{/*
                                         <li>
                                             <h3>
                                                 Dr. Afzal Khan<br></br>
@@ -147,6 +147,7 @@ export default class PatientHomeScreen extends Component {
                                                 </button>
                                             </h3>
                                         </li>
+*/}
                                     </ul>
                                 </div>
                             </div>

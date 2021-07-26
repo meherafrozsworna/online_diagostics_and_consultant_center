@@ -37,8 +37,8 @@ router.get('/isUserAuth', verifyJWT, async (req, res) => {
     res.send('you are authenticated');
 });
 router.get('/getAppointmentDetails', verifyJWT, async (req, res) => {
-    const patient=await Patient.findById(req.patient._id);
-    
+    const patient = await Patient.findById(req.patient._id);
+
     res.send(patient.appointmentDetails);
 });
 
@@ -83,7 +83,7 @@ router.post('/add', async (req, res) => {
     patient.phone = req.body.phone;
     patient.gender = req.body.gender;
     patient.bloodGroup = req.body.bloodGroup;
-    patient.appointmentDetails=[];
+    patient.appointmentDetails = [];
     // patient.historyId=null;
     patient.save((err) => {
         if (err) return res.json({ success: false, error: err });
@@ -223,7 +223,7 @@ router.get('/:id/showPresription', async (req, res) => {
 //new Added
 router.post('/getpatient', async (req, res) => {
     const patient = await Patient.findById(req.body._id);
-    if (!doctor)
+    if (!patient)
         return res
             .status(404)
             .send('The patient with the given ID was not found.');

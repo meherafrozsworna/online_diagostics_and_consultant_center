@@ -40,8 +40,7 @@ router.post('/:id/setThepatientId', async (req, res) => {
         {
             patientId: req.body.patientId,
             patientName: req.body.patientName,
-            mediciniList: req.body.mediciniList,
-            suggestionList: req.body.suggestionList
+            doctorName: req.body.doctorName,
         },
         { new: true }
     );

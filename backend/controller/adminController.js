@@ -30,7 +30,7 @@ const verifyJWT = async (req, res, next) => {
     }
 };
 //list show er jonne
-router.get('/appointmentList',verifyJWT,async(req, res) => {
+router.get('/appointmentList', verifyJWT, async (req, res) => {
     const testList = req.admin.appointmentList;
     console.log(testList);
     let test_temp = [];
@@ -38,11 +38,11 @@ router.get('/appointmentList',verifyJWT,async(req, res) => {
         const test = await Appointment.findById(testList[i]);
         test_temp.push(test);
     }
-  
+
     res.json(test_temp);
 });
-router.get('/getAppointment',async (req, res) => {
-    const appointment= await Appointment.findById(req.body.id);
+router.post('/getAppointment', async (req, res) => {
+    const appointment = await Appointment.findById(req.body._id);
     res.send(appointment);
 });
 router.get('/sampleCollectorList', verifyJWT, async (req, res) => {
@@ -52,7 +52,7 @@ router.get('/sampleCollectorList', verifyJWT, async (req, res) => {
         const test = await Testform.findById(testList[i]);
         test_temp.push(test);
     }
-  
+
     res.json(test_temp);
 });
 
@@ -64,7 +64,7 @@ router.get('/testFormList', verifyJWT, async (req, res) => {
         const test = await Testform.findById(testList[i]);
         test_temp.push(test);
     }
-  
+
     res.json(test_temp);
 });
 
@@ -234,7 +234,7 @@ router.post('/deleteReportList', async (req, res) => {
 });
 //ekta book appointment e call korle etao call hobe
 router.post('/addAppoinmentList', async (req, res) => {
-    console.log("XXXXXXXXXXXX");
+    console.log('XXXXXXXXXXXX');
     console.log(req.body._id);
     let admins = await Admin.find({});
     for (let i = 0; i < admins.length; i++) {
@@ -280,29 +280,26 @@ router.post('/:email/addtheReportToPatientProfile', async (req, res) => {
     res.send(patient);
 });
 //doctor er id req body te ashbe sheta diye oi patient er appointment ta khuje ber kore oita te zoom link dibo doctor tar
-router.post('/sendZoomlink',async (req, res) =>{
-let appointment = await Appointment.findById(req.body._id);
-let doctor =await Doctor.findById(appointment.doctorId);
-console.log(doctor.name);
- const patient =await Patient.findByIdAndUpdate(
-     
-    appointment.patientId[0],
-    {
-        appointmentDetails:{
-            doctorId : appointment.doctorId[0],
-            doctorName: doctor.name,
-            link : doctor.zoomlink,
-            date : appointment.date
-           
-        }
-    },
-    { new: true }
+router.post('/sendZoomlink', async (req, res) => {
+    let appointment = await Appointment.findById(req.body._id);
+    let doctor = await Doctor.findById(appointment.doctorId);
+    console.log(doctor.name);
+    const patient = await Patient.findByIdAndUpdate(
+        appointment.patientId[0],
+        {
+            appointmentDetails: {
+                doctorId: appointment.doctorId[0],
+                doctorName: doctor.name,
+                link: doctor.zoomlink,
+                date: appointment.date,
+            },
+        },
+        { new: true }
     );
     if (!patient)
-            return res
+        return res
             .status(404)
             .send('The patient with the given ID was not found.');
-   res.send("done");
-
+    res.send('done');
 });
 module.exports = router;

@@ -24,10 +24,10 @@ export default class TestForm extends Component {
 
     componentDidMount() {
         const data = {
-            id: this.props.match.params,
+            _id: this.props.match.params.id,
         };
         axios
-            .post('http://localhost:5000/admin/appointment' , data)
+            .post('http://localhost:5000/admin/getAppointment', data)
             .then((response) => {
                 console.log('BBBBBBBBBBBBB');
                 this.setState({
@@ -37,10 +37,11 @@ export default class TestForm extends Component {
                     dname: response.data.doctorName,
                 });
 
-                /*axios
-                    .get(
-                        'http://localhost:5000/doctor' + response.data.doctorId
-                    )
+                const doctor = {
+                    _id: response.data.doctorId,
+                };
+                axios
+                    .post('http://localhost:5000/doctor/getdoctor', doctor)
                     .then((res) => {
                         console.log('XXXXXXXXXXXXX');
                         console.log(res.data.zoomlink);
@@ -51,7 +52,7 @@ export default class TestForm extends Component {
                     .catch(function (error) {
                         console.log('error');
                         console.log(error);
-                    });*/
+                    });
             })
             .catch(function (error) {
                 console.log('error');
@@ -61,36 +62,19 @@ export default class TestForm extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        console.log('File uploading ');
-        const data = new FormData();
-        //data.append('file', this.state.selectedFile);
-
-        console.log(this.props.match.params.id);
-        const object = {
-            patientId: this.props.match.params.patientid,
-            zoomLink: this.state.zoomLink,
-            patientName: this.state.patientName,
+        const data = {
+            _id: this.props.match.params.id,
         };
-
-        //   /fileupload/:formid/patient/:patientid
         axios
-            .post('http://localhost:5000/report/addReport', data)
+            .post('http://localhost:5000/admin/sendZoomlink', data)
             .then((res) => {
+                console.log('ZZZZZZZZZZZ');
                 console.log(res.data);
-                const id = res.data._id;
-                console.log(id);
-
-                axios
-                    .post(
-                        'http://localhost:5000/report/' +
-                            id +
-                            '/setThepatientId',
-                        object
-                    )
-                    .then((res) => console.log('done'))
-                    .catch((err) => console.log(err));
             })
-            .catch((err) => console.log(err));
+            .catch(function (error) {
+                console.log('error');
+                console.log(error);
+            });
 
         window.location = '/adminhome';
     }

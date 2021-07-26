@@ -4,123 +4,86 @@ import axios from 'axios';
 
 //export default function SigninScreen() {
 export default class TestForm extends Component {
-
-
-    
     constructor(props) {
         super(props);
-
-        this.onChangeName = this.onChangeName.bind(this);
-        this.onChangeNumber = this.onChangeNumber.bind(this);
-        this.onChangeAge = this.onChangeAge.bind(this);
-        this.onChangeGender = this.onChangeGender.bind(this);
-        this.onChangeDiagnosis = this.onChangeDiagnosis.bind(this);
-        this.onChangeMedicines = this.onChangeMedicines.bind(this);
-        this.onChangeSuggestions = this.onChangeSuggestions.bind(this);
-        this.onChangeDate = this.onChangeDate.bind(this);
-        this.onChangeID = this.onChangeID.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
             id: '',
             name: '',
-            number: '',
-            age: null,
-            gender: '',
-            diagnosis: '',
-            medicines: '',
-            suggestions: '',
-            date: null,
         };
     }
+    async componentDidMount() {
+        const data = {
+            _id: this.props.match.params.id,
+        };
+        axios
+            .post('http://localhost:5000/patient/getpatient', data)
+            .then((res) => {
+                console.log('BBBBBBBB');
+                console.log(res.data);
+                this.setState({
+                    id: res.data._id,
+                    name: res.data.name,
+                });
+            })
+            .catch(function (error) {
+                console.log('error');
+                console.log(error);
+            });
+    }
+    onChangeFileHandler = (event) => {
+        this.setState({
+            selectedFile: event.target.files[0],
+            //loaded: 0,
+        });
+    };
 
-    onChangeID(e) {
-        this.setState({
-            id: e.target.value,
+    /*onClickUploadHandler = () => {
+        const data = new FormData();
+        data.append('file', this.state.selectedFile);
+        axios.post('http://localhost:5000/upload', data, {
+            // receive two    parameter endpoint url ,form data
         });
-    }
-
-    onChangeName(e) {
-        this.setState({
-            name: e.target.value,
-        });
-    }
-    onChangeNumber(e) {
-        this.setState({
-            number: e.target.value,
-        });
-    }
-    onChangeAge(e) {
-        this.setState({
-            age: e.target.value,
-        });
-    }
-
-    onChangeGender(e) {
-        this.setState({
-            prefGender: e.target.value,
-        });
-    }
-    onChangeDiagnosis(e) {
-        this.setState({
-            diagnosis: e.target.value,
-        });
-    }
-    onChangeMedicines(e) {
-        this.setState({
-            medicines: e.target.value,
-        });
-    }
-    onChangeSuggestions(e) {
-        this.setState({
-            suggestions: e.target.value,
-        });
-    }
-    onChangeDate(e) {
-        this.setState({
-            date: e.target.value,
-        });
-    }
-
+    };
+*/
     onSubmit(e) {
         e.preventDefault();
+        console.log('File uploading ');
+        const data = new FormData();
+        data.append('file', this.state.selectedFile);
 
-        const testdata = {
-            id: this.state.id,
+        console.log(this.props.match.params.id);
+        const object = {
+            
+
+
+            patientId: this.props.match.params.id,
             patientName: this.state.name,
-            number: this.state.numeber,
-            age: this.state.age,
-            gender: this.state.gender,
-            diagnosis: this.state.diagnosis,
-            medicines: this.state.medicines,
-            suggestions: this.state.suggestions,
-            date: this.state.date,
+            //doctorName: req.body.doctorName,
         };
 
-        console.log(testdata);
-
+        //   /fileupload/:formid/patient/:patientid
         axios
-            .post('http://localhost:5000/patient/testform/submit', testdata, {
-                headers: {
-                    'x-access-token': localStorage.getItem('token'),
-                },
-            })
+            .post('http://localhost:5000/prescription/addPrescription', data)
             .then((res) => {
                 console.log(res.data);
-
+                const id = res.data._id;
+                console.log(id);
                 axios
                     .post(
-                        'http://localhost:5000/admin/addPendingTest',
-                        res.data
+                        'http://localhost:5000/report/' +
+                            id +
+                            '/setThepatientId',
+                        object
                     )
-                    .then((response) => {
-                        console.log(response.data);
-                    });
-            });
+                    .then((res) => console.log('done'))
+                    .catch((err) => console.log(err));
+            })
+            .catch((err) => console.log(err));
 
-        window.location = '/doctor';
+        window.location = '/adminhome';
     }
-
 
     render() {
         return (
@@ -140,17 +103,17 @@ export default class TestForm extends Component {
                     <div>
                         <h1 id="title">Prescription</h1>
                         <div id="container">
-                            
                             <form id="survey-form" onSubmit={this.onSubmit}>
-
-                            <div class="rows">
+                                <div class="rows">
                                     <div class="input">
                                         <input
                                             type="text"
                                             placeholder="Patient ID"
                                             id="id"
                                             className="text-input"
-                                            value={this.state.id}
+                                            value={
+                                                'Patient ID : ' + this.state.id
+                                            }
                                             onChange={this.onChangeID}
                                             required
                                         />
@@ -164,7 +127,10 @@ export default class TestForm extends Component {
                                             placeholder="Name of Patient"
                                             id="name"
                                             className="text-input"
-                                            value={this.state.name}
+                                            value={
+                                                'Patient Name : ' +
+                                                this.state.name
+                                            }
                                             onChange={this.onChangeName}
                                             required
                                         />
@@ -172,7 +138,8 @@ export default class TestForm extends Component {
                                 </div>
 
                                 <div class="rows">
-                                    <br></br>Add A Scanned Prescription File:<br></br>
+                                    <br></br>Add A Scanned Prescription File:
+                                    <br></br>
                                     <div class="box__input">
                                         <br></br>
                                         <input

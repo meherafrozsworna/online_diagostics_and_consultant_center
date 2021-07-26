@@ -6,6 +6,7 @@ const Schema = mongoose.Schema;
 const prescriptionSchema = new Schema({
     patientId: mongoose.Schema.Types.ObjectId,
     patientName: { type: String },
+    doctorName : {type : String},
     suggestionList: [String],
     mediciniList:[String],
     fileStorage: { type: String },

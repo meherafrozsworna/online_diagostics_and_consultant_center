@@ -23,12 +23,11 @@ export default class PatientHomeScreen extends Component {
     async componentDidMount() {
         //this.getTodos();
         //console.log('BBBBBBBBBBB');
+        const data = {
+            _id: this.props.match.params.id,
+        };
         axios
-            .get('http://localhost:5000/patient/home', {
-                headers: {
-                    'x-access-token': localStorage.getItem('token'),
-                },
-            })
+            .post('http://localhost:5000/patient/getpatient',data)
             .then((response) => {
                 //let obj = await response.data;
                 console.log('AAAAAA');
@@ -84,7 +83,6 @@ export default class PatientHomeScreen extends Component {
 
         return (
             <div className="profile">
-
                 <header className="row">
                     <div>
                         <a className="brand" href="/doctor">
@@ -92,7 +90,9 @@ export default class PatientHomeScreen extends Component {
                         </a>
                     </div>
                     <div>
-                        <Link to="/makepres">+ Add Prescription{'  '}</Link>
+                        <Link to={'/makepres/' + this.props.match.params.id}>
+                            + Add Prescription{'  '}
+                        </Link>
                         <Link to="/">Log Out{'  '}</Link>
                     </div>
                 </header>
@@ -126,7 +126,7 @@ export default class PatientHomeScreen extends Component {
                         </div>
                         <div className="column2">
                             <div className="scrollbox22">
-                                <ul style={{listStyle:'none'}}>
+                                <ul style={{ listStyle: 'none' }}>
                                     <h2> Reports</h2>
                                     {listItems}
                                 </ul>
@@ -136,7 +136,7 @@ export default class PatientHomeScreen extends Component {
                         <div className="column3">
                             <br></br>
                             <div className="scrollbox22">
-                                <ul style={{listStyle:'none'}}>
+                                <ul style={{ listStyle: 'none' }}>
                                     <h2> Prescriptions</h2>
 
                                     <li>

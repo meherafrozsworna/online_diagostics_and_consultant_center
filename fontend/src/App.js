@@ -53,11 +53,11 @@ function App() {
 
             <Route path="/seereport" component={seeReport}></Route>
             <Route path="/seepres" component={seePres}></Route>
-            <Route path="/makepres" component={makePres}></Route>
+            <Route path="/makepres/:id" component={makePres}></Route>
             <Route path="/editprofile" component={editProfile}></Route>
             <Route path="/appointlist" component={appointlist}></Route>
             <Route
-                path="/docViewPatient/:patientId"
+                path="/docViewPatient/:id"
                 component={docViewPatient}
             ></Route>
             <Route path="/doceditprofile" component={docEditProfile}></Route>
