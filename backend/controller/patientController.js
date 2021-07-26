@@ -9,6 +9,7 @@ const Appointment = require('../model/appointment');
 const mongoose = require('mongoose');
 const express = require('express');
 const jwt = require('jsonwebtoken');
+const Prescription = require('../model/prescription');
 const router = express.Router();
 
 const verifyJWT = async (req, res, next) => {
@@ -159,6 +160,18 @@ router.post('/testform/submit', verifyJWT, async (req, res) => {
         if (err) return res.json({ success: false, error: err });
         return res.json(testform);
     });
+});
+router.get('/presList', verifyJWT, async (req, res) => {
+
+    const presList = req.patient.prescription;
+
+    let test_temp = [];
+    for (let i = 0; i < presList.length; i++) {
+        const test = await Prescription.findById(presList[i]);
+        test_temp.push(test);
+    }
+    console.log(test_temp);
+    res.json(test_temp);
 });
 router.get('/reportList', verifyJWT, async (req, res) => {
     console.log('\n\nBBBBBBBBBBBBB\n\n');
