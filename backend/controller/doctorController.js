@@ -128,7 +128,10 @@ router.post('/getdoctor', async (req, res) => {
 
     res.send(doctor);
 });
-
+router.get('getName',verifyJWT ,async (req, res) => {
+    const name=req.doctor.name;
+    res.json(name);
+});
 router.get('/showAppointmentList', verifyJWT, async (req, res) => {
     /*const testList = req.doctor.appointmentList;
     console.log(req.doctor);
