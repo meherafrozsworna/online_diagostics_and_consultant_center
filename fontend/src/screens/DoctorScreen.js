@@ -90,9 +90,9 @@ export default class DoctorScreen extends Component {
                 <li>
                 <Link to={'/docViewPatient/' + d.patientId}>
                     {' '}
-                    <h3>{d.patientName}</h3>{' '}
+                    <h3>Patient Name : {d.patientName}</h3>{' '}
                 </Link>
-                <p style={{ color: 'red' }}>{d.date}</p>
+                <p style={{ color: 'red' }}>Time : {d.date}</p>
                 <br></br>
             </li>
             ));
