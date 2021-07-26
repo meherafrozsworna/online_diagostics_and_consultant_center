@@ -88,7 +88,6 @@ export default class DoctorScreen extends Component {
         if (this.state.appointmentList) {
             var listItems = this.state.appointmentList.map((d) => (
                 <li>
-                <h3>{d.patientName}</h3>{' '}
                 <Link to={'/docViewPatient/' + d.patientId}>
                     {' '}
                     <h3>{d.patientName}</h3>{' '}
