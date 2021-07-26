@@ -61,7 +61,7 @@ export default class AdminHome extends Component {
             <li>
                 <Link to={"/addZoomLink/"+d._id}>
                     Patient Name :{d.patientName} <br></br>
-                    Doctor Name : {d.doctorName.toUpperCase()}<br></br>
+                    Doctor Name : {d.doctorName}<br></br>
                     Amount : Tk 560
                     <h4>UNPAID</h4>
                     <button className="smallbtn">Add Appointment Link</button>

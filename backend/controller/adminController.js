@@ -283,14 +283,14 @@ router.post('/:email/addtheReportToPatientProfile', async (req, res) => {
 router.post('/sendZoomlink',async (req, res) =>{
 let appointment = await Appointment.findById(req.body._id);
 let doctor =await Doctor.findById(appointment.doctorId);
-console.log( appointment.patientId[0]);
+console.log(doctor.name);
  const patient =await Patient.findByIdAndUpdate(
      
     appointment.patientId[0],
     {
         appointmentDetails:{
             doctorId : appointment.doctorId[0],
-            doctorName : doctor.name ,
+            doctorName: doctor.name,
             link : doctor.zoomlink,
             date : appointment.date
            

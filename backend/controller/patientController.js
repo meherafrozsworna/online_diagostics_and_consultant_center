@@ -32,9 +32,13 @@ const verifyJWT = async (req, res, next) => {
         });
     }
 };
-
 router.get('/isUserAuth', verifyJWT, async (req, res) => {
     res.send('you are authenticated');
+});
+router.get('/getAppointmentDetails', verifyJWT, async (req, res) => {
+    const patient=await Patient.findById(req.patient._id);
+    
+    res.send(patient.appointmentDetails);
 });
 
 router.get('/home', verifyJWT, (req, res) => {
@@ -78,6 +82,7 @@ router.post('/add', async (req, res) => {
     patient.phone = req.body.phone;
     patient.gender = req.body.gender;
     patient.bloodGroup = req.body.bloodGroup;
+    patient.appointmentDetails=[];
     // patient.historyId=null;
     patient.save((err) => {
         if (err) return res.json({ success: false, error: err });
@@ -208,6 +213,7 @@ router.post('/getpatient', async (req, res) => {
 
     res.send(patient);
 });
+
 router.post('/addAppointment/:id', verifyJWT, async (req, res) => {
     const doctor1 = await Doctor.findById(req.params.id);
     console.log(doctor1._id);
