@@ -202,15 +202,72 @@ export default class SigninScreen extends Component {
                             </div>
 
                             <div>
-                                <input
-                                    type="text"
-                                    id="specialization"
-                                    placeholder="Specialization"
-                                    className="specialborder"
-                                    required
-                                    value={this.state.specialization}
-                                    onChange={this.onChangeSpecialization}
-                                />
+                                <div 
+                                classNme="input2"
+                                //className="specialborder" 
+                                onChange={this.onChangeSpecialization} 
+                                placeholder="Specialization"
+                                
+                                >
+                                    <select id="dropdown2">
+                                        <option value="current">
+                                            Field of Specialization
+                                        </option>
+                                        <option value="general">
+                                            General Practice
+                                        </option>
+                                        <option value="cardio">
+                                            Cardiology
+                                        </option>
+                                        <option value="gyn">
+                                            Gynaecology
+                                        </option>
+                                        <option value="skin">
+                                            Skin And Sexual Diseases
+                                        </option>
+                                        <option value="neuro">
+                                            Neurology
+                                        </option>
+                                        <option value="uro">
+                                            Urology
+                                        </option>
+                                        <option value="shl">
+                                            Kidney
+                                        </option>
+                                        <option value="ahl">
+                                            Eye
+                                        </option>
+                                        <option value="bmch">
+                                            ENT
+                                        </option>
+                                        <option value="nimc">
+                                            Respiratory Medicine
+                                        </option>
+                                        <option value="nimc">
+                                            Surgery
+                                        </option>
+                                        <option value="cancer">
+                                            Plastic Surgery
+                                        </option>
+                                        <option value="nimc">
+                                            Nutritionist
+                                        </option>
+                                        <option value="nimc">
+                                            Hormone And Endocrine
+                                        </option>
+                                        <option value="nimc">
+                                            Psychiatry
+                                        </option>
+                                        <option value="nimc">
+                                            Nephrology
+                                        </option>
+                                        <option value="other">
+                                            Other
+                                        </option>
+
+                                    </select>
+                                </div>
+                                <br></br>
                             </div>
 
                             <div>

@@ -454,6 +454,8 @@ input {
   font-size: 100%;
 }
 
+
+
 .btn {
   width: 100%;
   border-radius: 34px;
@@ -642,6 +644,17 @@ margin-bottom: 40px;
   line-height: 15px;
   font-size: 16px;
 }
+
+.input2 {
+
+  background-color: #eee;
+
+  border: 4px #574296 solid;
+  height: 30px;
+  opacity: 0.8;
+  font-size: 100%;
+  float: left;
+}
 .text-input {
   text-align: left;
   background-color: white;
@@ -660,6 +673,20 @@ margin-bottom: 40px;
   max-width: 580px;
   line-height: 20px;
   border: 2px #6e4596 solid;
+}
+
+#dropdown2 {
+  text-align: left;
+  margin-top: 10px;
+  width: 430px;
+  height: 40px;
+
+  background-color: #eee;
+  color: #494949;
+
+  border: 4px #574296 solid;
+  opacity: 0.8;
+  font-size: 100%;
 }
 #title {
   text-align: center;
