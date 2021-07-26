@@ -87,13 +87,15 @@ export default class DoctorScreen extends Component {
         console.log(this.state.appointmentList);
         if (this.state.appointmentList) {
             var listItems = this.state.appointmentList.map((d) => (
-                <li>      
-                        <h3>
-                            {d.patientName}
-                            <br></br>
-                            06-30-2021 <br></br>
-                        </h3>      
-                </li>
+                <li>
+                <h3>{d.patientName}</h3>{' '}
+                <Link to={'/docViewPatient/' + d.patientId}>
+                    {' '}
+                    <h3>{d.patientName}</h3>{' '}
+                </Link>
+                <p style={{ color: 'red' }}>{d.date}</p>
+                <br></br>
+            </li>
             ));
             
           }
