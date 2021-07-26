@@ -290,6 +290,7 @@ console.log( appointment.patientId[0]);
     {
         appointmentDetails:{
             doctorId : appointment.doctorId[0],
+            doctorName : doctor.name ,
             link : doctor.zoomlink,
             date : appointment.date
            

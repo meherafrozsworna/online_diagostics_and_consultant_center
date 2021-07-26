@@ -15,6 +15,7 @@ const patientSchema = new Schema({
     bloodGroup:{ type: String, required: true },
     appointmentDetails : [{
         doctorId:{type: mongoose.Schema.Types.ObjectId},
+        doctorName : {type: String},
         link :{type :String},
         date : {type : String}
     }],
