@@ -11,6 +11,7 @@ export default class TestForm extends Component {
         this.state = {
             id: '',
             name: '',
+            doctorName: '',
         };
     }
     async componentDidMount() {
@@ -26,6 +27,26 @@ export default class TestForm extends Component {
                     id: res.data._id,
                     name: res.data.name,
                 });
+            })
+            .catch(function (error) {
+                console.log('error');
+                console.log(error);
+            });
+
+        axios
+            .get('http://localhost:5000/doctor/home', {
+                headers: {
+                    'x-access-token': localStorage.getItem('token'),
+                },
+            })
+            .then((response) => {
+                //let obj = await response.data;
+                console.log('Doctor name : ');
+                console.log(response.data);
+                this.setState({
+                    doctorName: response.data.name,
+                });
+                console.log(this.state.doctorName);
             })
             .catch(function (error) {
                 console.log('error');
@@ -55,12 +76,9 @@ export default class TestForm extends Component {
 
         console.log(this.props.match.params.id);
         const object = {
-            
-
-
             patientId: this.props.match.params.id,
             patientName: this.state.name,
-            //doctorName: req.body.doctorName,
+            doctorName: this.state.doctorName,
         };
 
         //   /fileupload/:formid/patient/:patientid
@@ -72,7 +90,7 @@ export default class TestForm extends Component {
                 console.log(id);
                 axios
                     .post(
-                        'http://localhost:5000/report/' +
+                        'http://localhost:5000/prescription/' +
                             id +
                             '/setThepatientId',
                         object
@@ -82,7 +100,7 @@ export default class TestForm extends Component {
             })
             .catch((err) => console.log(err));
 
-        window.location = '/adminhome';
+        window.location = '/doctor';
     }
 
     render() {
@@ -145,7 +163,7 @@ export default class TestForm extends Component {
                                         <input
                                             type="file"
                                             name="file"
-                                            //onChange={this.onChangeFileHandler}
+                                            onChange={this.onChangeFileHandler}
                                         />
                                         <br></br>
                                         <br></br>

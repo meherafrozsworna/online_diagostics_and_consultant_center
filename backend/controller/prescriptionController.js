@@ -19,7 +19,9 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage }).single('file');
 
 router.post('/addPrescription', upload, async (req, res) => {
+    console.log('addPrescription');
     let prescription = new Prescription();
+    //console.log(req);
     if (req.file) {
         console.log('Dukse :  ' + req.file.path);
         prescription.fileStorage = req.file.path;
@@ -35,6 +37,7 @@ router.post('/addPrescription', upload, async (req, res) => {
 });
 //id ta hocche prescription er
 router.post('/:id/setThepatientId', async (req, res) => {
+    console.log('setThepatientId');
     const prescription = await Prescription.findByIdAndUpdate(
         req.params.id,
         {

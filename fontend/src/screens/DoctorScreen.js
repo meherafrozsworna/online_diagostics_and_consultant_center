@@ -52,7 +52,7 @@ export default class DoctorScreen extends Component {
         console.log('error');
         console.log(error);
     });
-        axios
+       axios
             .get('http://localhost:5000/doctor/home', {
                 headers: {
                     'x-access-token': localStorage.getItem('token'),
@@ -94,7 +94,7 @@ export default class DoctorScreen extends Component {
                 </Link>
                 <p style={{ color: 'red' }}>Time : {d.date}</p>
                 <br></br>
-            </li>
+            </li> 
             ));
             
           }
