@@ -38,6 +38,7 @@ router.post('/addReport', upload, async (req, res) => {
 });
 
 router.post('/:id/setThepatientId', async (req, res) => {
+    console.log("report dhukseee");
     const report = await Report.findByIdAndUpdate(
         req.params.id,
         {
@@ -47,6 +48,8 @@ router.post('/:id/setThepatientId', async (req, res) => {
         },
         { new: true }
     );
+    console.log("patient id..........");
+    console.log(req.body.patientId);
     let patient = await Patient.findByIdAndUpdate(
         req.body.patientId,
         {
@@ -54,6 +57,7 @@ router.post('/:id/setThepatientId', async (req, res) => {
         },
         { new: true }
     );
+    console.log(patient);
     if (!report)
         return res
             .status(404)

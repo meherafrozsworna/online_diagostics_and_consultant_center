@@ -93,7 +93,7 @@ export default class PatientHomeScreen extends Component {
 
         const listItems2 = this.state.presList.map((d) => (
             <li>
-                <a href="/seepres" target="_blank">
+                <a href={"/seepres/"+d._id} target="_blank">
                     <h3>
                         Doctor Name : {d.doctorName}
                         <br></br>

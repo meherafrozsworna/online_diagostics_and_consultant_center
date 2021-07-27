@@ -37,6 +37,7 @@ router.get('/isUserAuth', verifyJWT, async (req, res) => {
     res.send('you are authenticated');
 });
 router.get('/getAppointmentDetails', verifyJWT, async (req, res) => {
+    
     const patient = await Patient.findById(req.patient._id);
 
     res.send(patient.appointmentDetails);

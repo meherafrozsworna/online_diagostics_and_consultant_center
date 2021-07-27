@@ -47,6 +47,8 @@ router.post('/:id/setThepatientId', async (req, res) => {
         },
         { new: true }
     );
+    console.log("patient id pres.......");
+    console.log(req.body.patientId);
     let patient = await Patient.findByIdAndUpdate(
         req.body.patientId,
         {
@@ -61,4 +63,9 @@ router.post('/:id/setThepatientId', async (req, res) => {
 
     res.send('done');
 });
+router.get("/getPres/:id",async(req,res)=>{
+    const pres= await Prescription.findById(req.params.id);
+    res.json(pres);
+
+})
 module.exports = router;

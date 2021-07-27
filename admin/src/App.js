@@ -30,7 +30,7 @@ function App() {
             <Route path="/adddoctor" component={addDoctor}></Route>
             <Route path="/registerdoctor" component={registerDoctor}></Route>
 
-            <Route path="/fileupload/:id" component={fileUpload}></Route>
+            <Route path="/fileupload/:formid/patient/:patientid" component={fileUpload}></Route>
             <Route
                 path="/adminhome_appointments"
                 component={adminHome2}

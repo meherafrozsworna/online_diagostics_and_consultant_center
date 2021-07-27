@@ -52,7 +52,7 @@ function App() {
             <Route path="/doctordetails/:id" component={DoctorDetails}></Route>
 
             <Route path="/seereport" component={seeReport}></Route>
-            <Route path="/seepres" component={seePres}></Route>
+            <Route path="/seepres/:id" component={seePres}></Route>
             <Route path="/makepres/:id" component={makePres}></Route>
             <Route path="/editprofile" component={editProfile}></Route>
             <Route path="/appointlist" component={appointlist}></Route>

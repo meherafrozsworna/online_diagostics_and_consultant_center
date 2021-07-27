@@ -32,7 +32,8 @@ export default class TestForm extends Component {
                 },
             })
             .then((response) => {
-                //console.log(response.data);
+                console.log("report e dhuksee...");
+                console.log(response.data);
                 this.setState({
                     pId: response.data.patientId,
                     patientName: response.data.patientName,
@@ -68,7 +69,7 @@ export default class TestForm extends Component {
         const data = new FormData();
         data.append('file', this.state.selectedFile);
 
-        console.log(this.props.match.params.id);
+        console.log(this.props.match.params.patientid);
         const object = {
             patientId: this.props.match.params.patientid,
             testList: this.state.testList,

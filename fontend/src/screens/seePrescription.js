@@ -11,51 +11,28 @@ export default class SampleCollector extends Component {
         //this.onChangeDescription = this.onChangeDescription.bind(this);
 
         this.state = {
-            name: '',
-            age: null,
-            gender: '',
-            diagnosis: '',
-            medicines:'',
-            suggestions: '',
-            date: null,
-            id: '',
+            Pname:'',
+            Dname:''
         };
     }
 
     componentDidMount() {
         axios
             .get(
-                'http://localhost:5000/patient/testform/' +
+                'http://localhost:5000/prescription/getPres/' +
                     this.props.match.params.id
             )
             .then((response) => {
                 this.setState({
-                    name: response.data.patientName,
-                    age: response.data.age,
-                    gender: response.data.gender,
-                    diagnosis: response.data.diagnosis,
-                    suggestions: response.data.suggestions,
-                    medicines:  response.data.medicines,
-                    date: response.data.date,
-                    id: response.data._id,
+                    Pname: response.data.patientName,                    
+                    Dname: response.data.doctorName
                 });
             })
             .catch(function (error) {
                 console.log(error);
             });
 
-        axios
-            .get('http://localhost:5000/users/')
-            .then((response) => {
-                if (response.data.length > 0) {
-                    this.setState({
-                        users: response.data.map((user) => user.username),
-                    });
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+       
     }
 
     render() {
@@ -83,8 +60,8 @@ export default class SampleCollector extends Component {
                         <h2> Doctor's Prescription</h2>
 
                         <div id="container">
-                            <br></br>Patient Name : {this.state.name}
-                            <br></br>Patient Age : {this.state.age}
+                            <br></br>Patient Name : {this.state.Pname}
+                            <br></br>Doctor Name : {this.state.Dname.toUpperCase() }
 
                             <br></br><br></br>
                             <a href="https://drive.google.com/file/d/1Lzo2WY6DzN_NXhcSfppsOrzKtLqD-l7w/view?usp=sharing" target="_blank" download><h6>View / Download</h6>  </a>
