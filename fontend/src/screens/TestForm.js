@@ -176,11 +176,13 @@ export default class TestForm extends Component {
                         res.data
                     )
                     .then((response) => {
+                        
                         console.log(response.data);
+                        window.location = '/patienthome';
                     });
             });
 
-        window.location = '/patienthome';
+        //window.location = '/patienthome';
     }
 
     render() {

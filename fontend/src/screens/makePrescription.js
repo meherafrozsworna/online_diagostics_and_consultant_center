@@ -95,12 +95,14 @@ export default class TestForm extends Component {
                             '/setThepatientId',
                         object
                     )
-                    .then((res) => console.log('done'))
+                    .then((res) =>{
+                        window.location = '/doctor';
+                    })
                     .catch((err) => console.log(err));
             })
             .catch((err) => console.log(err));
 
-        window.location = '/doctor';
+        
     }
 
     render() {

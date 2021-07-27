@@ -85,10 +85,6 @@ export default class SampleCollector extends Component {
 
     completeButton = (d) => {
         console.log('comeplete test : ' + d._id);
-        // const object = {
-        //     _id: _id,
-        // };
-        //deleteTest
         axios
             .post('http://localhost:5000/sampleCollector/deleteTest', d, {
                 headers: {
@@ -110,7 +106,7 @@ export default class SampleCollector extends Component {
                 console.log('error');
                 console.log(error);
             });
-
+        /*
         axios
             .get('http://localhost:5000/sampleCollector/alltheList', {
                 headers: {
@@ -123,15 +119,16 @@ export default class SampleCollector extends Component {
                 this.setState({
                     testList: response.data,
                 });
-                /*let idList = response.data;
-                console.log(idList);
-                idList.forEach(this.addDoctorsList);
-                */
+                
             })
             .catch(function (error) {
                 console.log('error');
                 console.log(error);
             });
+            */
+        this.setState({
+            testList: this.state.testList.filter((el) => el._id !== d._id),
+        });
     };
 
     render() {

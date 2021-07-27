@@ -79,10 +79,11 @@ export default class ChooseDoctor extends Component {
                     )
                     .then((response) => {
                         console.log(response.data);
+                        window.location = '/patienthome';
                     });
             });
 
-        window.location = '/patienthome';
+      
     }
 
     render() {
@@ -108,7 +109,7 @@ export default class ChooseDoctor extends Component {
                             <div class="grid-item">
                                 <div class="card2">
                                     {this.state.gender.localeCompare(
-                                        'Female'
+                                        'female'
                                     ) == 0 ? (
                                         <img
                                             src="https://st2.depositphotos.com/3889193/8319/i/600/depositphotos_83195332-stock-photo-smiling-female-doctor-holding-medical.jpg"

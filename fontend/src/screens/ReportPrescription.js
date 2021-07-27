@@ -24,31 +24,7 @@ export default class PatientHomeScreen extends Component {
     async componentDidMount() {
         //this.getTodos();
         //console.log('BBBBBBBBBBB');
-        axios
-            .get('http://localhost:5000/patient/home', {
-                headers: {
-                    'x-access-token': localStorage.getItem('token'),
-                },
-            })
-            .then((response) => {
-                //let obj = await response.data;
-                console.log('AAAAAA');
-                console.log(response.data);
-                this.setState({
-                    name: response.data.name,
-                    password: response.data.password,
-                    gender: response.data.gender,
-                    age: response.data.age,
-                    phone: response.data.phone,
-                    email: response.data.email,
-                    address: response.data.address,
-                    bloodGroup: response.data.bloodGroup,
-                });
-            })
-            .catch(function (error) {
-                console.log('error');
-                console.log(error);
-            });
+       
         axios
             .get('http://localhost:5000/patient/reportList', {
                 headers: {
@@ -82,6 +58,31 @@ export default class PatientHomeScreen extends Component {
             .catch(function (error) {
                 console.log(error);
             });
+            axios
+            .get('http://localhost:5000/patient/home', {
+                headers: {
+                    'x-access-token': localStorage.getItem('token'),
+                },
+            })
+            .then((response) => {
+                //let obj = await response.data;
+                console.log('AAAAAA');
+                console.log(response.data);
+                this.setState({
+                    name: response.data.name,
+                    password: response.data.password,
+                    gender: response.data.gender,
+                    age: response.data.age,
+                    phone: response.data.phone,
+                    email: response.data.email,
+                    address: response.data.address,
+                    bloodGroup: response.data.bloodGroup,
+                });
+            })
+            .catch(function (error) {
+                console.log('error');
+                console.log(error);
+            });
     }
 
     render() {
@@ -91,7 +92,7 @@ export default class PatientHomeScreen extends Component {
                     <h3>
                         {d.patientName}
                         <br></br>
-                        06-30-2021 <br></br>
+                        28-07-2021 <br></br>
                     </h3>
                     {d.testList.map((item, i) => (
                         <li key={i}> {item}</li>
@@ -102,7 +103,7 @@ export default class PatientHomeScreen extends Component {
 
         const listItems2 = this.state.presList.map((d) => (
             <li>
-                <a href="/seepres" target="_blank">
+                <a href={"/seepres/"+d._id }target="_blank">
                     <h3>
                         Doctor Name : {d.doctorName}
                         <br></br>
