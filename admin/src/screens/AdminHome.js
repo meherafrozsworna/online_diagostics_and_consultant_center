@@ -108,7 +108,7 @@ export default class AdminHome extends Component {
                     className="smallbtn"
                     onClick={() => this.removeButton(d)}
                 >
-                    Remove
+                    Completed
                 </button>
             </li>
         ));

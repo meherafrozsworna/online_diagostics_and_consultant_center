@@ -64,7 +64,7 @@ export default class ReportList extends Component {
                     className="smallbtn"
                     onClick={() => this.removeButton(d)}
                 >
-                    Remove
+                    Completed
                 </button>
             </li>
         ));
