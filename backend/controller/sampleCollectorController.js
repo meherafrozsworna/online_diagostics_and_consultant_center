@@ -124,10 +124,10 @@ router.get('/getAllsampleCollector', async (req, res) => {
 //testlistgula ekjon samplecollector er jonne pawa jabe
 router.get('/alltheList', verifyJWT, async (req, res) => {
     const testList = req.sampleCollector.testList;
-    let test_temp=[];
-    for (let i = 0; i < testList.length; i++){
-      const test=await TestForm.findById(testList[i]);
-      test_temp.push(test);
+    let test_temp = [];
+    for (let i = 0; i < testList.length; i++) {
+        const test = await TestForm.findById(testList[i]);
+        test_temp.push(test);
     }
     console.log(test_temp);
     res.json(test_temp);

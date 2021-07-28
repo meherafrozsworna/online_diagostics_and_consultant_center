@@ -163,7 +163,8 @@ router.post('/testform/submit', verifyJWT, async (req, res) => {
     });
 });
 router.get('/presList', verifyJWT, async (req, res) => {
-    const presList = req.patient.prescription;
+    const patient = await Patient.findById(req.patient._id);
+    const presList = patient.prescription;
 
     let test_temp = [];
     for (let i = 0; i < presList.length; i++) {
@@ -190,8 +191,8 @@ router.post('/getPresList', async (req, res) => {
 router.get('/reportList', verifyJWT, async (req, res) => {
     console.log('\n\nBBBBBBBBBBBBB\n\n');
     console.log(req.patient.report);
-
-    const reportList = req.patient.report;
+    const patient = await Patient.findById(req.patient._id);
+    const reportList = patient.report;
 
     let test_temp = [];
     for (let i = 0; i < reportList.length; i++) {

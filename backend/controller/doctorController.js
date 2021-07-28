@@ -146,7 +146,8 @@ router.get('/showAppointmentList', verifyJWT, async (req, res) => {
         testList: testList,
     };
     */
-    const testList = req.doctor.appointmentList;
+   const doctor = await Doctor.findById(req.doctor._id);
+    const testList = doctor.appointmentList;
 
     res.json(testList);
 });

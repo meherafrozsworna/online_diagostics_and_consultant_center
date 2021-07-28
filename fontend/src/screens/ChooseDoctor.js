@@ -36,7 +36,8 @@ export default class ChooseDoctor extends Component {
         const listItems = this.state.doctorList.map((d) => (
             <div class="grid-item">
                 <div class="card">
-                    {d.gender.localeCompare('female') == 0 ? (
+                    {(d.gender.localeCompare('female') == 0) |
+                    (d.gender.localeCompare('Female') == 0) ? (
                         <img
                             src="https://st2.depositphotos.com/3889193/8319/i/600/depositphotos_83195332-stock-photo-smiling-female-doctor-holding-medical.jpg"
                             alt={d.name}
@@ -58,7 +59,7 @@ export default class ChooseDoctor extends Component {
                         {' '}
                         <h2>Sun-Thurs: 6pm-9pm</h2>
                     </p>
-                    <Link to={"/doctordetails/"+d._id} className="book_btn">
+                    <Link to={'/doctordetails/' + d._id} className="book_btn">
                         Book Appointment
                     </Link>
                 </div>

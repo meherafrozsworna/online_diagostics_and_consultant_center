@@ -108,9 +108,8 @@ export default class ChooseDoctor extends Component {
                         <div className="grid-container1">
                             <div class="grid-item">
                                 <div class="card2">
-                                    {this.state.gender.localeCompare(
-                                        'female'
-                                    ) == 0 ? (
+                                    {(this.state.gender.localeCompare('female') == 0) |
+                                    (this.state.gender.localeCompare('Female') == 0)? (
                                         <img
                                             src="https://st2.depositphotos.com/3889193/8319/i/600/depositphotos_83195332-stock-photo-smiling-female-doctor-holding-medical.jpg"
                                             alt={this.state.name}

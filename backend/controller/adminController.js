@@ -30,15 +30,30 @@ const verifyJWT = async (req, res, next) => {
     }
 };
 //list show er jonne
+router.get('/getid', verifyJWT, async (req, res) => {
+    const id = req.admin._id;
+    res.json(id);
+});
 router.get('/appointmentList', verifyJWT, async (req, res) => {
-    const testList = req.admin.appointmentList;
+    const admin = await Admin.findById(req.admin._id);
+    const testList = admin.appointmentList;
     console.log(testList);
     let test_temp = [];
     for (let i = 0; i < testList.length; i++) {
         const test = await Appointment.findById(testList[i]);
         test_temp.push(test);
     }
-
+    res.json(test_temp);
+});
+router.post('/appointmentList', async (req, res) => {
+    const admin = await Admin.findById(req.body._id);
+    const testList = admin.appointmentList;
+    console.log(testList);
+    let test_temp = [];
+    for (let i = 0; i < testList.length; i++) {
+        const test = await Appointment.findById(testList[i]);
+        test_temp.push(test);
+    }
     res.json(test_temp);
 });
 router.post('/getAppointment', async (req, res) => {
@@ -46,6 +61,7 @@ router.post('/getAppointment', async (req, res) => {
     res.send(appointment);
 });
 router.get('/sampleCollectorList', verifyJWT, async (req, res) => {
+    
     const testList = req.admin.sampleCollectorList;
     let test_temp = [];
     for (let i = 0; i < testList.length; i++) {
@@ -68,6 +84,18 @@ router.get('/testFormList', verifyJWT, async (req, res) => {
     res.json(test_temp);
 });
 
+router.post('/testFormList', async (req, res) => {
+    const admin = await Admin.findById(req.body._id);
+    const testList = admin.testList;
+    let test_temp = [];
+    for (let i = 0; i < testList.length; i++) {
+        const test = await Testform.findById(testList[i]);
+        test_temp.push(test);
+    }
+
+    res.json(test_temp);
+});
+
 router.get('/doctorList', verifyJWT, async (req, res) => {
     const doctorList = req.admin.doctorList;
     let test_temp = [];
@@ -80,7 +108,8 @@ router.get('/doctorList', verifyJWT, async (req, res) => {
 });
 
 router.get('/reportList', verifyJWT, async (req, res) => {
-    const reportList = req.admin.reportList;
+    const admin = await Admin.findById(req.admin._id);
+    const reportList = admin.reportList;
     console.log(reportList);
     let test_temp = [];
     for (let i = 0; i < reportList.length; i++) {
@@ -284,17 +313,16 @@ router.post('/sendZoomlink', async (req, res) => {
     let appointment = await Appointment.findById(req.body._id);
     let doctor = await Doctor.findById(appointment.doctorId);
     console.log(doctor.name);
-    let apdetails={
+    let apdetails = {
         doctorId: appointment.doctorId[0],
         doctorName: doctor.name,
         link: doctor.zoomlink,
         date: appointment.date,
-    }
+    };
     const patient = await Patient.findByIdAndUpdate(
         appointment.patientId[0],
         {
             $push: { appointmentDetails: apdetails },
-            
         },
         { new: true }
     );
