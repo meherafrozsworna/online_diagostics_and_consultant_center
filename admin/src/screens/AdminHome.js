@@ -59,20 +59,32 @@ export default class AdminHome extends Component {
 */
     componentDidMount() {
         axios
-            .get('http://localhost:5000/admin/testFormList', {
+            .get('http://localhost:5000/admin/getid', {
                 headers: {
                     'x-access-token': localStorage.getItem('admintoken'),
                 },
             })
             .then((response) => {
                 console.log(response.data);
-                this.setState({
-                    testList: response.data,
-                });
+                const data = {
+                    _id: response.data,
+                };
+                axios
+                    .post('http://localhost:5000/admin/testFormList',data)
+                    .then((response) => {
+                        console.log(response.data);
+                        this.setState({
+                            testList: response.data,
+                        });
 
-                //this.setState({});
-                console.log('test collectors : ');
-                console.log(this.state.testList);
+                        //this.setState({});
+                        console.log('test collectors : ');
+                        console.log(this.state.testList);
+                    })
+                    .catch(function (error) {
+                        console.log('error');
+                        console.log(error);
+                    });
             })
             .catch(function (error) {
                 console.log('error');
