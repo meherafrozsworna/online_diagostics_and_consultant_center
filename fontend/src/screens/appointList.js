@@ -70,9 +70,9 @@ export default class PatientHomeScreen extends Component {
         const listItems = this.state.appointmentList.map((d) => (
             <li>
                 <h3>
-                    {d.doctorName}
+                   Doctor : {d.doctorName}
                     <br></br>
-                    {d.date}
+                   Date : {d.date}
                     <br></br>
                     <br></br>
                     <button className="smallbtn">

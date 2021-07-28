@@ -62,7 +62,7 @@ export default class AdminHome extends Component {
                 <Link to={"/addZoomLink/"+d._id}>
                     Patient Name :{d.patientName} <br></br>
                     Doctor Name : {d.doctorName}<br></br>
-                    Amount : Tk 560
+                    Amount : Tk 1000
                     <h4>UNPAID</h4>
                     <button className="smallbtn">Add Appointment Link</button>
                 </Link>
@@ -225,7 +225,7 @@ export default class AdminHome extends Component {
                                             <Link to="/addZoomLink">
                                                 <h3>Abeda Sultana </h3>
                                                 Dr Afzal Hossain<br></br>
-                                                Tk 560
+                                                Tk 1000
                                                 <h4>UNPAID</h4>
                                                 <h4>Approved</h4>
                                                 <button className="smallbtn">
